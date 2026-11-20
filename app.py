@@ -86,12 +86,139 @@ _SEEN_UPDATES = collections.deque(maxlen=300)
 _GEN_LOCK = asyncio.Lock()
 
 # ==========================================
-# RU + TR LOCALIZATION DICTIONARY
+# PIVOK CHANNEL LINKS CONFIGURATION
+# Ready for adding/updating channel URLs via:
+#   1) Environment variables (LINK_TELEGRAM_CHANNEL, LINK_WHATSAPP, LINK_INSTAGRAM,
+#      LINK_WHATSAPP_CHANNEL, LINK_SALE_CHANNEL, LINK_VIDEO_CHANNEL, LINK_ADDRESS)
+#   2) Persistent store (cloud_state.json -> "channel_links")
+#   3) Default values below (no bot logic rewrite required)
+# ==========================================
+
+PIVOK_CHANNEL_LINKS = [
+    {
+        "key": "telegram_channel",
+        "text": "Telegram Channel",
+        "default_url": "https://t.me/pivoklaleli",
+        "env_var": "LINK_TELEGRAM_CHANNEL",
+    },
+    {
+        "key": "whatsapp",
+        "text": "WhatsApp",
+        "default_url": "https://chat.whatsapp.com/Ddh7BKb1atCAhRzogy9l9Y",
+        "env_var": "LINK_WHATSAPP",
+    },
+    {
+        "key": "instagram",
+        "text": "Instagram",
+        "default_url": "https://www.instagram.com/pivok_fashion?cnvx=MWRzeWJkaGs1MGpsaQ==",
+        "env_var": "LINK_INSTAGRAM",
+    },
+    {
+        "key": "whatsapp_channel",
+        "text": "WhatsApp Channel",
+        "default_url": "",
+        "env_var": "LINK_WHATSAPP_CHANNEL",
+    },
+    {
+        "key": "sale_channel",
+        "text": "Sale Channel",
+        "default_url": "",
+        "env_var": "LINK_SALE_CHANNEL",
+    },
+    {
+        "key": "video_channel",
+        "text": "Video Channel",
+        "default_url": "",
+        "env_var": "LINK_VIDEO_CHANNEL",
+    },
+    {
+        "key": "address",
+        "text": "Address",
+        "default_url": "",
+        "env_var": "LINK_ADDRESS",
+    },
+]
+
+# ==========================================
+# EN (DEFAULT) + RU + TR LOCALIZATION DICTIONARY
 # ==========================================
 
 STRINGS = {
+    "en": {
+        "btn_create": "🖼 Create Collage",
+        "btn_channels": "📢 Channels",
+        "btn_lang": "🌐 Language",
+        "btn_cancel": "❌ Cancel",
+        "btn_pair_2": "✅ Double Collage (2 Photos)",
+        "btn_single_1": "✅ Single Collage (1 Photo)",
+        "btn_all_loaded": "✅ ALL PHOTOS UPLOADED",
+        "btn_group_smart": "🧠 Smart Grouping (Auto)",
+        "btn_group_seq": "🔢 Sequential Pairs (1-2, 3-4)",
+        "btn_confirm_go": "✅ Generate Collages",
+        "btn_edit_code": "✏️ Edit Code",
+        "btn_edit_size": "✏️ Edit Sizes",
+        "btn_edit_price": "✏️ Edit Price",
+        "btn_dl_files": "📥 Download Original Files",
+        "btn_refresh": "🔄 Refresh Preview",
+        "btn_add_color": "🎨 Add Color Photos",
+        "btn_delete": "🗑 Delete",
+        "welcome": "🌸 **PÎVOK Studio (24/7)**\nChoose an action from the menu below:",
+        "channels_title": "📢 **PÎVOK Official Channels & Links:**",
+        "channels_empty": "ℹ️ Channel links have not been configured yet.",
+        "cancelled": "❌ Action cancelled.",
+        "lang_prompt": "🌐 **Select interface language:**",
+        "lang_switched": "🇬🇧 Language switched to **English**!",
+        "send_photos_prompt": (
+            "📸 **Send all photos for one model** (as an album or files).\n\n"
+            "Once all photos are uploaded, select below:\n"
+            "• **✅ Double Collage (2 Photos)** — PÎVOK 4×3 format\n"
+            "• **✅ Single Collage (1 Photo)**"
+        ),
+        "only_images": "⚠️ Please send image files only.",
+        "photos_buffered": "📥 Photos received: **{n}**\nUpload more or press a button below:",
+        "no_photos_yet": "⚠️ You have not uploaded any photos yet!",
+        "need_2_photos": "⚠️ Double collage requires at least 2 photos.",
+        "processing_extra": "⏳ Processing additional photos...",
+        "ask_grouping": "📸 **{n} photos** uploaded. How should pairs be grouped?",
+        "ask_code": "🔖 Enter **Model Code** (e.g. `O-21476`):",
+        "err_code": "⚠️ Please enter a valid model code:",
+        "ask_size": "📏 Select or type **Sizes** (e.g. `38-44`):",
+        "err_size": "⚠️ Please specify the size range:",
+        "ask_price": "💰 Enter **Price in $** (e.g. `79`):",
+        "err_price": "⚠️ Please enter a valid price:",
+        "summary": (
+            "📋 **Review PÎVOK Collage Details:**\n\n"
+            "🔖 **Code:** `{code}`\n"
+            "💰 **Price:** `{price}$`\n"
+            "📏 **Sizes:** `{size}`\n"
+            "🖼 **Photos:** {cnt} → **{est} collages** (4×3 format)"
+        ),
+        "ask_edit_code": "🔖 Enter new **Model Code**:",
+        "ask_edit_size": "📏 Select or enter new **Sizes**:",
+        "ask_edit_price": "💰 Enter new **Price ($)**:",
+        "choose_below": "Please choose a button below 👇",
+        "generating": "⚙️ Processing {n} photos in the cloud...",
+        "prog_step": "⏳ Analyzing photo: **{cur} of {tot}**...",
+        "prog_render": "🎨 Assembling PÎVOK collages (4×3)...",
+        "preview_ready": (
+            "✨ **PÎVOK — Collages Ready ({n})**\n"
+            "🔖 Code: `{code}` | 💰 Price: `{price}$` | 📏 Sizes: `{sizes}`\n\n"
+            "Adjust framing via 🛠 if needed, or choose an action:"
+        ),
+        "next_model_hint": "Done! To create collages for the next model, tap the button below:",
+        "err_gen": "❌ Error generating collages: {e}",
+        "folder_missing": "⚠️ Collage folder not found.",
+        "gen_empty": "⚠️ Could not generate collages.",
+        "sending_originals": "Sending original files...",
+        "refreshing": "Refreshing preview...",
+        "ask_add_color": "📸 Send additional photos (new color) for this model, then press **«✅ ALL PHOTOS UPLOADED»**.",
+        "deleted_toast": "Deleted",
+        "deleted_msg": "🗑 Collages deleted.",
+        "catch_all": "🌸 **PÎVOK Studio**\nPress **«🖼 Create Collage»** below (or send photos directly here):",
+    },
     "ru": {
         "btn_create": "🖼 Создать коллаж",
+        "btn_channels": "📢 Каналы",
         "btn_lang": "🇹🇷 Türkçe / Язык",
         "btn_cancel": "❌ Отмена",
         "btn_pair_2": "✅ Двойной коллаж (по 2 фото)",
@@ -158,9 +285,12 @@ STRINGS = {
         "deleted_toast": "Удалено",
         "deleted_msg": "🗑 Коллажи удалены.",
         "catch_all": "🌸 **PÎVOK Cloud Studio**\nНажмите **«🖼 Создать коллаж»** внизу (или отправьте фото прямо сюда):",
+        "channels_title": "📢 **Официальные каналы и ссылки PÎVOK:**",
+        "channels_empty": "ℹ️ Ссылки на каналы пока не настроены.",
     },
     "tr": {
         "btn_create": "🖼 Kolaj Oluştur",
+        "btn_channels": "📢 Kanallar",
         "btn_lang": "🇷🇺 Русский / Dil",
         "btn_cancel": "❌ İptal",
         "btn_pair_2": "✅ İkili Kolaj (2 Fotoğraf)",
@@ -227,13 +357,30 @@ STRINGS = {
         "deleted_toast": "Silindi",
         "deleted_msg": "🗑 Kolajlar silindi.",
         "catch_all": "🌸 **PÎVOK Cloud Studio**\nAşağıdaki **«🖼 Kolaj Oluştur»** butonuna basın (veya fotoğrafları doğrudan buraya gönderin):",
+        "channels_title": "📢 **PÎVOK Resmi Kanallar ve Linkler:**",
+        "channels_empty": "ℹ️ Kanal linkleri henüz ayarlanmadı.",
     },
 }
 
-CREATE_TEXTS = {STRINGS["ru"]["btn_create"], STRINGS["tr"]["btn_create"]}
-LANG_BTN_TEXTS = {STRINGS["ru"]["btn_lang"], STRINGS["tr"]["btn_lang"]}
-CANCEL_TEXTS = {"❌ Отмена", "Отмена", "❌ İptal", "İptal", "iptal", "/cancel", "/stop"}
+CREATE_TEXTS = {STRINGS["en"]["btn_create"], STRINGS["ru"]["btn_create"], STRINGS["tr"]["btn_create"]}
+CHANNELS_BTN_TEXTS = {STRINGS["en"]["btn_channels"], STRINGS["ru"]["btn_channels"], STRINGS["tr"]["btn_channels"]}
+LANG_BTN_TEXTS = {STRINGS["en"]["btn_lang"], STRINGS["ru"]["btn_lang"], STRINGS["tr"]["btn_lang"]}
+CANCEL_TEXTS = {
+    STRINGS["en"]["btn_cancel"],
+    "Cancel",
+    "cancel",
+    "❌ Отмена",
+    "Отмена",
+    "❌ İptal",
+    "İptal",
+    "iptal",
+    "/cancel",
+    "/stop",
+}
 DONE_PHOTO_TEXTS = {
+    STRINGS["en"]["btn_all_loaded"],
+    STRINGS["en"]["btn_pair_2"],
+    STRINGS["en"]["btn_single_1"],
     STRINGS["ru"]["btn_all_loaded"],
     STRINGS["tr"]["btn_all_loaded"],
     STRINGS["ru"]["btn_pair_2"],
@@ -241,12 +388,36 @@ DONE_PHOTO_TEXTS = {
     STRINGS["ru"]["btn_single_1"],
     STRINGS["tr"]["btn_single_1"],
 }
-SINGLE_MODE_TEXTS = {STRINGS["ru"]["btn_single_1"], STRINGS["tr"]["btn_single_1"]}
-SMART_GROUP_TEXTS = {STRINGS["ru"]["btn_group_smart"], STRINGS["tr"]["btn_group_smart"]}
-CONFIRM_GO_TEXTS = {STRINGS["ru"]["btn_confirm_go"], STRINGS["tr"]["btn_confirm_go"]}
-EDIT_CODE_TEXTS = {STRINGS["ru"]["btn_edit_code"], STRINGS["tr"]["btn_edit_code"]}
-EDIT_SIZE_TEXTS = {STRINGS["ru"]["btn_edit_size"], STRINGS["tr"]["btn_edit_size"]}
-EDIT_PRICE_TEXTS = {STRINGS["ru"]["btn_edit_price"], STRINGS["tr"]["btn_edit_price"]}
+SINGLE_MODE_TEXTS = {
+    STRINGS["en"]["btn_single_1"],
+    STRINGS["ru"]["btn_single_1"],
+    STRINGS["tr"]["btn_single_1"],
+}
+SMART_GROUP_TEXTS = {
+    STRINGS["en"]["btn_group_smart"],
+    STRINGS["ru"]["btn_group_smart"],
+    STRINGS["tr"]["btn_group_smart"],
+}
+CONFIRM_GO_TEXTS = {
+    STRINGS["en"]["btn_confirm_go"],
+    STRINGS["ru"]["btn_confirm_go"],
+    STRINGS["tr"]["btn_confirm_go"],
+}
+EDIT_CODE_TEXTS = {
+    STRINGS["en"]["btn_edit_code"],
+    STRINGS["ru"]["btn_edit_code"],
+    STRINGS["tr"]["btn_edit_code"],
+}
+EDIT_SIZE_TEXTS = {
+    STRINGS["en"]["btn_edit_size"],
+    STRINGS["ru"]["btn_edit_size"],
+    STRINGS["tr"]["btn_edit_size"],
+}
+EDIT_PRICE_TEXTS = {
+    STRINGS["en"]["btn_edit_price"],
+    STRINGS["ru"]["btn_edit_price"],
+    STRINGS["tr"]["btn_edit_price"],
+}
 
 
 def _load_state_store() -> dict:
@@ -276,15 +447,39 @@ _env_ids = [
 ALLOWED_USERS: list[int] = list(set(_STORE.get("allowed_users", []) + _env_ids))
 pending_dispatches: Dict[str, str] = _STORE.get("pending_dispatches", {})
 media_msgs_store: Dict[str, list[int]] = _STORE.get("media_msgs", {})
-user_langs: Dict[str, str] = _STORE.get("user_langs", {})
+user_langs: Dict[str, str] = _STORE.get("user_langs_v3", {})
+saved_channel_links: Dict[str, str] = _STORE.get("channel_links", {})
 
 
 def persist_store():
     _STORE["allowed_users"] = ALLOWED_USERS
     _STORE["pending_dispatches"] = pending_dispatches
     _STORE["media_msgs"] = media_msgs_store
-    _STORE["user_langs"] = user_langs
+    _STORE["user_langs_v3"] = user_langs
+    _STORE["channel_links"] = saved_channel_links
     _save_state_store(_STORE)
+
+
+def get_channel_link_url(item: dict) -> str:
+    key = item["key"]
+    if key in saved_channel_links and saved_channel_links[key]:
+        return saved_channel_links[key].strip()
+    env_val = os.environ.get(item["env_var"], "").strip()
+    if env_val:
+        return env_val
+    return (item.get("default_url") or "").strip()
+
+
+def build_channel_links_kb() -> Optional[InlineKeyboardMarkup]:
+    active = []
+    for item in PIVOK_CHANNEL_LINKS:
+        url = get_channel_link_url(item)
+        if url:
+            active.append(InlineKeyboardButton(text=item["text"], url=url))
+    if not active:
+        return None
+    rows = [active[i : i + 2] for i in range(0, len(active), 2)]
+    return InlineKeyboardMarkup(inline_keyboard=rows)
 
 
 def prune_old_work_folders(keep_latest: int = 8):
@@ -307,21 +502,19 @@ def prune_old_work_folders(keep_latest: int = 8):
 def get_lang(user_id: Optional[int], tg_lang_code: Optional[str] = None) -> str:
     if user_id is not None:
         saved = user_langs.get(str(user_id))
-        if saved in ("ru", "tr"):
+        if saved in ("en", "ru", "tr"):
             return saved
-    if tg_lang_code and tg_lang_code.lower().startswith("tr"):
-        return "tr"
-    return "ru"
+    return "en"
 
 
 def set_lang(user_id: int, lang: str):
-    if lang in ("ru", "tr"):
+    if lang in ("en", "ru", "tr"):
         user_langs[str(user_id)] = lang
         persist_store()
 
 
 def tr_str(lang: str, key: str, **kwargs) -> str:
-    text = STRINGS.get(lang, STRINGS["ru"]).get(key, STRINGS["ru"].get(key, key))
+    text = STRINGS.get(lang, STRINGS["en"]).get(key, STRINGS["en"].get(key, key))
     return text.format(**kwargs) if kwargs else text
 
 
@@ -334,13 +527,14 @@ def build_keyboard(items, columns=2):
 
 
 def main_menu_kb(lang: str):
-    return build_keyboard([tr_str(lang, "btn_create"), tr_str(lang, "btn_lang")], 2)
+    return build_keyboard([tr_str(lang, "btn_create"), tr_str(lang, "btn_channels")], 2)
 
 
 def lang_inline_kb() -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(
         inline_keyboard=[
             [
+                InlineKeyboardButton(text="🇬🇧 English", callback_data="setlang_en"),
                 InlineKeyboardButton(text="🇷🇺 Русский", callback_data="setlang_ru"),
                 InlineKeyboardButton(text="🇹🇷 Türkçe", callback_data="setlang_tr"),
             ]
@@ -430,24 +624,17 @@ class SecurityMiddleware(BaseMiddleware):
                     lang = get_lang(user_id, getattr(user, "language_code", None))
                     set_lang(user_id, lang)
                     await event.answer(
-                        "✅ **Доступ открыт! / Erişim açıldı!**\n\n"
-                        "🌐 Выберите язык / Lütfen dil seçin:",
-                        reply_markup=lang_inline_kb(),
-                        parse_mode="Markdown",
-                    )
-                    await event.answer(
-                        tr_str(lang, "welcome"),
+                        "✅ **Access granted!**\n\n" + tr_str(lang, "welcome"),
                         reply_markup=main_menu_kb(lang),
                         parse_mode="Markdown",
                     )
                     return
                 await event.answer(
-                    "🔒 Бот PÎVOK защищён. Введите пароль:\n"
-                    "🔒 PÎVOK botu korumalıdır. Lütfen şifreyi girin:"
+                    "🔒 This PÎVOK bot is password-protected. Please enter the access password:"
                 )
                 return
             if hasattr(event, "data") and event.data:
-                await event.answer("🔒 Введите пароль / Şifreyi girin", show_alert=True)
+                await event.answer("🔒 Please enter the password in chat first.", show_alert=True)
                 return
             return
         return await handler(event, data)
@@ -559,6 +746,21 @@ async def cmd_start(message: Message, state: FSMContext):
     )
 
 
+@dp.message(Command("channels"))
+@dp.message(F.text.in_(CHANNELS_BTN_TEXTS))
+async def cmd_channels(message: Message):
+    lang = get_lang(message.from_user.id, message.from_user.language_code)
+    kb = build_channel_links_kb()
+    if kb:
+        await message.answer(
+            tr_str(lang, "channels_title"),
+            reply_markup=kb,
+            parse_mode="Markdown",
+        )
+    else:
+        await message.answer(tr_str(lang, "channels_empty"))
+
+
 @dp.message(Command("lang", "language", "dil"))
 @dp.message(F.text.in_(LANG_BTN_TEXTS))
 async def cmd_language(message: Message):
@@ -570,11 +772,19 @@ async def cmd_language(message: Message):
     )
 
 
-@dp.callback_query(F.data.in_({"setlang_ru", "setlang_tr"}))
+@dp.callback_query(F.data.in_({"setlang_en", "setlang_ru", "setlang_tr"}))
 async def cb_set_language(callback: CallbackQuery, state: FSMContext):
-    new_lang = "tr" if callback.data.endswith("_tr") else "ru"
+    if callback.data.endswith("_tr"):
+        new_lang = "tr"
+        toast = "🇹🇷 Türkçe"
+    elif callback.data.endswith("_ru"):
+        new_lang = "ru"
+        toast = "🇷🇺 Русский"
+    else:
+        new_lang = "en"
+        toast = "🇬🇧 English"
     set_lang(callback.from_user.id, new_lang)
-    await callback.answer("🇹🇷 Türkçe" if new_lang == "tr" else "🇷🇺 Русский")
+    await callback.answer(toast)
     try:
         await callback.message.delete()
     except Exception:
@@ -1154,8 +1364,9 @@ async def health():
     return {
         "status": "ok",
         "service": "PIVOK Cloud Studio 24/7",
-        "version": "v2-lowram",
-        "languages": ["ru", "tr"],
+        "version": "v3-en-channels-ready",
+        "languages": ["en", "ru", "tr"],
+        "default_language": "en",
         "webhook_mode": PUBLIC_BASE_URL.startswith("https://"),
     }
 

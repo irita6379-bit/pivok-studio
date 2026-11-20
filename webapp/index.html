@@ -49,9 +49,23 @@
         const urlParams = new URLSearchParams(window.location.search);
         const folder = urlParams.get('folder');
         const chatId = urlParams.get('chat_id');
-        const lang = (urlParams.get('lang') || 'ru').toLowerCase() === 'tr' ? 'tr' : 'ru';
+        const rawLang = (urlParams.get('lang') || 'en').toLowerCase();
+        const lang = (rawLang === 'ru' || rawLang === 'tr') ? rawLang : 'en';
 
         const I18N = {
+            en: {
+                loading: "PÎVOK — Loading...",
+                inst: "Tap a photo, drag to reposition, and use the slider to zoom.",
+                zoom: "Selected photo zoom",
+                prev: "⬅️ Back",
+                swap: "⇄ Swap Photos",
+                next: "Next ➡️",
+                save: "SAVE COLLAGE",
+                saving: "Saving...",
+                errLoad: "Failed to load source photos",
+                errPrefix: "Error: ",
+                pairOf: (a, b) => `PÎVOK — Collage ${a} of ${b}`
+            },
             ru: {
                 loading: "PÎVOK — Загрузка...",
                 inst: "Нажмите на фото, двигайте пальцем и меняйте масштаб ползунком.",
