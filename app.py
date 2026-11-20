@@ -1,5 +1,5 @@
-﻿"""
-PГЋVOK Studio вЂ” 24/7 Cloud App (Render Free-Tier Optimized: <150MB RAM, 1-Thread ONNX, RU + TR)
+"""
+PÎVOK Studio — 24/7 Cloud App (Render Free-Tier Optimized: <150MB RAM, 1-Thread ONNX, RU + TR)
 """
 
 import asyncio
@@ -114,43 +114,43 @@ _WA_PROC: Optional[subprocess.Popen] = None
 PIVOK_CHANNEL_LINKS = [
     {
         "key": "telegram_channel",
-        "text": "вњ€пёЏ Telegram Channel",
+        "text": "✈️ Telegram Channel",
         "default_url": "https://t.me/pivoklaleli",
         "env_var": "LINK_TELEGRAM_CHANNEL",
     },
     {
         "key": "whatsapp",
-        "text": "рџ’¬ WhatsApp",
+        "text": "💬 WhatsApp",
         "default_url": "https://chat.whatsapp.com/Ddh7BKb1atCAhRzogy9l9Y",
         "env_var": "LINK_WHATSAPP",
     },
     {
         "key": "instagram",
-        "text": "рџ“ё Instagram",
+        "text": "📸 Instagram",
         "default_url": "https://www.instagram.com/pivok_fashion?cnvx=MWRzeWJkaGs1MGpsaQ==",
         "env_var": "LINK_INSTAGRAM",
     },
     {
         "key": "whatsapp_channel",
-        "text": "рџ“ў WhatsApp Channel",
+        "text": "📢 WhatsApp Channel",
         "default_url": "https://chat.whatsapp.com/Ddh7BKb1atCAhRzogy9l9Y",
         "env_var": "LINK_WHATSAPP_CHANNEL",
     },
     {
         "key": "sale_channel",
-        "text": "рџ”Ґ Sale Channel",
+        "text": "🔥 Sale Channel",
         "default_url": "https://t.me/pivoksale",
         "env_var": "LINK_SALE_CHANNEL",
     },
     {
         "key": "video_channel",
-        "text": "рџ“№ Video Channel",
+        "text": "📹 Video Channel",
         "default_url": "https://t.me/pivokvideo",
         "env_var": "LINK_VIDEO_CHANNEL",
     },
     {
         "key": "address",
-        "text": "рџ“Ќ Address",
+        "text": "📍 Address",
         "default_url": "https://www.google.com/maps?q=41.007667,28.955222",
         "env_var": "LINK_ADDRESS",
     },
@@ -162,376 +162,376 @@ PIVOK_CHANNEL_LINKS = [
 
 STRINGS = {
     "en": {
-        "btn_create": "рџ–ј Create Collage",
-        "btn_wa_qr": "рџ“± WhatsApp QR",
-        "btn_channels": "рџ“ў Channels",
-        "btn_lang": "рџЊђ Language",
-        "btn_cancel": "вќЊ Cancel",
-        "btn_pair_2": "вњ… Double Collage (2 Photos)",
-        "btn_single_1": "вњ… Single Collage (1 Photo)",
-        "btn_all_loaded": "вњ… ALL PHOTOS UPLOADED",
-        "btn_group_smart": "рџ§  Smart Grouping (Auto)",
-        "btn_group_seq": "рџ”ў Sequential Pairs (1-2, 3-4)",
-        "btn_confirm_go": "вњ… Generate Collages",
-        "btn_edit_code": "вњЏпёЏ Edit Code",
-        "btn_edit_size": "вњЏпёЏ Edit Sizes",
-        "btn_edit_price": "вњЏпёЏ Edit Price",
-        "btn_pub_both": "рџљЂ Send to TG Channel & WhatsApp",
-        "btn_pub_tg": "вњ€пёЏ Send to TG Channel",
-        "btn_pub_wa": "рџ’¬ Send to WhatsApp",
-        "btn_dl_files": "рџ“Ґ Download Original Files",
-        "btn_refresh": "рџ”„ Refresh Preview",
-        "btn_add_color": "рџЋЁ Add Color Photos",
-        "btn_delete": "рџ—‘ Delete",
-        "welcome": "рџЊё **PГЋVOK Studio (24/7)**\nChoose an action from the menu below:",
-        "channels_title": "рџ“ў **PГЋVOK Official Channels & Links:**",
-        "channels_empty": "в„№пёЏ Channel links have not been configured yet.",
-        "cancelled": "вќЊ Action cancelled.",
-        "lang_prompt": "рџЊђ **Select interface language:**",
-        "lang_switched": "рџ‡¬рџ‡§ Language switched to **English**!",
+        "btn_create": "🖼 Create Collage",
+        "btn_wa_qr": "📱 WhatsApp QR",
+        "btn_channels": "📢 Channels",
+        "btn_lang": "🌐 Language",
+        "btn_cancel": "❌ Cancel",
+        "btn_pair_2": "✅ Double Collage (2 Photos)",
+        "btn_single_1": "✅ Single Collage (1 Photo)",
+        "btn_all_loaded": "✅ ALL PHOTOS UPLOADED",
+        "btn_group_smart": "🧠 Smart Grouping (Auto)",
+        "btn_group_seq": "🔢 Sequential Pairs (1-2, 3-4)",
+        "btn_confirm_go": "✅ Generate Collages",
+        "btn_edit_code": "✏️ Edit Code",
+        "btn_edit_size": "✏️ Edit Sizes",
+        "btn_edit_price": "✏️ Edit Price",
+        "btn_pub_both": "🚀 Send to TG Channel & WhatsApp",
+        "btn_pub_tg": "✈️ Send to TG Channel",
+        "btn_pub_wa": "💬 Send to WhatsApp",
+        "btn_dl_files": "📥 Download Original Files",
+        "btn_refresh": "🔄 Refresh Preview",
+        "btn_add_color": "🎨 Add Color Photos",
+        "btn_delete": "🗑 Delete",
+        "welcome": "🌸 **PÎVOK Studio (24/7)**\nChoose an action from the menu below:",
+        "channels_title": "📢 **PÎVOK Official Channels & Links:**",
+        "channels_empty": "ℹ️ Channel links have not been configured yet.",
+        "cancelled": "❌ Action cancelled.",
+        "lang_prompt": "🌐 **Select interface language:**",
+        "lang_switched": "🇬🇧 Language switched to **English**!",
         "send_photos_prompt": (
-            "рџ“ё **Send all photos for one model** (as an album or files).\n\n"
+            "📸 **Send all photos for one model** (as an album or files).\n\n"
             "Once all photos are uploaded, select below:\n"
-            "вЂў **вњ… Double Collage (2 Photos)** вЂ” PГЋVOK 4Г—3 format\n"
-            "вЂў **вњ… Single Collage (1 Photo)**"
+            "• **✅ Double Collage (2 Photos)** — PÎVOK 4×3 format\n"
+            "• **✅ Single Collage (1 Photo)**"
         ),
-        "only_images": "вљ пёЏ Please send image files only.",
-        "photos_buffered": "рџ“Ґ Photos received: **{n}**\nUpload more or press a button below:",
-        "no_photos_yet": "вљ пёЏ You have not uploaded any photos yet!",
-        "need_2_photos": "вљ пёЏ Double collage requires at least 2 photos.",
-        "processing_extra": "вЏі Processing additional photos...",
-        "ask_grouping": "рџ“ё **{n} photos** uploaded. How should pairs be grouped?",
-        "ask_code": "рџ”– Enter **Model Code** (e.g. `O-21476`):",
-        "err_code": "вљ пёЏ Please enter a valid model code:",
-        "ask_size": "рџ“Џ Select or type **Sizes** (e.g. `38-44`):",
-        "err_size": "вљ пёЏ Please specify the size range:",
-        "ask_price": "рџ’° Enter **Price in $** (e.g. `79`):",
-        "err_price": "вљ пёЏ Please enter a valid price:",
+        "only_images": "⚠️ Please send image files only.",
+        "photos_buffered": "📥 Photos received: **{n}**\nUpload more or press a button below:",
+        "no_photos_yet": "⚠️ You have not uploaded any photos yet!",
+        "need_2_photos": "⚠️ Double collage requires at least 2 photos.",
+        "processing_extra": "⏳ Processing additional photos...",
+        "ask_grouping": "📸 **{n} photos** uploaded. How should pairs be grouped?",
+        "ask_code": "🔖 Enter **Model Code** (e.g. `O-21476`):",
+        "err_code": "⚠️ Please enter a valid model code:",
+        "ask_size": "📏 Select or type **Sizes** (e.g. `38-44`):",
+        "err_size": "⚠️ Please specify the size range:",
+        "ask_price": "💰 Enter **Price in $** (e.g. `79`):",
+        "err_price": "⚠️ Please enter a valid price:",
         "summary": (
-            "рџ“‹ **Review PГЋVOK Collage Details:**\n\n"
-            "рџ”– **Code:** `{code}`\n"
-            "рџ’° **Price:** `{price}$`\n"
-            "рџ“Џ **Sizes:** `{size}`\n"
-            "рџ–ј **Photos:** {cnt} в†’ **{est} collages** (4Г—3 format)"
+            "📋 **Review PÎVOK Collage Details:**\n\n"
+            "🔖 **Code:** `{code}`\n"
+            "💰 **Price:** `{price}$`\n"
+            "📏 **Sizes:** `{size}`\n"
+            "🖼 **Photos:** {cnt} → **{est} collages** (4×3 format)"
         ),
-        "ask_edit_code": "рџ”– Enter new **Model Code**:",
-        "ask_edit_size": "рџ“Џ Select or enter new **Sizes**:",
-        "ask_edit_price": "рџ’° Enter new **Price ($)**:",
-        "choose_below": "Please choose a button below рџ‘‡",
-        "generating": "вљ™пёЏ Processing {n} photos in the cloud...",
-        "prog_step": "вЏі Analyzing photo: **{cur} of {tot}**...",
-        "prog_render": "рџЋЁ Assembling PГЋVOK collages (4Г—3)...",
+        "ask_edit_code": "🔖 Enter new **Model Code**:",
+        "ask_edit_size": "📏 Select or enter new **Sizes**:",
+        "ask_edit_price": "💰 Enter new **Price ($)**:",
+        "choose_below": "Please choose a button below 👇",
+        "generating": "⚙️ Processing {n} photos in the cloud...",
+        "prog_step": "⏳ Analyzing photo: **{cur} of {tot}**...",
+        "prog_render": "🎨 Assembling PÎVOK collages (4×3)...",
         "preview_ready": (
-            "вњЁ **PГЋVOK вЂ” Collages Ready ({n})**\n"
-            "рџ”– Code: `{code}` | рџ’° Price: `{price}$` | рџ“Џ Sizes: `{sizes}`\n\n"
-            "Adjust framing via рџ›  if needed, or choose an action:"
+            "✨ **PÎVOK — Collages Ready ({n})**\n"
+            "🔖 Code: `{code}` | 💰 Price: `{price}$` | 📏 Sizes: `{sizes}`\n\n"
+            "Adjust framing via 🛠 if needed, or choose an action:"
         ),
         "next_model_hint": "Done! To create collages for the next model, tap the button below:",
-        "err_gen": "вќЊ Error generating collages: {e}",
-        "folder_missing": "вљ пёЏ Collage folder not found.",
-        "gen_empty": "вљ пёЏ Could not generate collages.",
+        "err_gen": "❌ Error generating collages: {e}",
+        "folder_missing": "⚠️ Collage folder not found.",
+        "gen_empty": "⚠️ Could not generate collages.",
         "sending_originals": "Sending original files...",
         "refreshing": "Refreshing preview...",
-        "ask_add_color": "рџ“ё Send additional photos (new color) for this model, then press **В«вњ… ALL PHOTOS UPLOADEDВ»**.",
+        "ask_add_color": "📸 Send additional photos (new color) for this model, then press **«✅ ALL PHOTOS UPLOADED»**.",
         "deleted_toast": "Deleted",
-        "deleted_msg": "рџ—‘ Collages deleted.",
-        "catch_all": "рџЊё **PГЋVOK Studio**\nPress **В«рџ–ј Create CollageВ»** below (or send photos directly here):",
-        "wa_ready": "вњ… **WhatsApp is connected and ready!**\nрџ“Њ Target Group: `{grp}`",
-        "wa_relink_btn": "рџ”„ Relink / Reset WhatsApp",
-        "wa_refresh_qr_btn": "рџ”„ Refresh QR Code",
-        "wa_gen_qr": "вЏі Generating WhatsApp QR code, please wait 3 seconds...",
-        "wa_starting": "вЏі WhatsApp bridge is starting up. Please tap **рџ“± WhatsApp QR** again in 5 seconds.",
+        "deleted_msg": "🗑 Collages deleted.",
+        "catch_all": "🌸 **PÎVOK Studio**\nPress **«🖼 Create Collage»** below (or send photos directly here):",
+        "wa_ready": "✅ **WhatsApp is connected and ready!**\n📌 Target Group: `{grp}`",
+        "wa_relink_btn": "🔄 Relink / Reset WhatsApp",
+        "wa_refresh_qr_btn": "🔄 Refresh QR Code",
+        "wa_gen_qr": "⏳ Generating WhatsApp QR code, please wait 3 seconds...",
+        "wa_starting": "⏳ WhatsApp bridge is starting up. Please tap **📱 WhatsApp QR** again in 5 seconds.",
         "wa_qr_caption": (
-            "рџ“± **Connect WhatsApp for Automatic Group Posting**\n\n"
+            "📱 **Connect WhatsApp for Automatic Group Posting**\n\n"
             "1. Open **WhatsApp** on your phone\n"
-            "2. Go to **Settings в†’ Linked Devices в†’ Link a Device**\n"
+            "2. Go to **Settings → Linked Devices → Link a Device**\n"
             "3. Scan this QR code (only needed once!)"
         ),
-        "wa_connected_push": "вњ… **WhatsApp connected!**\nрџ“Њ Group: `{grp}`\nвЃпёЏ Session saved in cloud.",
-        "pub_wait": "вЏі Publishing collages, please wait...",
-        "pub_tg_ok": "вњ… Telegram ({ch}): Published!",
-        "pub_tg_err": "вќЊ Telegram ({ch}): Make sure this bot is an Administrator ({e})",
-        "pub_wa_ok": "вњ… WhatsApp Group: Published!",
-        "pub_wa_not_linked": "вљ пёЏ WhatsApp Group: Not connected yet вЂ” scan the QR code below, then tap рџ’¬!",
+        "wa_connected_push": "✅ **WhatsApp connected!**\n📌 Group: `{grp}`\n☁️ Session saved in cloud.",
+        "pub_wait": "⏳ Publishing collages, please wait...",
+        "pub_tg_ok": "✅ Telegram ({ch}): Published!",
+        "pub_tg_err": "❌ Telegram ({ch}): Make sure this bot is an Administrator ({e})",
+        "pub_wa_ok": "✅ WhatsApp Group: Published!",
+        "pub_wa_not_linked": "⚠️ WhatsApp Group: Not connected yet — scan the QR code below, then tap 💬!",
     },
     "ru": {
-        "btn_create": "рџ–ј РЎРѕР·РґР°С‚СЊ РєРѕР»Р»Р°Р¶",
-        "btn_wa_qr": "рџ“± WhatsApp QR",
-        "btn_channels": "рџ“ў РљР°РЅР°Р»С‹",
-        "btn_lang": "рџЊђ РЇР·С‹Рє / Dil / Ш§Щ„Щ„ШєШ©",
-        "btn_cancel": "вќЊ РћС‚РјРµРЅР°",
-        "btn_pair_2": "вњ… Р”РІРѕР№РЅРѕР№ РєРѕР»Р»Р°Р¶ (РїРѕ 2 С„РѕС‚Рѕ)",
-        "btn_single_1": "вњ… РћРґРёРЅР°СЂРЅС‹Р№ РєРѕР»Р»Р°Р¶ (РїРѕ 1 С„РѕС‚Рѕ)",
-        "btn_all_loaded": "вњ… Р’РЎР• Р¤РћРўРћ Р—РђР“Р РЈР–Р•РќР«",
-        "btn_group_smart": "рџ§  РЈРјРЅР°СЏ РіСЂСѓРїРїРёСЂРѕРІРєР° (РђРІС‚Рѕ)",
-        "btn_group_seq": "рџ”ў РџРѕ РїР°СЂР°Рј (1-2, 3-4)",
-        "btn_confirm_go": "вњ… РЎРѕР·РґР°С‚СЊ РєРѕР»Р»Р°Р¶Рё",
-        "btn_edit_code": "вњЏпёЏ РР·РјРµРЅРёС‚СЊ РљРѕРґ",
-        "btn_edit_size": "вњЏпёЏ РР·РјРµРЅРёС‚СЊ Р Р°Р·РјРµСЂС‹",
-        "btn_edit_price": "вњЏпёЏ РР·РјРµРЅРёС‚СЊ Р¦РµРЅСѓ",
-        "btn_pub_both": "рџљЂ РћС‚РїСЂР°РІРёС‚СЊ РІ TG Рё WhatsApp",
-        "btn_pub_tg": "вњ€пёЏ РћС‚РїСЂР°РІРёС‚СЊ РІ TG РєР°РЅР°Р»",
-        "btn_pub_wa": "рџ’¬ РћС‚РїСЂР°РІРёС‚СЊ РІ WhatsApp",
-        "btn_dl_files": "рџ“Ґ РЎРєР°С‡Р°С‚СЊ С„Р°Р№Р»Р°РјРё (Р±РµР· СЃР¶Р°С‚РёСЏ)",
-        "btn_refresh": "рџ”„ РћР±РЅРѕРІРёС‚СЊ РїСЂРµРІСЊСЋ",
-        "btn_add_color": "рџЋЁ Р”РѕР±Р°РІРёС‚СЊ С„РѕС‚Рѕ С†РІРµС‚Р°",
-        "btn_delete": "рџ—‘ РЈРґР°Р»РёС‚СЊ",
-        "welcome": "рџЊё **PГЋVOK Cloud Studio (24/7)**\nР’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ РІ РјРµРЅСЋ РЅРёР¶Рµ:",
-        "cancelled": "вќЊ Р”РµР№СЃС‚РІРёРµ РѕС‚РјРµРЅРµРЅРѕ.",
-        "lang_prompt": "рџЊђ **Р’С‹Р±РµСЂРёС‚Рµ СЏР·С‹Рє РёРЅС‚РµСЂС„РµР№СЃР° / LГјtfen dil seГ§in:**",
-        "lang_switched": "рџ‡·рџ‡є РЇР·С‹Рє РїРµСЂРµРєР»СЋС‡С‘РЅ РЅР° **Р СѓСЃСЃРєРёР№**!",
+        "btn_create": "🖼 Создать коллаж",
+        "btn_wa_qr": "📱 WhatsApp QR",
+        "btn_channels": "📢 Каналы",
+        "btn_lang": "🌐 Язык / Dil / اللغة",
+        "btn_cancel": "❌ Отмена",
+        "btn_pair_2": "✅ Двойной коллаж (по 2 фото)",
+        "btn_single_1": "✅ Одинарный коллаж (по 1 фото)",
+        "btn_all_loaded": "✅ ВСЕ ФОТО ЗАГРУЖЕНЫ",
+        "btn_group_smart": "🧠 Умная группировка (Авто)",
+        "btn_group_seq": "🔢 По парам (1-2, 3-4)",
+        "btn_confirm_go": "✅ Создать коллажи",
+        "btn_edit_code": "✏️ Изменить Код",
+        "btn_edit_size": "✏️ Изменить Размеры",
+        "btn_edit_price": "✏️ Изменить Цену",
+        "btn_pub_both": "🚀 Отправить в TG и WhatsApp",
+        "btn_pub_tg": "✈️ Отправить в TG канал",
+        "btn_pub_wa": "💬 Отправить в WhatsApp",
+        "btn_dl_files": "📥 Скачать файлами (без сжатия)",
+        "btn_refresh": "🔄 Обновить превью",
+        "btn_add_color": "🎨 Добавить фото цвета",
+        "btn_delete": "🗑 Удалить",
+        "welcome": "🌸 **PÎVOK Cloud Studio (24/7)**\nВыберите действие в меню ниже:",
+        "cancelled": "❌ Действие отменено.",
+        "lang_prompt": "🌐 **Выберите язык интерфейса / Lütfen dil seçin:**",
+        "lang_switched": "🇷🇺 Язык переключён на **Русский**!",
         "send_photos_prompt": (
-            "рџ“ё **РћС‚РїСЂР°РІСЊС‚Рµ РІСЃРµ С„РѕС‚РѕРіСЂР°С„РёРё РѕРґРЅРѕР№ РјРѕРґРµР»Рё** (Р°Р»СЊР±РѕРјРѕРј РёР»Рё С„Р°Р№Р»Р°РјРё).\n\n"
-            "РљРѕРіРґР° Р·Р°РіСЂСѓР·РёС‚Рµ РІСЃРµ С„РѕС‚Рѕ, РІС‹Р±РµСЂРёС‚Рµ РІРЅРёР·Сѓ:\n"
-            "вЂў **вњ… Р”РІРѕР№РЅРѕР№ РєРѕР»Р»Р°Р¶ (РїРѕ 2 С„РѕС‚Рѕ)** вЂ” С„РѕСЂРјР°С‚ PГЋVOK 4Г—3\n"
-            "вЂў **вњ… РћРґРёРЅР°СЂРЅС‹Р№ РєРѕР»Р»Р°Р¶ (РїРѕ 1 С„РѕС‚Рѕ)**"
+            "📸 **Отправьте все фотографии одной модели** (альбомом или файлами).\n\n"
+            "Когда загрузите все фото, выберите внизу:\n"
+            "• **✅ Двойной коллаж (по 2 фото)** — формат PÎVOK 4×3\n"
+            "• **✅ Одинарный коллаж (по 1 фото)**"
         ),
-        "only_images": "вљ пёЏ РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕС‚РїСЂР°РІР»СЏР№С‚Рµ С‚РѕР»СЊРєРѕ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ.",
-        "photos_buffered": "рџ“Ґ РџСЂРёРЅСЏС‚Рѕ С„РѕС‚РѕРіСЂР°С„РёР№: **{n} С€С‚.**\nР”РѕРіСЂСѓР·РёС‚Рµ РµС‰С‘ РёР»Рё РЅР°Р¶РјРёС‚Рµ РєРЅРѕРїРєСѓ РЅРёР¶Рµ:",
-        "no_photos_yet": "вљ пёЏ Р’С‹ РµС‰С‘ РЅРµ Р·Р°РіСЂСѓР·РёР»Рё РЅРё РѕРґРЅРѕР№ С„РѕС‚РѕРіСЂР°С„РёРё!",
-        "need_2_photos": "вљ пёЏ Р”Р»СЏ РґРІРѕР№РЅРѕРіРѕ РєРѕР»Р»Р°Р¶Р° РЅСѓР¶РЅРѕ РјРёРЅРёРјСѓРј 2 С„РѕС‚РѕРіСЂР°С„РёРё.",
-        "processing_extra": "вЏі РћР±СЂР°Р±Р°С‚С‹РІР°СЋ РЅРѕРІС‹Рµ С„РѕС‚Рѕ...",
-        "ask_grouping": "рџ“ё Р—Р°РіСЂСѓР¶РµРЅРѕ **{n} С„РѕС‚Рѕ**. РљР°Рє СЃРіСЂСѓРїРїРёСЂРѕРІР°С‚СЊ РїР°СЂС‹?",
-        "ask_code": "рџ”– Р’РІРµРґРёС‚Рµ **РљРѕРґ РјРѕРґРµР»Рё** (РЅР°РїСЂРёРјРµСЂ: `O-21476`):",
-        "err_code": "вљ пёЏ Р’РІРµРґРёС‚Рµ РєРѕСЂСЂРµРєС‚РЅС‹Р№ РєРѕРґ РјРѕРґРµР»Рё:",
-        "ask_size": "рџ“Џ Р’С‹Р±РµСЂРёС‚Рµ РёР»Рё РЅР°РїРёС€РёС‚Рµ **Р Р°Р·РјРµСЂС‹** (РЅР°РїСЂРёРјРµСЂ: `38-44`):",
-        "err_size": "вљ пёЏ РЈРєР°Р¶РёС‚Рµ СЂР°Р·РјРµСЂРЅС‹Р№ СЂСЏРґ:",
-        "ask_price": "рџ’° Р’РІРµРґРёС‚Рµ **Р¦РµРЅСѓ РІ $** (РЅР°РїСЂРёРјРµСЂ: `79`):",
-        "err_price": "вљ пёЏ Р’РІРµРґРёС‚Рµ С†РµРЅСѓ:",
+        "only_images": "⚠️ Пожалуйста, отправляйте только изображения.",
+        "photos_buffered": "📥 Принято фотографий: **{n} шт.**\nДогрузите ещё или нажмите кнопку ниже:",
+        "no_photos_yet": "⚠️ Вы ещё не загрузили ни одной фотографии!",
+        "need_2_photos": "⚠️ Для двойного коллажа нужно минимум 2 фотографии.",
+        "processing_extra": "⏳ Обрабатываю новые фото...",
+        "ask_grouping": "📸 Загружено **{n} фото**. Как сгруппировать пары?",
+        "ask_code": "🔖 Введите **Код модели** (например: `O-21476`):",
+        "err_code": "⚠️ Введите корректный код модели:",
+        "ask_size": "📏 Выберите или напишите **Размеры** (например: `38-44`):",
+        "err_size": "⚠️ Укажите размерный ряд:",
+        "ask_price": "💰 Введите **Цену в $** (например: `79`):",
+        "err_price": "⚠️ Введите цену:",
         "summary": (
-            "рџ“‹ **РџСЂРѕРІРµСЂСЊС‚Рµ РґР°РЅРЅС‹Рµ РєРѕР»Р»Р°Р¶Р° PГЋVOK:**\n\n"
-            "рџ”– **РљРѕРґ:** `{code}`\n"
-            "рџ’° **Р¦РµРЅР°:** `{price}$`\n"
-            "рџ“Џ **Р Р°Р·РјРµСЂС‹:** `{size}`\n"
-            "рџ–ј **Р¤РѕС‚РѕРіСЂР°С„РёР№:** {cnt} С€С‚. в†’ **{est} РєРѕР»Р».** (С„РѕСЂРјР°С‚ 4Г—3)"
+            "📋 **Проверьте данные коллажа PÎVOK:**\n\n"
+            "🔖 **Код:** `{code}`\n"
+            "💰 **Цена:** `{price}$`\n"
+            "📏 **Размеры:** `{size}`\n"
+            "🖼 **Фотографий:** {cnt} шт. → **{est} колл.** (формат 4×3)"
         ),
-        "ask_edit_code": "рџ”– Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Р№ **РљРѕРґ РјРѕРґРµР»Рё**:",
-        "ask_edit_size": "рџ“Џ Р’С‹Р±РµСЂРёС‚Рµ РёР»Рё РІРІРµРґРёС‚Рµ РЅРѕРІС‹Рµ **Р Р°Р·РјРµСЂС‹**:",
-        "ask_edit_price": "рџ’° Р’РІРµРґРёС‚Рµ РЅРѕРІСѓСЋ **Р¦РµРЅСѓ ($)**:",
-        "choose_below": "Р’С‹Р±РµСЂРёС‚Рµ РєРЅРѕРїРєСѓ РІРЅРёР·Сѓ рџ‘‡",
-        "generating": "вљ™пёЏ РќР°С‡РёРЅР°СЋ РѕР±СЂР°Р±РѕС‚РєСѓ {n} С„РѕС‚Рѕ РІ РѕР±Р»Р°РєРµ...",
-        "prog_step": "вЏі РђРЅР°Р»РёР· С„РѕС‚Рѕ: **{cur} РёР· {tot}**...",
-        "prog_render": "рџЋЁ РЎР±РѕСЂРєР° РєРѕР»Р»Р°Р¶РµР№ PГЋVOK (4Г—3)...",
+        "ask_edit_code": "🔖 Введите новый **Код модели**:",
+        "ask_edit_size": "📏 Выберите или введите новые **Размеры**:",
+        "ask_edit_price": "💰 Введите новую **Цену ($)**:",
+        "choose_below": "Выберите кнопку внизу 👇",
+        "generating": "⚙️ Начинаю обработку {n} фото в облаке...",
+        "prog_step": "⏳ Анализ фото: **{cur} из {tot}**...",
+        "prog_render": "🎨 Сборка коллажей PÎVOK (4×3)...",
         "preview_ready": (
-            "вњЁ **PГЋVOK вЂ” РљРѕР»Р»Р°Р¶Рё РіРѕС‚РѕРІС‹ ({n} С€С‚.)**\n"
-            "рџ”– РљРѕРґ: `{code}` | рџ’° Р¦РµРЅР°: `{price}$` | рџ“Џ Р Р°Р·РјРµСЂС‹: `{sizes}`\n\n"
-            "РџСЂРё РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё РїРѕРїСЂР°РІСЊС‚Рµ РєСЂРѕРї С‡РµСЂРµР· рџ›  РёР»Рё РІС‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ:"
+            "✨ **PÎVOK — Коллажи готовы ({n} шт.)**\n"
+            "🔖 Код: `{code}` | 💰 Цена: `{price}$` | 📏 Размеры: `{sizes}`\n\n"
+            "При необходимости поправьте кроп через 🛠 или выберите действие:"
         ),
-        "next_model_hint": "Р“РѕС‚РѕРІРѕ! Р§С‚РѕР±С‹ СЃРѕР±СЂР°С‚СЊ СЃР»РµРґСѓСЋС‰СѓСЋ РјРѕРґРµР»СЊ, РЅР°Р¶РјРёС‚Рµ РєРЅРѕРїРєСѓ РЅРёР¶Рµ:",
-        "err_gen": "вќЊ РћС€РёР±РєР° РїСЂРё СЃРѕР·РґР°РЅРёРё РєРѕР»Р»Р°Р¶РµР№: {e}",
-        "folder_missing": "вљ пёЏ РџР°РїРєР° СЃ РіРѕС‚РѕРІС‹РјРё РєРѕР»Р»Р°Р¶Р°РјРё РЅРµ РЅР°Р№РґРµРЅР°.",
-        "gen_empty": "вљ пёЏ РќРµ СѓРґР°Р»РѕСЃСЊ СЃРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ РєРѕР»Р»Р°Р¶Рё.",
-        "sending_originals": "РћС‚РїСЂР°РІР»СЏСЋ РѕСЂРёРіРёРЅР°Р»С‹...",
-        "refreshing": "РћР±РЅРѕРІР»СЏСЋ РїСЂРµРІСЊСЋ...",
-        "ask_add_color": "рџ“ё РћС‚РїСЂР°РІСЊС‚Рµ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ С„РѕС‚Рѕ (РЅРѕРІС‹Р№ С†РІРµС‚) РґР»СЏ СЌС‚РѕР№ РјРѕРґРµР»Рё, Р·Р°С‚РµРј РЅР°Р¶РјРёС‚Рµ **В«вњ… Р’РЎР• Р¤РћРўРћ Р—РђР“Р РЈР–Р•РќР«В»**.",
-        "deleted_toast": "РЈРґР°Р»РµРЅРѕ",
-        "deleted_msg": "рџ—‘ РљРѕР»Р»Р°Р¶Рё СѓРґР°Р»РµРЅС‹.",
-        "catch_all": "рџЊё **PГЋVOK Cloud Studio**\nРќР°Р¶РјРёС‚Рµ **В«рџ–ј РЎРѕР·РґР°С‚СЊ РєРѕР»Р»Р°Р¶В»** РІРЅРёР·Сѓ (РёР»Рё РѕС‚РїСЂР°РІСЊС‚Рµ С„РѕС‚Рѕ РїСЂСЏРјРѕ СЃСЋРґР°):",
-        "channels_title": "рџ“ў **РћС„РёС†РёР°Р»СЊРЅС‹Рµ РєР°РЅР°Р»С‹ Рё СЃСЃС‹Р»РєРё PГЋVOK:**",
-        "channels_empty": "в„№пёЏ РЎСЃС‹Р»РєРё РЅР° РєР°РЅР°Р»С‹ РїРѕРєР° РЅРµ РЅР°СЃС‚СЂРѕРµРЅС‹.",
-        "wa_ready": "вњ… **WhatsApp РїРѕРґРєР»СЋС‡С‘РЅ Рё РіРѕС‚РѕРІ Рє РѕС‚РїСЂР°РІРєРµ!**\nрџ“Њ Р“СЂСѓРїРїР°: `{grp}`",
-        "wa_relink_btn": "рџ”„ РџРµСЂРµРїСЂРёРІСЏР·Р°С‚СЊ WhatsApp",
-        "wa_refresh_qr_btn": "рџ”„ РћР±РЅРѕРІРёС‚СЊ QR-РєРѕРґ",
-        "wa_gen_qr": "вЏі Р“РµРЅРµСЂРёСЂСѓСЋ QR-РєРѕРґ WhatsApp, РїРѕРґРѕР¶РґРёС‚Рµ 3 СЃРµРєСѓРЅРґС‹...",
-        "wa_starting": "вЏі РњРѕРґСѓР»СЊ WhatsApp Р·Р°РїСѓСЃРєР°РµС‚СЃСЏ. РќР°Р¶РјРёС‚Рµ **рџ“± WhatsApp QR** РµС‰С‘ СЂР°Р· С‡РµСЂРµР· 5 СЃРµРєСѓРЅРґ.",
+        "next_model_hint": "Готово! Чтобы собрать следующую модель, нажмите кнопку ниже:",
+        "err_gen": "❌ Ошибка при создании коллажей: {e}",
+        "folder_missing": "⚠️ Папка с готовыми коллажами не найдена.",
+        "gen_empty": "⚠️ Не удалось сгенерировать коллажи.",
+        "sending_originals": "Отправляю оригиналы...",
+        "refreshing": "Обновляю превью...",
+        "ask_add_color": "📸 Отправьте дополнительные фото (новый цвет) для этой модели, затем нажмите **«✅ ВСЕ ФОТО ЗАГРУЖЕНЫ»**.",
+        "deleted_toast": "Удалено",
+        "deleted_msg": "🗑 Коллажи удалены.",
+        "catch_all": "🌸 **PÎVOK Cloud Studio**\nНажмите **«🖼 Создать коллаж»** внизу (или отправьте фото прямо сюда):",
+        "channels_title": "📢 **Официальные каналы и ссылки PÎVOK:**",
+        "channels_empty": "ℹ️ Ссылки на каналы пока не настроены.",
+        "wa_ready": "✅ **WhatsApp подключён и готов к отправке!**\n📌 Группа: `{grp}`",
+        "wa_relink_btn": "🔄 Перепривязать WhatsApp",
+        "wa_refresh_qr_btn": "🔄 Обновить QR-код",
+        "wa_gen_qr": "⏳ Генерирую QR-код WhatsApp, подождите 3 секунды...",
+        "wa_starting": "⏳ Модуль WhatsApp запускается. Нажмите **📱 WhatsApp QR** ещё раз через 5 секунд.",
         "wa_qr_caption": (
-            "рџ“± **РџРѕРґРєР»СЋС‡РµРЅРёРµ WhatsApp РґР»СЏ Р°РІС‚Рѕ-РѕС‚РїСЂР°РІРєРё РІ РіСЂСѓРїРїСѓ**\n\n"
-            "1. РћС‚РєСЂРѕР№С‚Рµ **WhatsApp** РЅР° С‚РµР»РµС„РѕРЅРµ\n"
-            "2. Р—Р°Р№РґРёС‚Рµ РІ **РќР°СЃС‚СЂРѕР№РєРё в†’ РЎРІСЏР·Р°РЅРЅС‹Рµ СѓСЃС‚СЂРѕР№СЃС‚РІР° в†’ РџСЂРёРІСЏР·Р°С‚СЊ СѓСЃС‚СЂРѕР№СЃС‚РІРѕ**\n"
-            "3. РћС‚СЃРєР°РЅРёСЂСѓР№С‚Рµ СЌС‚РѕС‚ QR-РєРѕРґ (РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ 1 СЂР°Р·!)"
+            "📱 **Подключение WhatsApp для авто-отправки в группу**\n\n"
+            "1. Откройте **WhatsApp** на телефоне\n"
+            "2. Зайдите в **Настройки → Связанные устройства → Привязать устройство**\n"
+            "3. Отсканируйте этот QR-код (достаточно 1 раз!)"
         ),
-        "wa_connected_push": "вњ… **WhatsApp СѓСЃРїРµС€РЅРѕ РїРѕРґРєР»СЋС‡С‘РЅ!**\nрџ“Њ Р“СЂСѓРїРїР°: `{grp}`\nвЃпёЏ РЎРµСЃСЃРёСЏ СЃРѕС…СЂР°РЅРµРЅР° РІ РѕР±Р»Р°РєРµ.",
-        "pub_wait": "вЏі РћС‚РїСЂР°РІР»СЏСЋ РєРѕР»Р»Р°Р¶Рё, РїРѕРґРѕР¶РґРёС‚Рµ...",
-        "pub_tg_ok": "вњ… Telegram ({ch}): РћРїСѓР±Р»РёРєРѕРІР°РЅРѕ!",
-        "pub_tg_err": "вќЊ Telegram ({ch}): Р”РѕР±Р°РІСЊС‚Рµ Р±РѕС‚Р° РІ РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ РєР°РЅР°Р»Р° ({e})",
-        "pub_wa_ok": "вњ… WhatsApp-РіСЂСѓРїРїР°: РћРїСѓР±Р»РёРєРѕРІР°РЅРѕ!",
-        "pub_wa_not_linked": "вљ пёЏ WhatsApp РµС‰С‘ РЅРµ РїСЂРёРІСЏР·Р°РЅ вЂ” РѕС‚СЃРєР°РЅРёСЂСѓР№С‚Рµ QR-РєРѕРґ РЅРёР¶Рµ Рё РЅР°Р¶РјРёС‚Рµ рџ’¬ РћС‚РїСЂР°РІРёС‚СЊ РІ WhatsApp!",
+        "wa_connected_push": "✅ **WhatsApp успешно подключён!**\n📌 Группа: `{grp}`\n☁️ Сессия сохранена в облаке.",
+        "pub_wait": "⏳ Отправляю коллажи, подождите...",
+        "pub_tg_ok": "✅ Telegram ({ch}): Опубликовано!",
+        "pub_tg_err": "❌ Telegram ({ch}): Добавьте бота в Администраторы канала ({e})",
+        "pub_wa_ok": "✅ WhatsApp-группа: Опубликовано!",
+        "pub_wa_not_linked": "⚠️ WhatsApp ещё не привязан — отсканируйте QR-код ниже и нажмите 💬 Отправить в WhatsApp!",
     },
     "tr": {
-        "btn_create": "рџ–ј Kolaj OluЕџtur",
-        "btn_wa_qr": "рџ“± WhatsApp QR",
-        "btn_channels": "рџ“ў Kanallar",
-        "btn_lang": "рџЊђ Dil / РЇР·С‹Рє / Ш§Щ„Щ„ШєШ©",
-        "btn_cancel": "вќЊ Д°ptal",
-        "btn_pair_2": "вњ… Д°kili Kolaj (2 FotoДџraf)",
-        "btn_single_1": "вњ… Tekli Kolaj (1 FotoДџraf)",
-        "btn_all_loaded": "вњ… TГњM FOTOДћRAFLAR YГњKLENDД°",
-        "btn_group_smart": "рџ§  AkД±llД± Gruplama (Otomatik)",
-        "btn_group_seq": "рџ”ў SД±rayla Д°kili (1-2, 3-4)",
-        "btn_confirm_go": "вњ… KolajlarД± OluЕџtur",
-        "btn_edit_code": "вњЏпёЏ Kodu DeДџiЕџtir",
-        "btn_edit_size": "вњЏпёЏ Bedeni DeДџiЕџtir",
-        "btn_edit_price": "вњЏпёЏ FiyatД± DeДџiЕџtir",
-        "btn_pub_both": "рџљЂ TG KanalД± ve WhatsApp'a GГ¶nder",
-        "btn_pub_tg": "вњ€пёЏ TG KanalД±na GГ¶nder",
-        "btn_pub_wa": "рџ’¬ WhatsApp'a GГ¶nder",
-        "btn_dl_files": "рџ“Ґ Dosya Olarak Д°ndir (Orijinal)",
-        "btn_refresh": "рџ”„ Г–nizlemeyi Yenile",
-        "btn_add_color": "рџЋЁ Yeni Renk (FotoДџraf) Ekle",
-        "btn_delete": "рџ—‘ Sil",
-        "welcome": "рџЊё **PГЋVOK Cloud Studio (7/24)**\nLГјtfen aЕџaДџД±daki menГјden iЕџlem seГ§in:",
-        "cancelled": "вќЊ Д°Еџlem iptal edildi.",
-        "lang_prompt": "рџЊђ **LГјtfen dil seГ§in / Р’С‹Р±РµСЂРёС‚Рµ СЏР·С‹Рє РёРЅС‚РµСЂС„РµР№СЃР°:**",
-        "lang_switched": "рџ‡№рџ‡· Dil **TГјrkГ§e** olarak deДџiЕџtirildi!",
+        "btn_create": "🖼 Kolaj Oluştur",
+        "btn_wa_qr": "📱 WhatsApp QR",
+        "btn_channels": "📢 Kanallar",
+        "btn_lang": "🌐 Dil / Язык / اللغة",
+        "btn_cancel": "❌ İptal",
+        "btn_pair_2": "✅ İkili Kolaj (2 Fotoğraf)",
+        "btn_single_1": "✅ Tekli Kolaj (1 Fotoğraf)",
+        "btn_all_loaded": "✅ TÜM FOTOĞRAFLAR YÜKLENDİ",
+        "btn_group_smart": "🧠 Akıllı Gruplama (Otomatik)",
+        "btn_group_seq": "🔢 Sırayla İkili (1-2, 3-4)",
+        "btn_confirm_go": "✅ Kolajları Oluştur",
+        "btn_edit_code": "✏️ Kodu Değiştir",
+        "btn_edit_size": "✏️ Bedeni Değiştir",
+        "btn_edit_price": "✏️ Fiyatı Değiştir",
+        "btn_pub_both": "🚀 TG Kanalı ve WhatsApp'a Gönder",
+        "btn_pub_tg": "✈️ TG Kanalına Gönder",
+        "btn_pub_wa": "💬 WhatsApp'a Gönder",
+        "btn_dl_files": "📥 Dosya Olarak İndir (Orijinal)",
+        "btn_refresh": "🔄 Önizlemeyi Yenile",
+        "btn_add_color": "🎨 Yeni Renk (Fotoğraf) Ekle",
+        "btn_delete": "🗑 Sil",
+        "welcome": "🌸 **PÎVOK Cloud Studio (7/24)**\nLütfen aşağıdaki menüden işlem seçin:",
+        "cancelled": "❌ İşlem iptal edildi.",
+        "lang_prompt": "🌐 **Lütfen dil seçin / Выберите язык интерфейса:**",
+        "lang_switched": "🇹🇷 Dil **Türkçe** olarak değiştirildi!",
         "send_photos_prompt": (
-            "рџ“ё **Bir modele ait tГјm fotoДџraflarД± gГ¶nderin** (albГјm veya dosya olarak).\n\n"
-            "TГјm fotoДџraflar yГјklendiДџinde aЕџaДџД±dan seГ§in:\n"
-            "вЂў **вњ… Д°kili Kolaj (2 FotoДџraf)** вЂ” PГЋVOK 4Г—3 formatД±\n"
-            "вЂў **вњ… Tekli Kolaj (1 FotoДџraf)**"
+            "📸 **Bir modele ait tüm fotoğrafları gönderin** (albüm veya dosya olarak).\n\n"
+            "Tüm fotoğraflar yüklendiğinde aşağıdan seçin:\n"
+            "• **✅ İkili Kolaj (2 Fotoğraf)** — PÎVOK 4×3 formatı\n"
+            "• **✅ Tekli Kolaj (1 Fotoğraf)**"
         ),
-        "only_images": "вљ пёЏ LГјtfen yalnД±zca gГ¶rsel / fotoДџraf gГ¶nderin.",
-        "photos_buffered": "рџ“Ґ AlД±nan fotoДџraf: **{n} adet**\nDaha fazla yГјkleyin veya aЕџaДџД±daki butona basД±n:",
-        "no_photos_yet": "вљ пёЏ HenГјz hiГ§ fotoДџraf yГјklemediniz!",
-        "need_2_photos": "вљ пёЏ Д°kili kolaj iГ§in en az 2 fotoДџraf gereklidir.",
-        "processing_extra": "вЏі Yeni fotoДџraflar iЕџleniyor...",
-        "ask_grouping": "рџ“ё **{n} fotoДџraf** yГјklendi. EЕџleЕџtirme nasД±l yapД±lsД±n?",
-        "ask_code": "рџ”– **Model Kodunu** girin (Г¶rnek: `O-21476`):",
-        "err_code": "вљ пёЏ LГјtfen geГ§erli bir model kodu girin:",
-        "ask_size": "рџ“Џ **Beden aralД±ДџД±nД±** seГ§in veya yazД±n (Г¶rnek: `38-44`):",
-        "err_size": "вљ пёЏ LГјtfen beden aralД±ДџД±nД± belirtin:",
-        "ask_price": "рџ’° **FiyatД± ($)** girin (Г¶rnek: `79`):",
-        "err_price": "вљ пёЏ LГјtfen fiyat girin:",
+        "only_images": "⚠️ Lütfen yalnızca görsel / fotoğraf gönderin.",
+        "photos_buffered": "📥 Alınan fotoğraf: **{n} adet**\nDaha fazla yükleyin veya aşağıdaki butona basın:",
+        "no_photos_yet": "⚠️ Henüz hiç fotoğraf yüklemediniz!",
+        "need_2_photos": "⚠️ İkili kolaj için en az 2 fotoğraf gereklidir.",
+        "processing_extra": "⏳ Yeni fotoğraflar işleniyor...",
+        "ask_grouping": "📸 **{n} fotoğraf** yüklendi. Eşleştirme nasıl yapılsın?",
+        "ask_code": "🔖 **Model Kodunu** girin (örnek: `O-21476`):",
+        "err_code": "⚠️ Lütfen geçerli bir model kodu girin:",
+        "ask_size": "📏 **Beden aralığını** seçin veya yazın (örnek: `38-44`):",
+        "err_size": "⚠️ Lütfen beden aralığını belirtin:",
+        "ask_price": "💰 **Fiyatı ($)** girin (örnek: `79`):",
+        "err_price": "⚠️ Lütfen fiyat girin:",
         "summary": (
-            "рџ“‹ **PГЋVOK kolaj bilgilerini kontrol edin:**\n\n"
-            "рџ”– **Kod:** `{code}`\n"
-            "рџ’° **Fiyat:** `{price}$`\n"
-            "рџ“Џ **Beden:** `{size}`\n"
-            "рџ–ј **FotoДџraf:** {cnt} adet в†’ **{est} kolaj** (4Г—3 formatД±)"
+            "📋 **PÎVOK kolaj bilgilerini kontrol edin:**\n\n"
+            "🔖 **Kod:** `{code}`\n"
+            "💰 **Fiyat:** `{price}$`\n"
+            "📏 **Beden:** `{size}`\n"
+            "🖼 **Fotoğraf:** {cnt} adet → **{est} kolaj** (4×3 formatı)"
         ),
-        "ask_edit_code": "рџ”– Yeni **Model Kodunu** girin:",
-        "ask_edit_size": "рџ“Џ Yeni **Beden aralД±ДџД±nД±** seГ§in veya yazД±n:",
-        "ask_edit_price": "рџ’° Yeni **FiyatД± ($)** girin:",
-        "choose_below": "LГјtfen aЕџaДџД±daki butonlardan birini seГ§in рџ‘‡",
-        "generating": "вљ™пёЏ {n} fotoДџraf bulutta iЕџleniyor...",
-        "prog_step": "вЏі FotoДџraf analizi: **{cur} / {tot}**...",
-        "prog_render": "рџЋЁ PГЋVOK kolajlarД± (4Г—3) birleЕџtiriliyor...",
+        "ask_edit_code": "🔖 Yeni **Model Kodunu** girin:",
+        "ask_edit_size": "📏 Yeni **Beden aralığını** seçin veya yazın:",
+        "ask_edit_price": "💰 Yeni **Fiyatı ($)** girin:",
+        "choose_below": "Lütfen aşağıdaki butonlardan birini seçin 👇",
+        "generating": "⚙️ {n} fotoğraf bulutta işleniyor...",
+        "prog_step": "⏳ Fotoğraf analizi: **{cur} / {tot}**...",
+        "prog_render": "🎨 PÎVOK kolajları (4×3) birleştiriliyor...",
         "preview_ready": (
-            "вњЁ **PГЋVOK вЂ” Kolajlar hazД±r ({n} adet)**\n"
-            "рџ”– Kod: `{code}` | рџ’° Fiyat: `{price}$` | рџ“Џ Beden: `{sizes}`\n\n"
-            "Gerekirse рџ›  ile kadrajД± dГјzenleyin veya iЕџlem seГ§in:"
+            "✨ **PÎVOK — Kolajlar hazır ({n} adet)**\n"
+            "🔖 Kod: `{code}` | 💰 Fiyat: `{price}$` | 📏 Beden: `{sizes}`\n\n"
+            "Gerekirse 🛠 ile kadrajı düzenleyin veya işlem seçin:"
         ),
-        "next_model_hint": "TamamlandД±! Yeni bir model hazД±rlamak iГ§in aЕџaДџД±daki butona basД±n:",
-        "err_gen": "вќЊ Kolaj oluЕџturulurken hata oluЕџtu: {e}",
-        "folder_missing": "вљ пёЏ Kolaj klasГ¶rГј bulunamadД±.",
-        "gen_empty": "вљ пёЏ Kolaj oluЕџturulamadД±.",
-        "sending_originals": "Orijinal dosyalar gГ¶nderiliyor...",
-        "refreshing": "Г–nizleme yenileniyor...",
-        "ask_add_color": "рџ“ё Bu model iГ§in ek fotoДџraflarД± (yeni renk) gГ¶nderin, ardД±ndan **В«вњ… TГњM FOTOДћRAFLAR YГњKLENDД°В»** butonuna basД±n.",
+        "next_model_hint": "Tamamlandı! Yeni bir model hazırlamak için aşağıdaki butona basın:",
+        "err_gen": "❌ Kolaj oluşturulurken hata oluştu: {e}",
+        "folder_missing": "⚠️ Kolaj klasörü bulunamadı.",
+        "gen_empty": "⚠️ Kolaj oluşturulamadı.",
+        "sending_originals": "Orijinal dosyalar gönderiliyor...",
+        "refreshing": "Önizleme yenileniyor...",
+        "ask_add_color": "📸 Bu model için ek fotoğrafları (yeni renk) gönderin, ardından **«✅ TÜM FOTOĞRAFLAR YÜKLENDİ»** butonuna basın.",
         "deleted_toast": "Silindi",
-        "deleted_msg": "рџ—‘ Kolajlar silindi.",
-        "catch_all": "рџЊё **PГЋVOK Cloud Studio**\nAЕџaДџД±daki **В«рџ–ј Kolaj OluЕџturВ»** butonuna basД±n (veya fotoДџraflarД± doДџrudan buraya gГ¶nderin):",
-        "channels_title": "рџ“ў **PГЋVOK Resmi Kanallar ve Linkler:**",
-        "channels_empty": "в„№пёЏ Kanal linkleri henГјz ayarlanmadД±.",
-        "wa_ready": "вњ… **WhatsApp baДџlД± ve gГ¶nderime hazД±r!**\nрџ“Њ Grup: `{grp}`",
-        "wa_relink_btn": "рџ”„ WhatsApp BaДџlantД±sД±nД± SД±fД±rla",
-        "wa_refresh_qr_btn": "рџ”„ QR Kodunu Yenile",
-        "wa_gen_qr": "вЏі WhatsApp QR kodu oluЕџturuluyor, lГјtfen 3 saniye bekleyin...",
-        "wa_starting": "вЏі WhatsApp modГјlГј baЕџlatД±lД±yor. 5 saniye sonra tekrar **рџ“± WhatsApp QR** tuЕџuna basД±n.",
+        "deleted_msg": "🗑 Kolajlar silindi.",
+        "catch_all": "🌸 **PÎVOK Cloud Studio**\nAşağıdaki **«🖼 Kolaj Oluştur»** butonuna basın (veya fotoğrafları doğrudan buraya gönderin):",
+        "channels_title": "📢 **PÎVOK Resmi Kanallar ve Linkler:**",
+        "channels_empty": "ℹ️ Kanal linkleri henüz ayarlanmadı.",
+        "wa_ready": "✅ **WhatsApp bağlı ve gönderime hazır!**\n📌 Grup: `{grp}`",
+        "wa_relink_btn": "🔄 WhatsApp Bağlantısını Sıfırla",
+        "wa_refresh_qr_btn": "🔄 QR Kodunu Yenile",
+        "wa_gen_qr": "⏳ WhatsApp QR kodu oluşturuluyor, lütfen 3 saniye bekleyin...",
+        "wa_starting": "⏳ WhatsApp modülü başlatılıyor. 5 saniye sonra tekrar **📱 WhatsApp QR** tuşuna basın.",
         "wa_qr_caption": (
-            "рџ“± **Otomatik Grup GГ¶nderimi iГ§in WhatsApp BaДџlantД±sД±**\n\n"
-            "1. Telefonunuzda **WhatsApp** uygulamasД±nД± aГ§Д±n\n"
-            "2. **Ayarlar в†’ BaДџlД± Cihazlar в†’ Cihaz BaДџla** bГ¶lГјmГјne girin\n"
+            "📱 **Otomatik Grup Gönderimi için WhatsApp Bağlantısı**\n\n"
+            "1. Telefonunuzda **WhatsApp** uygulamasını açın\n"
+            "2. **Ayarlar → Bağlı Cihazlar → Cihaz Bağla** bölümüne girin\n"
             "3. Bu QR kodunu okutun (sadece 1 kez yeterlidir!)"
         ),
-        "wa_connected_push": "вњ… **WhatsApp baЕџarД±yla baДџlandД±!**\nрџ“Њ Grup: `{grp}`\nвЃпёЏ Oturum buluta kaydedildi.",
-        "pub_wait": "вЏі Kolajlar gГ¶nderiliyor, lГјtfen bekleyin...",
-        "pub_tg_ok": "вњ… Telegram ({ch}): YayД±nlandД±!",
-        "pub_tg_err": "вќЊ Telegram ({ch}): Botun kanalda YГ¶netici olduДџundan emin olun ({e})",
-        "pub_wa_ok": "вњ… WhatsApp Grubu: GГ¶nderildi!",
-        "pub_wa_not_linked": "вљ пёЏ WhatsApp henГјz baДџlД± deДџil вЂ” aЕџaДџД±daki QR kodunu okutup tekrar рџ’¬ butonuna basД±n!",
+        "wa_connected_push": "✅ **WhatsApp başarıyla bağlandı!**\n📌 Grup: `{grp}`\n☁️ Oturum buluta kaydedildi.",
+        "pub_wait": "⏳ Kolajlar gönderiliyor, lütfen bekleyin...",
+        "pub_tg_ok": "✅ Telegram ({ch}): Yayınlandı!",
+        "pub_tg_err": "❌ Telegram ({ch}): Botun kanalda Yönetici olduğundan emin olun ({e})",
+        "pub_wa_ok": "✅ WhatsApp Grubu: Gönderildi!",
+        "pub_wa_not_linked": "⚠️ WhatsApp henüz bağlı değil — aşağıdaki QR kodunu okutup tekrar 💬 butonuna basın!",
     },
     "ar": {
-        "btn_create": "рџ–ј ШҐЩ†ШґШ§ШЎ ЩѓЩ€Щ„Ш§Ш¬",
-        "btn_wa_qr": "рџ“± WhatsApp QR",
-        "btn_channels": "рџ“ў Ш§Щ„Щ‚Щ†Щ€Ш§ШЄ",
-        "btn_lang": "рџЊђ Ш§Щ„Щ„ШєШ© / РЇР·С‹Рє / Dil",
-        "btn_cancel": "вќЊ ШҐЩ„ШєШ§ШЎ",
-        "btn_pair_2": "вњ… ЩѓЩ€Щ„Ш§Ш¬ Щ…ШІШЇЩ€Ш¬ (ШµЩ€Ш±ШЄШ§Щ†)",
-        "btn_single_1": "вњ… ЩѓЩ€Щ„Ш§Ш¬ Щ…ЩЃШ±ШЇ (ШµЩ€Ш±Ш© Щ€Ш§Ш­ШЇШ©)",
-        "btn_all_loaded": "вњ… ШЄЩ… Ш±ЩЃШ№ Ш¬Щ…ЩЉШ№ Ш§Щ„ШµЩ€Ш±",
-        "btn_group_smart": "рџ§  ШЄШ¬Щ…ЩЉШ№ Ш°ЩѓЩЉ (ШЄЩ„Щ‚Ш§Ш¦ЩЉ)",
-        "btn_group_seq": "рџ”ў ШЈШІЩ€Ш§Ш¬ Щ…ШЄШЄШ§Щ„ЩЉШ© (1-2ШЊ 3-4)",
-        "btn_confirm_go": "вњ… ШҐЩ†ШґШ§ШЎ Ш§Щ„ЩѓЩ€Щ„Ш§Ш¬",
-        "btn_edit_code": "вњЏпёЏ ШЄШ№ШЇЩЉЩ„ Ш§Щ„ЩѓЩ€ШЇ",
-        "btn_edit_size": "вњЏпёЏ ШЄШ№ШЇЩЉЩ„ Ш§Щ„Щ…Щ‚Ш§ШіШ§ШЄ",
-        "btn_edit_price": "вњЏпёЏ ШЄШ№ШЇЩЉЩ„ Ш§Щ„ШіШ№Ш±",
-        "btn_pub_both": "рџљЂ ШҐШ±ШіШ§Щ„ ШҐЩ„Щ‰ ШЄЩЉЩ„ЩЉШ¬Ш±Ш§Щ… Щ€Щ€Ш§ШЄШіШ§ШЁ",
-        "btn_pub_tg": "вњ€пёЏ ШҐШ±ШіШ§Щ„ ШҐЩ„Щ‰ Щ‚Щ†Ш§Ш© ШЄЩЉЩ„ЩЉШ¬Ш±Ш§Щ…",
-        "btn_pub_wa": "рџ’¬ ШҐШ±ШіШ§Щ„ ШҐЩ„Щ‰ Щ€Ш§ШЄШіШ§ШЁ",
-        "btn_dl_files": "рџ“Ґ ШЄШ­Щ…ЩЉЩ„ Ш§Щ„Щ…Щ„ЩЃШ§ШЄ Ш§Щ„ШЈШµЩ„ЩЉШ©",
-        "btn_refresh": "рџ”„ ШЄШ­ШЇЩЉШ« Ш§Щ„Щ…Ш№Ш§ЩЉЩ†Ш©",
-        "btn_add_color": "рџЋЁ ШҐШ¶Ш§ЩЃШ© ШµЩ€Ш± Щ„Щ€Щ† Ш¬ШЇЩЉШЇ",
-        "btn_delete": "рџ—‘ Ш­Ш°ЩЃ",
-        "welcome": "рџЊё **Ш§ШіШЄЩ€ШЇЩЉЩ€ PГЋVOK Ш§Щ„ШіШ­Ш§ШЁЩЉ (24/7)**\nШ§Ш®ШЄШ± ШҐШ¬Ш±Ш§ШЎЩ‹ Щ…Щ† Ш§Щ„Щ‚Ш§Ш¦Щ…Ш© ШЈШЇЩ†Ш§Щ‡:",
-        "cancelled": "вќЊ ШЄЩ… ШҐЩ„ШєШ§ШЎ Ш§Щ„Ш№Щ…Щ„ЩЉШ©.",
-        "lang_prompt": "рџЊђ **Ш§Ш®ШЄШ± Ш§Щ„Щ„ШєШ© / Р’С‹Р±РµСЂРёС‚Рµ СЏР·С‹Рє / Dil seГ§in:**",
-        "lang_switched": "рџ‡ёрџ‡¦ ШЄЩ… ШЄШєЩЉЩЉШ± Ш§Щ„Щ„ШєШ© ШҐЩ„Щ‰ **Ш§Щ„Ш№Ш±ШЁЩЉШ©**!",
+        "btn_create": "🖼 إنشاء كولاج",
+        "btn_wa_qr": "📱 WhatsApp QR",
+        "btn_channels": "📢 القنوات",
+        "btn_lang": "🌐 اللغة / Язык / Dil",
+        "btn_cancel": "❌ إلغاء",
+        "btn_pair_2": "✅ كولاج مزدوج (صورتان)",
+        "btn_single_1": "✅ كولاج مفرد (صورة واحدة)",
+        "btn_all_loaded": "✅ تم رفع جميع الصور",
+        "btn_group_smart": "🧠 تجميع ذكي (تلقائي)",
+        "btn_group_seq": "🔢 أزواج متتالية (1-2، 3-4)",
+        "btn_confirm_go": "✅ إنشاء الكولاج",
+        "btn_edit_code": "✏️ تعديل الكود",
+        "btn_edit_size": "✏️ تعديل المقاسات",
+        "btn_edit_price": "✏️ تعديل السعر",
+        "btn_pub_both": "🚀 إرسال إلى تيليجرام وواتساب",
+        "btn_pub_tg": "✈️ إرسال إلى قناة تيليجرام",
+        "btn_pub_wa": "💬 إرسال إلى واتساب",
+        "btn_dl_files": "📥 تحميل الملفات الأصلية",
+        "btn_refresh": "🔄 تحديث المعاينة",
+        "btn_add_color": "🎨 إضافة صور لون جديد",
+        "btn_delete": "🗑 حذف",
+        "welcome": "🌸 **استوديو PÎVOK السحابي (24/7)**\nاختر إجراءً من القائمة أدناه:",
+        "cancelled": "❌ تم إلغاء العملية.",
+        "lang_prompt": "🌐 **اختر اللغة / Выберите язык / Dil seçin:**",
+        "lang_switched": "🇸🇦 تم تغيير اللغة إلى **العربية**!",
         "send_photos_prompt": (
-            "рџ“ё **ШЈШ±ШіЩ„ Ш¬Щ…ЩЉШ№ ШµЩ€Ш± Ш§Щ„Щ…Щ€ШЇЩЉЩ„ Ш§Щ„Щ€Ш§Ш­ШЇ** (ЩѓШЈЩ„ШЁЩ€Щ… ШЈЩ€ Щ…Щ„ЩЃШ§ШЄ).\n\n"
-            "Ш№Щ†ШЇ Ш§Щ„Ш§Щ†ШЄЩ‡Ш§ШЎ Щ…Щ† Ш±ЩЃШ№ Ш§Щ„ШµЩ€Ш±ШЊ Ш§Ш®ШЄШ± Щ…Щ† Ш§Щ„ШЈШіЩЃЩ„:\n"
-            "вЂў **вњ… ЩѓЩ€Щ„Ш§Ш¬ Щ…ШІШЇЩ€Ш¬ (ШµЩ€Ш±ШЄШ§Щ†)** вЂ” Щ…Щ‚Ш§Ші PГЋVOK 4Г—3\n"
-            "вЂў **вњ… ЩѓЩ€Щ„Ш§Ш¬ Щ…ЩЃШ±ШЇ (ШµЩ€Ш±Ш© Щ€Ш§Ш­ШЇШ©)**"
+            "📸 **أرسل جميع صور الموديل الواحد** (كألبوم أو ملفات).\n\n"
+            "عند الانتهاء من رفع الصور، اختر من الأسفل:\n"
+            "• **✅ كولاج مزدوج (صورتان)** — مقاس PÎVOK 4×3\n"
+            "• **✅ كولاج مفرد (صورة واحدة)**"
         ),
-        "only_images": "вљ пёЏ ЩЉШ±Ш¬Щ‰ ШҐШ±ШіШ§Щ„ Ш§Щ„ШµЩ€Ш± ЩЃЩ‚Ш·.",
-        "photos_buffered": "рџ“Ґ Ш§Щ„ШµЩ€Ш± Ш§Щ„Щ…ШіШЄЩ„Щ…Ш©: **{n}**\nШЈШ±ШіЩ„ Ш§Щ„Щ…ШІЩЉШЇ ШЈЩ€ Ш§Ш¶ШєШ· Ш№Щ„Щ‰ Ш§Щ„ШІШ± ШЈШЇЩ†Ш§Щ‡:",
-        "no_photos_yet": "вљ пёЏ Щ„Щ… ШЄЩ‚Щ… ШЁШ±ЩЃШ№ ШЈЩЉ ШµЩ€Ш± ШЁШ№ШЇ!",
-        "need_2_photos": "вљ пёЏ Ш§Щ„ЩѓЩ€Щ„Ш§Ш¬ Ш§Щ„Щ…ШІШЇЩ€Ш¬ ЩЉШЄШ·Щ„ШЁ ШµЩ€Ш±ШЄЩЉЩ† Ш№Щ„Щ‰ Ш§Щ„ШЈЩ‚Щ„.",
-        "processing_extra": "вЏі Ш¬Ш§Ш±ЩЉ Щ…Ш№Ш§Щ„Ш¬Ш© Ш§Щ„ШµЩ€Ш± Ш§Щ„ШҐШ¶Ш§ЩЃЩЉШ©...",
-        "ask_grouping": "рџ“ё ШЄЩ… Ш±ЩЃШ№ **{n} ШµЩ€Ш±**. ЩѓЩЉЩЃ ШЄШ±ЩЉШЇ ШЄШ¬Щ…ЩЉШ№ Ш§Щ„ШЈШІЩ€Ш§Ш¬Шџ",
-        "ask_code": "рџ”– ШЈШЇШ®Щ„ **ЩѓЩ€ШЇ Ш§Щ„Щ…Щ€ШЇЩЉЩ„** (Щ…Ш«Ш§Щ„: `O-21476`):",
-        "err_code": "вљ пёЏ ЩЉШ±Ш¬Щ‰ ШҐШЇШ®Ш§Щ„ ЩѓЩ€ШЇ Щ…Щ€ШЇЩЉЩ„ ШµШ­ЩЉШ­:",
-        "ask_size": "рџ“Џ Ш§Ш®ШЄШ± ШЈЩ€ Ш§ЩѓШЄШЁ **Ш§Щ„Щ…Щ‚Ш§ШіШ§ШЄ** (Щ…Ш«Ш§Щ„: `38-44`):",
-        "err_size": "вљ пёЏ ЩЉШ±Ш¬Щ‰ ШЄШ­ШЇЩЉШЇ Ш§Щ„Щ…Щ‚Ш§ШіШ§ШЄ:",
-        "ask_price": "рџ’° ШЈШЇШ®Щ„ **Ш§Щ„ШіШ№Ш± ШЁШ§Щ„ШЇЩ€Щ„Ш§Ш± ($)** (Щ…Ш«Ш§Щ„: `79`):",
-        "err_price": "вљ пёЏ ЩЉШ±Ш¬Щ‰ ШҐШЇШ®Ш§Щ„ Ш§Щ„ШіШ№Ш±:",
+        "only_images": "⚠️ يرجى إرسال الصور فقط.",
+        "photos_buffered": "📥 الصور المستلمة: **{n}**\nأرسل المزيد أو اضغط على الزر أدناه:",
+        "no_photos_yet": "⚠️ لم تقم برفع أي صور بعد!",
+        "need_2_photos": "⚠️ الكولاج المزدوج يتطلب صورتين على الأقل.",
+        "processing_extra": "⏳ جاري معالجة الصور الإضافية...",
+        "ask_grouping": "📸 تم رفع **{n} صور**. كيف تريد تجميع الأزواج؟",
+        "ask_code": "🔖 أدخل **كود الموديل** (مثال: `O-21476`):",
+        "err_code": "⚠️ يرجى إدخال كود موديل صحيح:",
+        "ask_size": "📏 اختر أو اكتب **المقاسات** (مثال: `38-44`):",
+        "err_size": "⚠️ يرجى تحديد المقاسات:",
+        "ask_price": "💰 أدخل **السعر بالدولار ($)** (مثال: `79`):",
+        "err_price": "⚠️ يرجى إدخال السعر:",
         "summary": (
-            "рџ“‹ **Щ…Ш±Ш§Ш¬Ш№Ш© ШЁЩЉШ§Щ†Ш§ШЄ ЩѓЩ€Щ„Ш§Ш¬ PГЋVOK:**\n\n"
-            "рџ”– **Ш§Щ„ЩѓЩ€ШЇ:** `{code}`\n"
-            "рџ’° **Ш§Щ„ШіШ№Ш±:** `{price}$`\n"
-            "рџ“Џ **Ш§Щ„Щ…Щ‚Ш§ШіШ§ШЄ:** `{size}`\n"
-            "рџ–ј **Ш§Щ„ШµЩ€Ш±:** {cnt} в†ђ **{est} ЩѓЩ€Щ„Ш§Ш¬** (Щ…Щ‚Ш§Ші 4Г—3)"
+            "📋 **مراجعة بيانات كولاج PÎVOK:**\n\n"
+            "🔖 **الكود:** `{code}`\n"
+            "💰 **السعر:** `{price}$`\n"
+            "📏 **المقاسات:** `{size}`\n"
+            "🖼 **الصور:** {cnt} ← **{est} كولاج** (مقاس 4×3)"
         ),
-        "ask_edit_code": "рџ”– ШЈШЇШ®Щ„ **ЩѓЩ€ШЇ Ш§Щ„Щ…Щ€ШЇЩЉЩ„** Ш§Щ„Ш¬ШЇЩЉШЇ:",
-        "ask_edit_size": "рџ“Џ Ш§Ш®ШЄШ± ШЈЩ€ ШЈШЇШ®Щ„ **Ш§Щ„Щ…Щ‚Ш§ШіШ§ШЄ** Ш§Щ„Ш¬ШЇЩЉШЇШ©:",
-        "ask_edit_price": "рџ’° ШЈШЇШ®Щ„ **Ш§Щ„ШіШ№Ш± Ш§Щ„Ш¬ШЇЩЉШЇ ($)**:",
-        "choose_below": "ЩЉШ±Ш¬Щ‰ Ш§Ш®ШЄЩЉШ§Ш± ШІШ± Щ…Щ† Ш§Щ„ШЈШіЩЃЩ„ рџ‘‡",
-        "generating": "вљ™пёЏ Ш¬Ш§Ш±ЩЉ Щ…Ш№Ш§Щ„Ш¬Ш© {n} ШµЩ€Ш± ЩЃЩЉ Ш§Щ„ШіШ­Ш§ШЁШ©...",
-        "prog_step": "вЏі ШЄШ­Щ„ЩЉЩ„ Ш§Щ„ШµЩ€Ш±Ш©: **{cur} Щ…Щ† {tot}**...",
-        "prog_render": "рџЋЁ Ш¬Ш§Ш±ЩЉ ШЄШ¬Щ…ЩЉШ№ ЩѓЩ€Щ„Ш§Ш¬ PГЋVOK (4Г—3)...",
+        "ask_edit_code": "🔖 أدخل **كود الموديل** الجديد:",
+        "ask_edit_size": "📏 اختر أو أدخل **المقاسات** الجديدة:",
+        "ask_edit_price": "💰 أدخل **السعر الجديد ($)**:",
+        "choose_below": "يرجى اختيار زر من الأسفل 👇",
+        "generating": "⚙️ جاري معالجة {n} صور في السحابة...",
+        "prog_step": "⏳ تحليل الصورة: **{cur} من {tot}**...",
+        "prog_render": "🎨 جاري تجميع كولاج PÎVOK (4×3)...",
         "preview_ready": (
-            "вњЁ **PГЋVOK вЂ” Ш§Щ„ЩѓЩ€Щ„Ш§Ш¬ Ш¬Ш§Щ‡ШІ ({n})**\n"
-            "рџ”– Ш§Щ„ЩѓЩ€ШЇ: `{code}` | рџ’° Ш§Щ„ШіШ№Ш±: `{price}$` | рџ“Џ Ш§Щ„Щ…Щ‚Ш§ШіШ§ШЄ: `{sizes}`\n\n"
-            "ЩЉЩ…ЩѓЩ†Щѓ ШЄШ№ШЇЩЉЩ„ Ш§Щ„Щ‚Шµ Ш№ШЁШ± рџ›  Ш№Щ†ШЇ Ш§Щ„Ш­Ш§Ш¬Ш© ШЈЩ€ Ш§Ш®ШЄЩЉШ§Ш± ШҐШ¬Ш±Ш§ШЎ:"
+            "✨ **PÎVOK — الكولاج جاهز ({n})**\n"
+            "🔖 الكود: `{code}` | 💰 السعر: `{price}$` | 📏 المقاسات: `{sizes}`\n\n"
+            "يمكنك تعديل القص عبر 🛠 عند الحاجة أو اختيار إجراء:"
         ),
-        "next_model_hint": "ШЄЩ…! Щ„ШҐЩ†ШґШ§ШЎ ЩѓЩ€Щ„Ш§Ш¬ Щ„Щ„Щ…Щ€ШЇЩЉЩ„ Ш§Щ„ШЄШ§Щ„ЩЉШЊ Ш§Ш¶ШєШ· Ш№Щ„Щ‰ Ш§Щ„ШІШ± ШЈШЇЩ†Ш§Щ‡:",
-        "err_gen": "вќЊ Ш­ШЇШ« Ш®Ш·ШЈ ШЈШ«Щ†Ш§ШЎ ШҐЩ†ШґШ§ШЎ Ш§Щ„ЩѓЩ€Щ„Ш§Ш¬: {e}",
-        "folder_missing": "вљ пёЏ Щ…Ш¬Щ„ШЇ Ш§Щ„ЩѓЩ€Щ„Ш§Ш¬ ШєЩЉШ± Щ…Щ€Ш¬Щ€ШЇ.",
-        "gen_empty": "вљ пёЏ ШЄШ№Ш°Ш± ШҐЩ†ШґШ§ШЎ Ш§Щ„ЩѓЩ€Щ„Ш§Ш¬.",
-        "sending_originals": "Ш¬Ш§Ш±ЩЉ ШҐШ±ШіШ§Щ„ Ш§Щ„Щ…Щ„ЩЃШ§ШЄ Ш§Щ„ШЈШµЩ„ЩЉШ©...",
-        "refreshing": "Ш¬Ш§Ш±ЩЉ ШЄШ­ШЇЩЉШ« Ш§Щ„Щ…Ш№Ш§ЩЉЩ†Ш©...",
-        "ask_add_color": "рџ“ё ШЈШ±ШіЩ„ Ш§Щ„ШµЩ€Ш± Ш§Щ„ШҐШ¶Ш§ЩЃЩЉШ© (Ш§Щ„Щ„Щ€Щ† Ш§Щ„Ш¬ШЇЩЉШЇ) Щ„Щ‡Ш°Ш§ Ш§Щ„Щ…Щ€ШЇЩЉЩ„ШЊ Ш«Щ… Ш§Ш¶ШєШ· **В«вњ… ШЄЩ… Ш±ЩЃШ№ Ш¬Щ…ЩЉШ№ Ш§Щ„ШµЩ€Ш±В»**.",
-        "deleted_toast": "ШЄЩ… Ш§Щ„Ш­Ш°ЩЃ",
-        "deleted_msg": "рџ—‘ ШЄЩ… Ш­Ш°ЩЃ Ш§Щ„ЩѓЩ€Щ„Ш§Ш¬.",
-        "catch_all": "рџЊё **Ш§ШіШЄЩ€ШЇЩЉЩ€ PГЋVOK**\nШ§Ш¶ШєШ· **В«рџ–ј ШҐЩ†ШґШ§ШЎ ЩѓЩ€Щ„Ш§Ш¬В»** ШЁШ§Щ„ШЈШіЩЃЩ„ (ШЈЩ€ ШЈШ±ШіЩ„ Ш§Щ„ШµЩ€Ш± Щ…ШЁШ§ШґШ±Ш© Щ‡Щ†Ш§):",
-        "channels_title": "рџ“ў **Щ‚Щ†Щ€Ш§ШЄ Щ€Ш±Щ€Ш§ШЁШ· PГЋVOK Ш§Щ„Ш±ШіЩ…ЩЉШ©:**",
-        "channels_empty": "в„№пёЏ Щ„Щ… ЩЉШЄЩ… ШҐШ№ШЇШ§ШЇ Ш±Щ€Ш§ШЁШ· Ш§Щ„Щ‚Щ†Щ€Ш§ШЄ ШЁШ№ШЇ.",
-        "wa_ready": "вњ… **Щ€Ш§ШЄШіШ§ШЁ Щ…ШЄШµЩ„ Щ€Ш¬Ш§Щ‡ШІ Щ„Щ„ШҐШ±ШіШ§Щ„!**\nрџ“Њ Ш§Щ„Щ…Ш¬Щ…Щ€Ш№Ш©: `{grp}`",
-        "wa_relink_btn": "рџ”„ ШҐШ№Ш§ШЇШ© Ш±ШЁШ· Щ€Ш§ШЄШіШ§ШЁ",
-        "wa_refresh_qr_btn": "рџ”„ ШЄШ­ШЇЩЉШ« Ш±Щ…ШІ QR",
-        "wa_gen_qr": "вЏі Ш¬Ш§Ш±ЩЉ ШҐЩ†ШґШ§ШЎ Ш±Щ…ШІ QR Щ„Щ€Ш§ШЄШіШ§ШЁШЊ ЩЉШ±Ш¬Щ‰ Ш§Щ„Ш§Щ†ШЄШёШ§Ш± 3 Ш«Щ€Ш§Щ†ЩЌ...",
-        "wa_starting": "вЏі Ш¬Ш§Ш±ЩЉ ШЄШґШєЩЉЩ„ Ш®ШЇЩ…Ш© Щ€Ш§ШЄШіШ§ШЁ. ЩЉШ±Ш¬Щ‰ Ш§Щ„Ш¶ШєШ· Ш№Щ„Щ‰ **рџ“± WhatsApp QR** ШЁШ№ШЇ 5 Ш«Щ€Ш§Щ†ЩЌ.",
+        "next_model_hint": "تم! لإنشاء كولاج للموديل التالي، اضغط على الزر أدناه:",
+        "err_gen": "❌ حدث خطأ أثناء إنشاء الكولاج: {e}",
+        "folder_missing": "⚠️ مجلد الكولاج غير موجود.",
+        "gen_empty": "⚠️ تعذر إنشاء الكولاج.",
+        "sending_originals": "جاري إرسال الملفات الأصلية...",
+        "refreshing": "جاري تحديث المعاينة...",
+        "ask_add_color": "📸 أرسل الصور الإضافية (اللون الجديد) لهذا الموديل، ثم اضغط **«✅ تم رفع جميع الصور»**.",
+        "deleted_toast": "تم الحذف",
+        "deleted_msg": "🗑 تم حذف الكولاج.",
+        "catch_all": "🌸 **استوديو PÎVOK**\nاضغط **«🖼 إنشاء كولاج»** بالأسفل (أو أرسل الصور مباشرة هنا):",
+        "channels_title": "📢 **قنوات وروابط PÎVOK الرسمية:**",
+        "channels_empty": "ℹ️ لم يتم إعداد روابط القنوات بعد.",
+        "wa_ready": "✅ **واتساب متصل وجاهز للإرسال!**\n📌 المجموعة: `{grp}`",
+        "wa_relink_btn": "🔄 إعادة ربط واتساب",
+        "wa_refresh_qr_btn": "🔄 تحديث رمز QR",
+        "wa_gen_qr": "⏳ جاري إنشاء رمز QR لواتساب، يرجى الانتظار 3 ثوانٍ...",
+        "wa_starting": "⏳ جاري تشغيل خدمة واتساب. يرجى الضغط على **📱 WhatsApp QR** بعد 5 ثوانٍ.",
         "wa_qr_caption": (
-            "рџ“± **Ш±ШЁШ· Щ€Ш§ШЄШіШ§ШЁ Щ„Щ„Щ†ШґШ± Ш§Щ„ШЄЩ„Щ‚Ш§Ш¦ЩЉ ЩЃЩЉ Ш§Щ„Щ…Ш¬Щ…Щ€Ш№Ш©**\n\n"
-            "1. Ш§ЩЃШЄШ­ **Щ€Ш§ШЄШіШ§ШЁ** Ш№Щ„Щ‰ Щ‡Ш§ШЄЩЃЩѓ\n"
-            "2. Ш§Ш°Щ‡ШЁ ШҐЩ„Щ‰ **Ш§Щ„ШҐШ№ШЇШ§ШЇШ§ШЄ в†ђ Ш§Щ„ШЈШ¬Щ‡ШІШ© Ш§Щ„Щ…Ш±ШЄШЁШ·Ш© в†ђ Ш±ШЁШ· Ш¬Щ‡Ш§ШІ**\n"
-            "3. Ш§Щ…ШіШ­ Ш±Щ…ШІ QR Щ‡Ш°Ш§ (Щ…Ш±Ш© Щ€Ш§Ш­ШЇШ© ЩЃЩ‚Ш·!)"
+            "📱 **ربط واتساب للنشر التلقائي في المجموعة**\n\n"
+            "1. افتح **واتساب** على هاتفك\n"
+            "2. اذهب إلى **الإعدادات ← الأجهزة المرتبطة ← ربط جهاز**\n"
+            "3. امسح رمز QR هذا (مرة واحدة فقط!)"
         ),
-        "wa_connected_push": "вњ… **ШЄЩ… Ш±ШЁШ· Щ€Ш§ШЄШіШ§ШЁ ШЁЩ†Ш¬Ш§Ш­!**\nрџ“Њ Ш§Щ„Щ…Ш¬Щ…Щ€Ш№Ш©: `{grp}`\nвЃпёЏ ШЄЩ… Ш­ЩЃШё Ш§Щ„Ш¬Щ„ШіШ© ЩЃЩЉ Ш§Щ„ШіШ­Ш§ШЁШ©.",
-        "pub_wait": "вЏі Ш¬Ш§Ш±ЩЉ Щ†ШґШ± Ш§Щ„ЩѓЩ€Щ„Ш§Ш¬ШЊ ЩЉШ±Ш¬Щ‰ Ш§Щ„Ш§Щ†ШЄШёШ§Ш±...",
-        "pub_tg_ok": "вњ… ШЄЩЉЩ„ЩЉШ¬Ш±Ш§Щ… ({ch}): ШЄЩ… Ш§Щ„Щ†ШґШ±!",
-        "pub_tg_err": "вќЊ ШЄЩЉЩ„ЩЉШ¬Ш±Ш§Щ… ({ch}): ШЄШЈЩѓШЇ Щ…Щ† ШЈЩ† Ш§Щ„ШЁЩ€ШЄ Щ…ШґШ±ЩЃ ЩЃЩЉ Ш§Щ„Щ‚Щ†Ш§Ш© ({e})",
-        "pub_wa_ok": "вњ… Щ…Ш¬Щ…Щ€Ш№Ш© Щ€Ш§ШЄШіШ§ШЁ: ШЄЩ… Ш§Щ„ШҐШ±ШіШ§Щ„!",
-        "pub_wa_not_linked": "вљ пёЏ Щ€Ш§ШЄШіШ§ШЁ ШєЩЉШ± Щ…Ш±ШЄШЁШ· ШЁШ№ШЇ вЂ” Ш§Щ…ШіШ­ Ш±Щ…ШІ QR ШЈШЇЩ†Ш§Щ‡ Ш«Щ… Ш§Ш¶ШєШ· рџ’¬!",
+        "wa_connected_push": "✅ **تم ربط واتساب بنجاح!**\n📌 المجموعة: `{grp}`\n☁️ تم حفظ الجلسة في السحابة.",
+        "pub_wait": "⏳ جاري نشر الكولاج، يرجى الانتظار...",
+        "pub_tg_ok": "✅ تيليجرام ({ch}): تم النشر!",
+        "pub_tg_err": "❌ تيليجرام ({ch}): تأكد من أن البوت مشرف في القناة ({e})",
+        "pub_wa_ok": "✅ مجموعة واتساب: تم الإرسال!",
+        "pub_wa_not_linked": "⚠️ واتساب غير مرتبط بعد — امسح رمز QR أدناه ثم اضغط 💬!",
     },
 }
 
@@ -539,10 +539,10 @@ ALL_LANGS = ("ru", "tr", "ar", "en")
 CREATE_TEXTS = {STRINGS[lg]["btn_create"] for lg in ALL_LANGS}
 WA_QR_BTN_TEXTS = {STRINGS[lg]["btn_wa_qr"] for lg in ALL_LANGS}
 CHANNELS_BTN_TEXTS = {STRINGS[lg]["btn_channels"] for lg in ALL_LANGS}
-LANG_BTN_TEXTS = {STRINGS[lg]["btn_lang"] for lg in ALL_LANGS} | {"рџ‡№рџ‡· TГјrkГ§e / РЇР·С‹Рє", "рџ‡·рџ‡є Р СѓСЃСЃРєРёР№ / Dil"}
+LANG_BTN_TEXTS = {STRINGS[lg]["btn_lang"] for lg in ALL_LANGS} | {"🇹🇷 Türkçe / Язык", "🇷🇺 Русский / Dil"}
 CANCEL_TEXTS = (
     {STRINGS[lg]["btn_cancel"] for lg in ALL_LANGS}
-    | {"Cancel", "cancel", "РћС‚РјРµРЅР°", "Д°ptal", "iptal", "ШҐЩ„ШєШ§ШЎ", "/cancel", "/stop"}
+    | {"Cancel", "cancel", "Отмена", "İptal", "iptal", "إلغاء", "/cancel", "/stop"}
 )
 DONE_PHOTO_TEXTS = (
     {STRINGS[lg]["btn_all_loaded"] for lg in ALL_LANGS}
@@ -614,10 +614,11 @@ def restore_wa_session_from_hf():
             filename="wa_auth.zip",
             repo_type="dataset",
             token=HF_TOKEN,
+            force_download=True,
         )
         with zipfile.ZipFile(zip_path, "r") as zf:
             zf.extractall(WA_AUTH_DIR)
-        logger.info("вњ… Restored WhatsApp session from private HF dataset")
+        logger.info("✅ Restored WhatsApp session from private HF dataset")
     except Exception as e:
         logger.info(f"[WA Session] No cloud backup restored yet: {e}")
 
@@ -647,7 +648,7 @@ def _backup_wa_session_sync():
             repo_type="dataset",
             commit_message="Sync WhatsApp session",
         )
-        logger.info("вЃпёЏ Backed up WhatsApp session to private HF dataset")
+        logger.info("☁️ Backed up WhatsApp session to private HF dataset")
     except Exception as e:
         logger.warning(f"[WA Session] Cloud backup warning: {e}")
 
@@ -801,9 +802,9 @@ def lang_inline_kb() -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton(text="рџ‡·рџ‡є Р СѓСЃСЃРєРёР№", callback_data="setlang_ru"),
-                InlineKeyboardButton(text="рџ‡№рџ‡· TГјrkГ§e", callback_data="setlang_tr"),
-                InlineKeyboardButton(text="рџ‡ёрџ‡¦ Ш§Щ„Ш№Ш±ШЁЩЉШ©", callback_data="setlang_ar"),
+                InlineKeyboardButton(text="🇷🇺 Русский", callback_data="setlang_ru"),
+                InlineKeyboardButton(text="🇹🇷 Türkçe", callback_data="setlang_tr"),
+                InlineKeyboardButton(text="🇸🇦 العربية", callback_data="setlang_ar"),
             ]
         ]
     )
@@ -885,25 +886,25 @@ class SecurityMiddleware(BaseMiddleware):
                 entered = event.text.strip().lower()
                 allowed_pw = {SECRET_PASSWORD.lower()}
                 if SECRET_PASSWORD.lower() == "pivok":
-                    allowed_pw.add("РїРёРІРѕРє")
+                    allowed_pw.add("пивок")
                 if entered in allowed_pw:
                     ALLOWED_USERS.append(user_id)
                     lang = get_lang(user_id, getattr(user, "language_code", None))
                     set_lang(user_id, lang)
                     await event.answer(
-                        "вњ… **Р”РѕСЃС‚СѓРї РѕС‚РєСЂС‹С‚! / EriЕџim aГ§Д±ldД±! / ШЄЩ… ЩЃШЄШ­ Ш§Щ„Щ€ШµЩ€Щ„!**\n\n" + tr_str(lang, "welcome"),
+                        "✅ **Доступ открыт! / Erişim açıldı! / تم فتح الوصول!**\n\n" + tr_str(lang, "welcome"),
                         reply_markup=main_menu_kb(lang),
                         parse_mode="Markdown",
                     )
                     return
                 await event.answer(
-                    "рџ”’ Р‘РѕС‚ PГЋVOK Р·Р°С‰РёС‰С‘РЅ. Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ:\n"
-                    "рџ”’ PГЋVOK botu korumalД±dД±r. LГјtfen Еџifreyi girin:\n"
-                    "рџ”’ Ш§Щ„ШЁЩ€ШЄ Щ…Ш­Щ…ЩЉ. ЩЉШ±Ш¬Щ‰ ШҐШЇШ®Ш§Щ„ ЩѓЩ„Щ…Ш© Ш§Щ„Щ…Ш±Щ€Ш±:"
+                    "🔒 Бот PÎVOK защищён. Введите пароль:\n"
+                    "🔒 PÎVOK botu korumalıdır. Lütfen şifreyi girin:\n"
+                    "🔒 البوت محمي. يرجى إدخال كلمة المرور:"
                 )
                 return
             if hasattr(event, "data") and event.data:
-                await event.answer("рџ”’ Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ / Ећifreyi girin / ШЈШЇШ®Щ„ ЩѓЩ„Щ…Ш© Ш§Щ„Щ…Ш±Щ€Ш±", show_alert=True)
+                await event.answer("🔒 Введите пароль / Şifreyi girin / أدخل كلمة المرور", show_alert=True)
                 return
             return
         return await handler(event, data)
@@ -936,7 +937,7 @@ def build_preview_keyboard(
             display_name = stem.split("_", 1)[-1] if "_" in stem else stem
             crop_buttons.append(
                 InlineKeyboardButton(
-                    text=f"рџ›  {display_name}",
+                    text=f"🛠 {display_name}",
                     web_app=WebAppInfo(
                         url=f"{PUBLIC_BASE_URL}/webapp/index.html?folder={encoded_folder}&chat_id={chat_id}&pair={i}&lang={lang}"
                     ),
@@ -1080,10 +1081,10 @@ async def cb_wa_manage(callback: CallbackQuery):
     lang = get_lang(callback.from_user.id, callback.from_user.language_code)
     if callback.data == "wa_reset_session":
         await asyncio.to_thread(lambda: requests.post(f"{WA_BRIDGE_URL}/reset-session", timeout=6))
-        await callback.answer("рџ”„")
+        await callback.answer("🔄")
         await asyncio.sleep(2.5)
     else:
-        await callback.answer("рџ”„")
+        await callback.answer("🔄")
     _WA_QR_WAITERS.add(callback.message.chat.id)
     st = await asyncio.to_thread(get_wa_bridge_status)
     if st.get("connected"):
@@ -1135,16 +1136,16 @@ async def cmd_language(message: Message):
 async def cb_set_language(callback: CallbackQuery, state: FSMContext):
     if callback.data.endswith("_tr"):
         new_lang = "tr"
-        toast = "рџ‡№рџ‡· TГјrkГ§e"
+        toast = "🇹🇷 Türkçe"
     elif callback.data.endswith("_ar"):
         new_lang = "ar"
-        toast = "рџ‡ёрџ‡¦ Ш§Щ„Ш№Ш±ШЁЩЉШ©"
+        toast = "🇸🇦 العربية"
     elif callback.data.endswith("_en"):
         new_lang = "en"
-        toast = "рџ‡¬рџ‡§ English"
+        toast = "🇬🇧 English"
     else:
         new_lang = "ru"
-        toast = "рџ‡·рџ‡є Р СѓСЃСЃРєРёР№"
+        toast = "🇷🇺 Русский"
     set_lang(callback.from_user.id, new_lang)
     await callback.answer(toast)
     try:
@@ -1345,7 +1346,7 @@ async def handle_all_photos_loaded(message: Message, state: FSMContext):
 @dp.message(CollageForm.grouping_mode)
 async def handle_grouping_mode(message: Message, state: FSMContext):
     lang = get_lang(message.from_user.id, message.from_user.language_code)
-    is_smart = (message.text in SMART_GROUP_TEXTS) or ("РЈРјРЅР°СЏ" in (message.text or "")) or ("AkД±llД±" in (message.text or ""))
+    is_smart = (message.text in SMART_GROUP_TEXTS) or ("Умная" in (message.text or "")) or ("Akıllı" in (message.text or ""))
     await state.update_data(grouping_mode="smart" if is_smart else "sequential")
     await state.set_state(CollageForm.code)
     await message.answer(
@@ -1474,7 +1475,7 @@ async def handle_confirm(message: Message, state: FSMContext):
     safe_code = data["code"].replace("|", "~").replace("_", "-").replace("/", "-")
     safe_size = data["size"].replace("|", "~").replace("_", "-")
     safe_price = data["price"].replace("|", "~").replace("_", "-")
-    cat_tag = "РћР”РРќРђР РќР«Р™" if is_single else "РџР›РђРўР¬Р•"
+    cat_tag = "ОДИНАРНЫЙ" if is_single else "ПЛАТЬЕ"
     folder_name = f"PIVOK_{cat_tag}_{safe_code}_{safe_size}_{safe_price}_{int(time.time())}"
     inc_folder = os.path.join(INCOMING_DIR, folder_name)
 
@@ -1591,15 +1592,15 @@ def _build_tg_collage_caption(code: str, sizes: str, price: str) -> str:
     sale_url = get_channel_link_url(PIVOK_CHANNEL_LINKS[4]) or "https://t.me/pivoksale"
     vid_url = get_channel_link_url(PIVOK_CHANNEL_LINKS[5]) or "https://t.me/pivokvideo"
     return (
-        f"рџЊё <b>PГЋVOK</b>\n"
-        f"рџ†• <b>NEW MODEL</b>\n"
-        f"рџ”– <b>CODE:</b> <code>{code}</code>\n"
-        f"вћ–вћ–вћ–вћ–вћ–вћ–вћ–вћ–\n"
-        f"рџ›Ќ <b>Order & Catalog:</b>\n"
-        f"<a href='{wa_url}'>рџџў WhatsApp</a> | "
-        f"<a href='{ig_url}'>рџ“ё Instagram</a> | "
-        f"<a href='{vid_url}'>рџ“№ Video</a> | "
-        f"<a href='{sale_url}'>рџ”Ґ Sale</a>"
+        f"🌸 <b>PÎVOK</b>\n"
+        f"🆕 <b>NEW MODEL</b>\n"
+        f"🔖 <b>CODE:</b> <code>{code}</code>\n"
+        f"➖➖➖➖➖➖➖➖\n"
+        f"🛍 <b>Order & Catalog:</b>\n"
+        f"<a href='{wa_url}'>🟢 WhatsApp</a> | "
+        f"<a href='{ig_url}'>📸 Instagram</a> | "
+        f"<a href='{vid_url}'>📹 Video</a> | "
+        f"<a href='{sale_url}'>🔥 Sale</a>"
     )
 
 
@@ -1607,10 +1608,10 @@ def _build_wa_collage_caption(code: str, sizes: str, price: str) -> str:
     ig_url = "https://www.instagram.com/pivok_fashion"
     tg_url = "https://t.me/pivoklaleli"
     return (
-        f"рџЊё *PГЋVOK* вЂ” *NEW MODEL*\n"
-        f"рџ”– *CODE:* {code}\n"
-        f"вњ€пёЏ Telegram: {tg_url}\n"
-        f"рџ“ё Instagram: {ig_url}"
+        f"🌸 *PÎVOK* — *NEW MODEL*\n"
+        f"🔖 *CODE:* {code}\n"
+        f"✈️ Telegram: {tg_url}\n"
+        f"📸 Instagram: {ig_url}"
     )
 
 
@@ -1619,7 +1620,7 @@ async def cb_publish_collages(callback: CallbackQuery):
     if not bot:
         return
     if _PUB_LOCK.locked():
-        await callback.answer("вЏі Sending in progress, please wait...", show_alert=False)
+        await callback.answer("⏳ Sending in progress, please wait...", show_alert=False)
         return
 
     parts = callback.data.split("_", 2)
@@ -1650,16 +1651,16 @@ async def cb_publish_collages(callback: CallbackQuery):
     do_wa = mode in ("all", "wa")
 
     if do_tg and not do_wa and rec.get("tg"):
-        await callback.answer("вљ пёЏ Already sent to Telegram Channel!", show_alert=True)
+        await callback.answer("⚠️ Already sent to Telegram Channel!", show_alert=True)
         return
     if do_wa and not do_tg and rec.get("wa"):
-        await callback.answer("вљ пёЏ Already sent to WhatsApp Group!", show_alert=True)
+        await callback.answer("⚠️ Already sent to WhatsApp Group!", show_alert=True)
         return
     if do_tg and do_wa and rec.get("tg") and rec.get("wa"):
-        await callback.answer("вљ пёЏ Already published to both TG Channel & WhatsApp!", show_alert=True)
+        await callback.answer("⚠️ Already published to both TG Channel & WhatsApp!", show_alert=True)
         return
 
-    await callback.answer("рџљЂ")
+    await callback.answer("🚀")
     status_msg = await callback.message.answer(tr_str(lang, "pub_wait"))
 
     results_lines = []
@@ -1734,9 +1735,9 @@ async def cb_publish_collages(callback: CallbackQuery):
                             persist_store()
                             results_lines.append(tr_str(lang, "pub_wa_ok"))
                         else:
-                            results_lines.append(f"вќЊ WhatsApp: {rj.get('error', resp.text)}")
+                            results_lines.append(f"❌ WhatsApp: {rj.get('error', resp.text)}")
                     except Exception as e:
-                        results_lines.append(f"вќЊ WhatsApp: {e}")
+                        results_lines.append(f"❌ WhatsApp: {e}")
 
     try:
         await status_msg.edit_text("\n".join(results_lines))
@@ -1853,16 +1854,16 @@ async def lifespan(app_inst: FastAPI):
                 info = await bot.get_webhook_info()
                 if info.url != wh_url:
                     await bot.set_webhook(wh_url, secret_token=WEBHOOK_SECRET, drop_pending_updates=False)
-                    logger.info(f"вњ… Telegram Webhook registered at {wh_url}")
+                    logger.info(f"✅ Telegram Webhook registered at {wh_url}")
                 else:
-                    logger.info(f"вљЎ Telegram Webhook already active at {wh_url}")
+                    logger.info(f"⚡ Telegram Webhook already active at {wh_url}")
             except Exception as e:
                 logger.warning(f"Webhook setup check warning: {e}")
                 await bot.set_webhook(wh_url, secret_token=WEBHOOK_SECRET, drop_pending_updates=False)
         else:
             await bot.delete_webhook(drop_pending_updates=False)
             _polling_task = asyncio.create_task(dp.start_polling(bot))
-            logger.info("рџЊё Started local Telegram polling (no PUBLIC_BASE_URL)")
+            logger.info("🌸 Started local Telegram polling (no PUBLIC_BASE_URL)")
     yield
     if _polling_task:
         _polling_task.cancel()
@@ -1893,7 +1894,7 @@ async def health():
     return {
         "status": "ok",
         "service": "PIVOK Cloud Studio 24/7",
-        "version": "v4.3-wa-qr-page",
+        "version": "v4.4-clean-utf8-wa",
         "languages": ["ru", "tr", "ar"],
         "default_language": "ru",
         "whatsapp_connected": bool(wa_st.get("connected")),
@@ -1911,19 +1912,23 @@ async def wa_qr_page(key: str = ""):
     style = "background:#1a1620;color:#f5d8b8;font-family:sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;margin:0;"
     if st.get("connected"):
         grp = st.get("group_subject") or st.get("group_jid") or "PIVOK"
-        return HTMLResponse(f"<html><body style='{style}'><h2>вњ… WhatsApp РїРѕРґРєР»СЋС‡С‘РЅ!</h2><p>Р“СЂСѓРїРїР°: {grp}</p></body></html>")
+        return HTMLResponse(
+            f"<html><head><meta charset='UTF-8'></head><body style='{style}'>"
+            f"<h2>✅ WhatsApp подключён!</h2><p>Группа: {grp}</p></body></html>"
+        )
     qr_str = st.get("qr")
     if not qr_str:
         return HTMLResponse(
-            f"<html><head><meta http-equiv='refresh' content='3'></head><body style='{style}'><h2>вЏі Р“РµРЅРµСЂРёСЂСѓСЋ QR-РєРѕРґ...</h2></body></html>"
+            f"<html><head><meta charset='UTF-8'><meta http-equiv='refresh' content='3'></head>"
+            f"<body style='{style}'><h2>⏳ Генерирую QR-код...</h2></body></html>"
         )
     png_b64 = base64.b64encode(await asyncio.to_thread(make_qr_png_bytes, qr_str)).decode()
     return HTMLResponse(
-        f"<html><head><meta http-equiv='refresh' content='8'></head><body style='{style}'>"
-        f"<h2 style='color:#d6a474'>рџ“± PГЋVOK вЂ” РїРѕРґРєР»СЋС‡РµРЅРёРµ WhatsApp</h2>"
+        f"<html><head><meta charset='UTF-8'><meta http-equiv='refresh' content='8'></head><body style='{style}'>"
+        f"<h2 style='color:#d6a474'>📱 PÎVOK — подключение WhatsApp</h2>"
         f"<img src='data:image/png;base64,{png_b64}' style='width:340px;border:14px solid #fff;border-radius:12px'/>"
-        f"<p>WhatsApp в†’ РќР°СЃС‚СЂРѕР№РєРё в†’ РЎРІСЏР·Р°РЅРЅС‹Рµ СѓСЃС‚СЂРѕР№СЃС‚РІР° в†’ РџСЂРёРІСЏР·Р°С‚СЊ СѓСЃС‚СЂРѕР№СЃС‚РІРѕ</p>"
-        f"<p style='opacity:.6'>РљРѕРґ РѕР±РЅРѕРІР»СЏРµС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё</p></body></html>"
+        f"<p>WhatsApp → Настройки → Связанные устройства → Привязать устройство</p>"
+        f"<p style='opacity:.6'>Код обновляется автоматически</p></body></html>"
     )
 
 
@@ -1981,14 +1986,14 @@ async def get_editor_data(folder_name: str):
         f for f in os.listdir(folder_path) if f.lower().endswith((".jpg", ".jpeg", ".png", ".webp"))
     )
     parts = folder_name.split("_")
-    category = parts[1] if len(parts) >= 5 else "РџР›РђРўР¬Р•"
+    category = parts[1] if len(parts) >= 5 else "ПЛАТЬЕ"
 
     color_groups = {}
     for p in all_photos:
         prefix = p.split("-")[0] if "-" in p else "DEFAULT"
         color_groups.setdefault(prefix, []).append(p)
 
-    is_single = (category.upper() in ("РћР”РРќРђР РќР«Р™", "SINGLE")) or all(
+    is_single = (category.upper() in ("ОДИНАРНЫЙ", "SINGLE")) or all(
         len(p_list) == 1 for p_list in color_groups.values()
     )
 

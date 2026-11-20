@@ -155,8 +155,10 @@ async function connectToWhatsApp() {
             if (connection === 'close') {
                 isSocketConnected = false;
                 const statusCode = lastDisconnect?.error?.output?.statusCode;
-                const shouldReconnect = statusCode !== DisconnectReason.loggedOut;
-                if (shouldReconnect) {
+                if (statusCode === DisconnectReason.connectionReplaced || statusCode === 440) {
+                    console.log('[WA] Connection replaced by newer instance — standing down 45s.');
+                    setTimeout(connectToWhatsApp, 45000);
+                } else if (statusCode !== DisconnectReason.loggedOut) {
                     setTimeout(connectToWhatsApp, 2500);
                 } else {
                     try { fs.rmSync(WA_AUTH_DIR, { recursive: true, force: true }); } catch (_) {}
