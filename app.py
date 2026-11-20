@@ -1594,8 +1594,6 @@ def _build_tg_collage_caption(code: str, sizes: str, price: str) -> str:
         f"🌸 <b>PÎVOK</b>\n"
         f"🆕 <b>NEW MODEL</b>\n"
         f"🔖 <b>CODE:</b> <code>{code}</code>\n"
-        f"📏 <b>SIZES:</b> {sizes}\n"
-        f"💰 <b>PRICE:</b> {price}$\n"
         f"➖➖➖➖➖➖➖➖\n"
         f"🛍 <b>Order & Catalog:</b>\n"
         f"<a href='{wa_url}'>🟢 WhatsApp</a> | "
@@ -1611,8 +1609,6 @@ def _build_wa_collage_caption(code: str, sizes: str, price: str) -> str:
     return (
         f"🌸 *PÎVOK* — *NEW MODEL*\n"
         f"🔖 *CODE:* {code}\n"
-        f"📏 *SIZES:* {sizes}\n"
-        f"💰 *PRICE:* {price}$\n"
         f"✈️ Telegram: {tg_url}\n"
         f"📸 Instagram: {ig_url}"
     )
@@ -1897,7 +1893,7 @@ async def health():
     return {
         "status": "ok",
         "service": "PIVOK Cloud Studio 24/7",
-        "version": "v4.1-ru-tr-ar",
+        "version": "v4.2-caption-code-only",
         "languages": ["ru", "tr", "ar"],
         "default_language": "ru",
         "whatsapp_connected": bool(wa_st.get("connected")),
