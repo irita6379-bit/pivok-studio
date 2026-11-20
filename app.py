@@ -116,25 +116,25 @@ PIVOK_CHANNEL_LINKS = [
     {
         "key": "whatsapp_channel",
         "text": "WhatsApp Channel",
-        "default_url": "",
+        "default_url": "https://chat.whatsapp.com/Ddh7BKb1atCAhRzogy9l9Y",
         "env_var": "LINK_WHATSAPP_CHANNEL",
     },
     {
         "key": "sale_channel",
         "text": "Sale Channel",
-        "default_url": "",
+        "default_url": "https://t.me/pivoksale",
         "env_var": "LINK_SALE_CHANNEL",
     },
     {
         "key": "video_channel",
         "text": "Video Channel",
-        "default_url": "",
+        "default_url": "https://t.me/pivokvideo",
         "env_var": "LINK_VIDEO_CHANNEL",
     },
     {
         "key": "address",
         "text": "Address",
-        "default_url": "",
+        "default_url": "https://www.google.com/maps?q=41.007667,28.955222",
         "env_var": "LINK_ADDRESS",
     },
 ]
@@ -1364,7 +1364,7 @@ async def health():
     return {
         "status": "ok",
         "service": "PIVOK Cloud Studio 24/7",
-        "version": "v3-en-channels-ready",
+        "version": "v3.1-all-links",
         "languages": ["en", "ru", "tr"],
         "default_language": "en",
         "webhook_mode": PUBLIC_BASE_URL.startswith("https://"),
