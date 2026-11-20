@@ -49,8 +49,9 @@
         const urlParams = new URLSearchParams(window.location.search);
         const folder = urlParams.get('folder');
         const chatId = urlParams.get('chat_id');
-        const rawLang = (urlParams.get('lang') || 'en').toLowerCase();
-        const lang = (rawLang === 'ru' || rawLang === 'tr') ? rawLang : 'en';
+        const rawLang = (urlParams.get('lang') || 'ru').toLowerCase();
+        const lang = (['ru', 'tr', 'ar', 'en'].includes(rawLang)) ? rawLang : 'ru';
+        if (lang === 'ar') document.documentElement.dir = 'rtl';
 
         const I18N = {
             en: {
@@ -91,6 +92,19 @@
                 errLoad: "Fotoğraflar yüklenemedi",
                 errPrefix: "Hata: ",
                 pairOf: (a, b) => `PÎVOK — Kolaj ${a} / ${b}`
+            },
+            ar: {
+                loading: "PÎVOK — جاري التحميل...",
+                inst: "اضغط على الصورة، اسحب لتحريكها واستخدم الشريط للتكبير.",
+                zoom: "تكبير الصورة المحددة",
+                prev: "➡️ السابق",
+                swap: "⇄ تبديل الصور",
+                next: "التالي ⬅️",
+                save: "حفظ الكولاج",
+                saving: "جاري الحفظ...",
+                errLoad: "فشل تحميل الصور",
+                errPrefix: "خطأ: ",
+                pairOf: (a, b) => `PÎVOK — كولاج ${a} من ${b}`
             }
         }[lang];
 

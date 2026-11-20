@@ -236,12 +236,29 @@ STRINGS = {
         "deleted_toast": "Deleted",
         "deleted_msg": "🗑 Collages deleted.",
         "catch_all": "🌸 **PÎVOK Studio**\nPress **«🖼 Create Collage»** below (or send photos directly here):",
+        "wa_ready": "✅ **WhatsApp is connected and ready!**\n📌 Target Group: `{grp}`",
+        "wa_relink_btn": "🔄 Relink / Reset WhatsApp",
+        "wa_refresh_qr_btn": "🔄 Refresh QR Code",
+        "wa_gen_qr": "⏳ Generating WhatsApp QR code, please wait 3 seconds...",
+        "wa_starting": "⏳ WhatsApp bridge is starting up. Please tap **📱 WhatsApp QR** again in 5 seconds.",
+        "wa_qr_caption": (
+            "📱 **Connect WhatsApp for Automatic Group Posting**\n\n"
+            "1. Open **WhatsApp** on your phone\n"
+            "2. Go to **Settings → Linked Devices → Link a Device**\n"
+            "3. Scan this QR code (only needed once!)"
+        ),
+        "wa_connected_push": "✅ **WhatsApp connected!**\n📌 Group: `{grp}`\n☁️ Session saved in cloud.",
+        "pub_wait": "⏳ Publishing collages, please wait...",
+        "pub_tg_ok": "✅ Telegram ({ch}): Published!",
+        "pub_tg_err": "❌ Telegram ({ch}): Make sure this bot is an Administrator ({e})",
+        "pub_wa_ok": "✅ WhatsApp Group: Published!",
+        "pub_wa_not_linked": "⚠️ WhatsApp Group: Not connected yet — scan the QR code below, then tap 💬!",
     },
     "ru": {
         "btn_create": "🖼 Создать коллаж",
         "btn_wa_qr": "📱 WhatsApp QR",
         "btn_channels": "📢 Каналы",
-        "btn_lang": "🇹🇷 Türkçe / Язык",
+        "btn_lang": "🌐 Язык / Dil / اللغة",
         "btn_cancel": "❌ Отмена",
         "btn_pair_2": "✅ Двойной коллаж (по 2 фото)",
         "btn_single_1": "✅ Одинарный коллаж (по 1 фото)",
@@ -312,12 +329,29 @@ STRINGS = {
         "catch_all": "🌸 **PÎVOK Cloud Studio**\nНажмите **«🖼 Создать коллаж»** внизу (или отправьте фото прямо сюда):",
         "channels_title": "📢 **Официальные каналы и ссылки PÎVOK:**",
         "channels_empty": "ℹ️ Ссылки на каналы пока не настроены.",
+        "wa_ready": "✅ **WhatsApp подключён и готов к отправке!**\n📌 Группа: `{grp}`",
+        "wa_relink_btn": "🔄 Перепривязать WhatsApp",
+        "wa_refresh_qr_btn": "🔄 Обновить QR-код",
+        "wa_gen_qr": "⏳ Генерирую QR-код WhatsApp, подождите 3 секунды...",
+        "wa_starting": "⏳ Модуль WhatsApp запускается. Нажмите **📱 WhatsApp QR** ещё раз через 5 секунд.",
+        "wa_qr_caption": (
+            "📱 **Подключение WhatsApp для авто-отправки в группу**\n\n"
+            "1. Откройте **WhatsApp** на телефоне\n"
+            "2. Зайдите в **Настройки → Связанные устройства → Привязать устройство**\n"
+            "3. Отсканируйте этот QR-код (достаточно 1 раз!)"
+        ),
+        "wa_connected_push": "✅ **WhatsApp успешно подключён!**\n📌 Группа: `{grp}`\n☁️ Сессия сохранена в облаке.",
+        "pub_wait": "⏳ Отправляю коллажи, подождите...",
+        "pub_tg_ok": "✅ Telegram ({ch}): Опубликовано!",
+        "pub_tg_err": "❌ Telegram ({ch}): Добавьте бота в Администраторы канала ({e})",
+        "pub_wa_ok": "✅ WhatsApp-группа: Опубликовано!",
+        "pub_wa_not_linked": "⚠️ WhatsApp ещё не привязан — отсканируйте QR-код ниже и нажмите 💬 Отправить в WhatsApp!",
     },
     "tr": {
         "btn_create": "🖼 Kolaj Oluştur",
         "btn_wa_qr": "📱 WhatsApp QR",
         "btn_channels": "📢 Kanallar",
-        "btn_lang": "🇷🇺 Русский / Dil",
+        "btn_lang": "🌐 Dil / Язык / اللغة",
         "btn_cancel": "❌ İptal",
         "btn_pair_2": "✅ İkili Kolaj (2 Fotoğraf)",
         "btn_single_1": "✅ Tekli Kolaj (1 Fotoğraf)",
@@ -388,66 +422,139 @@ STRINGS = {
         "catch_all": "🌸 **PÎVOK Cloud Studio**\nAşağıdaki **«🖼 Kolaj Oluştur»** butonuna basın (veya fotoğrafları doğrudan buraya gönderin):",
         "channels_title": "📢 **PÎVOK Resmi Kanallar ve Linkler:**",
         "channels_empty": "ℹ️ Kanal linkleri henüz ayarlanmadı.",
+        "wa_ready": "✅ **WhatsApp bağlı ve gönderime hazır!**\n📌 Grup: `{grp}`",
+        "wa_relink_btn": "🔄 WhatsApp Bağlantısını Sıfırla",
+        "wa_refresh_qr_btn": "🔄 QR Kodunu Yenile",
+        "wa_gen_qr": "⏳ WhatsApp QR kodu oluşturuluyor, lütfen 3 saniye bekleyin...",
+        "wa_starting": "⏳ WhatsApp modülü başlatılıyor. 5 saniye sonra tekrar **📱 WhatsApp QR** tuşuna basın.",
+        "wa_qr_caption": (
+            "📱 **Otomatik Grup Gönderimi için WhatsApp Bağlantısı**\n\n"
+            "1. Telefonunuzda **WhatsApp** uygulamasını açın\n"
+            "2. **Ayarlar → Bağlı Cihazlar → Cihaz Bağla** bölümüne girin\n"
+            "3. Bu QR kodunu okutun (sadece 1 kez yeterlidir!)"
+        ),
+        "wa_connected_push": "✅ **WhatsApp başarıyla bağlandı!**\n📌 Grup: `{grp}`\n☁️ Oturum buluta kaydedildi.",
+        "pub_wait": "⏳ Kolajlar gönderiliyor, lütfen bekleyin...",
+        "pub_tg_ok": "✅ Telegram ({ch}): Yayınlandı!",
+        "pub_tg_err": "❌ Telegram ({ch}): Botun kanalda Yönetici olduğundan emin olun ({e})",
+        "pub_wa_ok": "✅ WhatsApp Grubu: Gönderildi!",
+        "pub_wa_not_linked": "⚠️ WhatsApp henüz bağlı değil — aşağıdaki QR kodunu okutup tekrar 💬 butonuna basın!",
+    },
+    "ar": {
+        "btn_create": "🖼 إنشاء كولاج",
+        "btn_wa_qr": "📱 WhatsApp QR",
+        "btn_channels": "📢 القنوات",
+        "btn_lang": "🌐 اللغة / Язык / Dil",
+        "btn_cancel": "❌ إلغاء",
+        "btn_pair_2": "✅ كولاج مزدوج (صورتان)",
+        "btn_single_1": "✅ كولاج مفرد (صورة واحدة)",
+        "btn_all_loaded": "✅ تم رفع جميع الصور",
+        "btn_group_smart": "🧠 تجميع ذكي (تلقائي)",
+        "btn_group_seq": "🔢 أزواج متتالية (1-2، 3-4)",
+        "btn_confirm_go": "✅ إنشاء الكولاج",
+        "btn_edit_code": "✏️ تعديل الكود",
+        "btn_edit_size": "✏️ تعديل المقاسات",
+        "btn_edit_price": "✏️ تعديل السعر",
+        "btn_pub_both": "🚀 إرسال إلى تيليجرام وواتساب",
+        "btn_pub_tg": "✈️ إرسال إلى قناة تيليجرام",
+        "btn_pub_wa": "💬 إرسال إلى واتساب",
+        "btn_dl_files": "📥 تحميل الملفات الأصلية",
+        "btn_refresh": "🔄 تحديث المعاينة",
+        "btn_add_color": "🎨 إضافة صور لون جديد",
+        "btn_delete": "🗑 حذف",
+        "welcome": "🌸 **استوديو PÎVOK السحابي (24/7)**\nاختر إجراءً من القائمة أدناه:",
+        "cancelled": "❌ تم إلغاء العملية.",
+        "lang_prompt": "🌐 **اختر اللغة / Выберите язык / Dil seçin:**",
+        "lang_switched": "🇸🇦 تم تغيير اللغة إلى **العربية**!",
+        "send_photos_prompt": (
+            "📸 **أرسل جميع صور الموديل الواحد** (كألبوم أو ملفات).\n\n"
+            "عند الانتهاء من رفع الصور، اختر من الأسفل:\n"
+            "• **✅ كولاج مزدوج (صورتان)** — مقاس PÎVOK 4×3\n"
+            "• **✅ كولاج مفرد (صورة واحدة)**"
+        ),
+        "only_images": "⚠️ يرجى إرسال الصور فقط.",
+        "photos_buffered": "📥 الصور المستلمة: **{n}**\nأرسل المزيد أو اضغط على الزر أدناه:",
+        "no_photos_yet": "⚠️ لم تقم برفع أي صور بعد!",
+        "need_2_photos": "⚠️ الكولاج المزدوج يتطلب صورتين على الأقل.",
+        "processing_extra": "⏳ جاري معالجة الصور الإضافية...",
+        "ask_grouping": "📸 تم رفع **{n} صور**. كيف تريد تجميع الأزواج؟",
+        "ask_code": "🔖 أدخل **كود الموديل** (مثال: `O-21476`):",
+        "err_code": "⚠️ يرجى إدخال كود موديل صحيح:",
+        "ask_size": "📏 اختر أو اكتب **المقاسات** (مثال: `38-44`):",
+        "err_size": "⚠️ يرجى تحديد المقاسات:",
+        "ask_price": "💰 أدخل **السعر بالدولار ($)** (مثال: `79`):",
+        "err_price": "⚠️ يرجى إدخال السعر:",
+        "summary": (
+            "📋 **مراجعة بيانات كولاج PÎVOK:**\n\n"
+            "🔖 **الكود:** `{code}`\n"
+            "💰 **السعر:** `{price}$`\n"
+            "📏 **المقاسات:** `{size}`\n"
+            "🖼 **الصور:** {cnt} ← **{est} كولاج** (مقاس 4×3)"
+        ),
+        "ask_edit_code": "🔖 أدخل **كود الموديل** الجديد:",
+        "ask_edit_size": "📏 اختر أو أدخل **المقاسات** الجديدة:",
+        "ask_edit_price": "💰 أدخل **السعر الجديد ($)**:",
+        "choose_below": "يرجى اختيار زر من الأسفل 👇",
+        "generating": "⚙️ جاري معالجة {n} صور في السحابة...",
+        "prog_step": "⏳ تحليل الصورة: **{cur} من {tot}**...",
+        "prog_render": "🎨 جاري تجميع كولاج PÎVOK (4×3)...",
+        "preview_ready": (
+            "✨ **PÎVOK — الكولاج جاهز ({n})**\n"
+            "🔖 الكود: `{code}` | 💰 السعر: `{price}$` | 📏 المقاسات: `{sizes}`\n\n"
+            "يمكنك تعديل القص عبر 🛠 عند الحاجة أو اختيار إجراء:"
+        ),
+        "next_model_hint": "تم! لإنشاء كولاج للموديل التالي، اضغط على الزر أدناه:",
+        "err_gen": "❌ حدث خطأ أثناء إنشاء الكولاج: {e}",
+        "folder_missing": "⚠️ مجلد الكولاج غير موجود.",
+        "gen_empty": "⚠️ تعذر إنشاء الكولاج.",
+        "sending_originals": "جاري إرسال الملفات الأصلية...",
+        "refreshing": "جاري تحديث المعاينة...",
+        "ask_add_color": "📸 أرسل الصور الإضافية (اللون الجديد) لهذا الموديل، ثم اضغط **«✅ تم رفع جميع الصور»**.",
+        "deleted_toast": "تم الحذف",
+        "deleted_msg": "🗑 تم حذف الكولاج.",
+        "catch_all": "🌸 **استوديو PÎVOK**\nاضغط **«🖼 إنشاء كولاج»** بالأسفل (أو أرسل الصور مباشرة هنا):",
+        "channels_title": "📢 **قنوات وروابط PÎVOK الرسمية:**",
+        "channels_empty": "ℹ️ لم يتم إعداد روابط القنوات بعد.",
+        "wa_ready": "✅ **واتساب متصل وجاهز للإرسال!**\n📌 المجموعة: `{grp}`",
+        "wa_relink_btn": "🔄 إعادة ربط واتساب",
+        "wa_refresh_qr_btn": "🔄 تحديث رمز QR",
+        "wa_gen_qr": "⏳ جاري إنشاء رمز QR لواتساب، يرجى الانتظار 3 ثوانٍ...",
+        "wa_starting": "⏳ جاري تشغيل خدمة واتساب. يرجى الضغط على **📱 WhatsApp QR** بعد 5 ثوانٍ.",
+        "wa_qr_caption": (
+            "📱 **ربط واتساب للنشر التلقائي في المجموعة**\n\n"
+            "1. افتح **واتساب** على هاتفك\n"
+            "2. اذهب إلى **الإعدادات ← الأجهزة المرتبطة ← ربط جهاز**\n"
+            "3. امسح رمز QR هذا (مرة واحدة فقط!)"
+        ),
+        "wa_connected_push": "✅ **تم ربط واتساب بنجاح!**\n📌 المجموعة: `{grp}`\n☁️ تم حفظ الجلسة في السحابة.",
+        "pub_wait": "⏳ جاري نشر الكولاج، يرجى الانتظار...",
+        "pub_tg_ok": "✅ تيليجرام ({ch}): تم النشر!",
+        "pub_tg_err": "❌ تيليجرام ({ch}): تأكد من أن البوت مشرف في القناة ({e})",
+        "pub_wa_ok": "✅ مجموعة واتساب: تم الإرسال!",
+        "pub_wa_not_linked": "⚠️ واتساب غير مرتبط بعد — امسح رمز QR أدناه ثم اضغط 💬!",
     },
 }
 
-CREATE_TEXTS = {STRINGS["en"]["btn_create"], STRINGS["ru"]["btn_create"], STRINGS["tr"]["btn_create"]}
-WA_QR_BTN_TEXTS = {STRINGS["en"]["btn_wa_qr"], STRINGS["ru"]["btn_wa_qr"], STRINGS["tr"]["btn_wa_qr"]}
-CHANNELS_BTN_TEXTS = {STRINGS["en"]["btn_channels"], STRINGS["ru"]["btn_channels"], STRINGS["tr"]["btn_channels"]}
-LANG_BTN_TEXTS = {STRINGS["en"]["btn_lang"], STRINGS["ru"]["btn_lang"], STRINGS["tr"]["btn_lang"]}
-CANCEL_TEXTS = {
-    STRINGS["en"]["btn_cancel"],
-    "Cancel",
-    "cancel",
-    "❌ Отмена",
-    "Отмена",
-    "❌ İptal",
-    "İptal",
-    "iptal",
-    "/cancel",
-    "/stop",
-}
-DONE_PHOTO_TEXTS = {
-    STRINGS["en"]["btn_all_loaded"],
-    STRINGS["en"]["btn_pair_2"],
-    STRINGS["en"]["btn_single_1"],
-    STRINGS["ru"]["btn_all_loaded"],
-    STRINGS["tr"]["btn_all_loaded"],
-    STRINGS["ru"]["btn_pair_2"],
-    STRINGS["tr"]["btn_pair_2"],
-    STRINGS["ru"]["btn_single_1"],
-    STRINGS["tr"]["btn_single_1"],
-}
-SINGLE_MODE_TEXTS = {
-    STRINGS["en"]["btn_single_1"],
-    STRINGS["ru"]["btn_single_1"],
-    STRINGS["tr"]["btn_single_1"],
-}
-SMART_GROUP_TEXTS = {
-    STRINGS["en"]["btn_group_smart"],
-    STRINGS["ru"]["btn_group_smart"],
-    STRINGS["tr"]["btn_group_smart"],
-}
-CONFIRM_GO_TEXTS = {
-    STRINGS["en"]["btn_confirm_go"],
-    STRINGS["ru"]["btn_confirm_go"],
-    STRINGS["tr"]["btn_confirm_go"],
-}
-EDIT_CODE_TEXTS = {
-    STRINGS["en"]["btn_edit_code"],
-    STRINGS["ru"]["btn_edit_code"],
-    STRINGS["tr"]["btn_edit_code"],
-}
-EDIT_SIZE_TEXTS = {
-    STRINGS["en"]["btn_edit_size"],
-    STRINGS["ru"]["btn_edit_size"],
-    STRINGS["tr"]["btn_edit_size"],
-}
-EDIT_PRICE_TEXTS = {
-    STRINGS["en"]["btn_edit_price"],
-    STRINGS["ru"]["btn_edit_price"],
-    STRINGS["tr"]["btn_edit_price"],
-}
+ALL_LANGS = ("ru", "tr", "ar", "en")
+CREATE_TEXTS = {STRINGS[lg]["btn_create"] for lg in ALL_LANGS}
+WA_QR_BTN_TEXTS = {STRINGS[lg]["btn_wa_qr"] for lg in ALL_LANGS}
+CHANNELS_BTN_TEXTS = {STRINGS[lg]["btn_channels"] for lg in ALL_LANGS}
+LANG_BTN_TEXTS = {STRINGS[lg]["btn_lang"] for lg in ALL_LANGS} | {"🇹🇷 Türkçe / Язык", "🇷🇺 Русский / Dil"}
+CANCEL_TEXTS = (
+    {STRINGS[lg]["btn_cancel"] for lg in ALL_LANGS}
+    | {"Cancel", "cancel", "Отмена", "İptal", "iptal", "إلغاء", "/cancel", "/stop"}
+)
+DONE_PHOTO_TEXTS = (
+    {STRINGS[lg]["btn_all_loaded"] for lg in ALL_LANGS}
+    | {STRINGS[lg]["btn_pair_2"] for lg in ALL_LANGS}
+    | {STRINGS[lg]["btn_single_1"] for lg in ALL_LANGS}
+)
+SINGLE_MODE_TEXTS = {STRINGS[lg]["btn_single_1"] for lg in ALL_LANGS}
+SMART_GROUP_TEXTS = {STRINGS[lg]["btn_group_smart"] for lg in ALL_LANGS}
+CONFIRM_GO_TEXTS = {STRINGS[lg]["btn_confirm_go"] for lg in ALL_LANGS}
+EDIT_CODE_TEXTS = {STRINGS[lg]["btn_edit_code"] for lg in ALL_LANGS}
+EDIT_SIZE_TEXTS = {STRINGS[lg]["btn_edit_size"] for lg in ALL_LANGS}
+EDIT_PRICE_TEXTS = {STRINGS[lg]["btn_edit_price"] for lg in ALL_LANGS}
 
 
 def _load_state_store() -> dict:
@@ -477,7 +584,7 @@ _env_ids = [
 ALLOWED_USERS: list[int] = list(set(_STORE.get("allowed_users", []) + _env_ids))
 pending_dispatches: Dict[str, str] = _STORE.get("pending_dispatches", {})
 media_msgs_store: Dict[str, list[int]] = _STORE.get("media_msgs", {})
-user_langs: Dict[str, str] = _STORE.get("user_langs_v3", {})
+user_langs: Dict[str, str] = _STORE.get("user_langs_v4", {})
 saved_channel_links: Dict[str, str] = _STORE.get("channel_links", {})
 published_records: Dict[str, dict] = _STORE.get("published_records", {})
 
@@ -486,7 +593,7 @@ def persist_store():
     _STORE["allowed_users"] = ALLOWED_USERS
     _STORE["pending_dispatches"] = pending_dispatches
     _STORE["media_msgs"] = media_msgs_store
-    _STORE["user_langs_v3"] = user_langs
+    _STORE["user_langs_v4"] = user_langs
     _STORE["channel_links"] = saved_channel_links
     _STORE["published_records"] = published_records
     _save_state_store(_STORE)
@@ -654,19 +761,19 @@ def prune_old_work_folders(keep_latest: int = 8):
 def get_lang(user_id: Optional[int], tg_lang_code: Optional[str] = None) -> str:
     if user_id is not None:
         saved = user_langs.get(str(user_id))
-        if saved in ("en", "ru", "tr"):
+        if saved in ("ru", "tr", "ar", "en"):
             return saved
-    return "en"
+    return "ru"
 
 
 def set_lang(user_id: int, lang: str):
-    if lang in ("en", "ru", "tr"):
+    if lang in ("ru", "tr", "ar", "en"):
         user_langs[str(user_id)] = lang
         persist_store()
 
 
 def tr_str(lang: str, key: str, **kwargs) -> str:
-    text = STRINGS.get(lang, STRINGS["en"]).get(key, STRINGS["en"].get(key, key))
+    text = STRINGS.get(lang, STRINGS["ru"]).get(key, STRINGS["ru"].get(key, key))
     return text.format(**kwargs) if kwargs else text
 
 
@@ -680,7 +787,13 @@ def build_keyboard(items, columns=2):
 
 def main_menu_kb(lang: str):
     return build_keyboard(
-        [tr_str(lang, "btn_create"), tr_str(lang, "btn_wa_qr"), tr_str(lang, "btn_channels")], 2
+        [
+            tr_str(lang, "btn_create"),
+            tr_str(lang, "btn_wa_qr"),
+            tr_str(lang, "btn_channels"),
+            tr_str(lang, "btn_lang"),
+        ],
+        2,
     )
 
 
@@ -688,9 +801,9 @@ def lang_inline_kb() -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton(text="🇬🇧 English", callback_data="setlang_en"),
                 InlineKeyboardButton(text="🇷🇺 Русский", callback_data="setlang_ru"),
                 InlineKeyboardButton(text="🇹🇷 Türkçe", callback_data="setlang_tr"),
+                InlineKeyboardButton(text="🇸🇦 العربية", callback_data="setlang_ar"),
             ]
         ]
     )
@@ -778,17 +891,19 @@ class SecurityMiddleware(BaseMiddleware):
                     lang = get_lang(user_id, getattr(user, "language_code", None))
                     set_lang(user_id, lang)
                     await event.answer(
-                        "✅ **Access granted!**\n\n" + tr_str(lang, "welcome"),
+                        "✅ **Доступ открыт! / Erişim açıldı! / تم فتح الوصول!**\n\n" + tr_str(lang, "welcome"),
                         reply_markup=main_menu_kb(lang),
                         parse_mode="Markdown",
                     )
                     return
                 await event.answer(
-                    "🔒 This PÎVOK bot is password-protected. Please enter the access password:"
+                    "🔒 Бот PÎVOK защищён. Введите пароль:\n"
+                    "🔒 PÎVOK botu korumalıdır. Lütfen şifreyi girin:\n"
+                    "🔒 البوت محمي. يرجى إدخال كلمة المرور:"
                 )
                 return
             if hasattr(event, "data") and event.data:
-                await event.answer("🔒 Please enter the password in chat first.", show_alert=True)
+                await event.answer("🔒 Введите пароль / Şifreyi girin / أدخل كلمة المرور", show_alert=True)
                 return
             return
         return await handler(event, data)
@@ -907,17 +1022,17 @@ async def cmd_start(message: Message, state: FSMContext):
 @dp.message(Command("whatsapp", "wa", "qr"))
 @dp.message(F.text.in_(WA_QR_BTN_TEXTS))
 async def cmd_whatsapp_qr(message: Message):
+    lang = get_lang(message.from_user.id, message.from_user.language_code)
     st = await asyncio.to_thread(get_wa_bridge_status)
     if st.get("connected"):
-        grp = st.get("group_subject") or st.get("group_jid") or "Auto-detected on send"
+        grp = st.get("group_subject") or st.get("group_jid") or "PIVOK"
         kb = InlineKeyboardMarkup(
             inline_keyboard=[
-                [InlineKeyboardButton(text="🔄 Relink / Reset WhatsApp", callback_data="wa_reset_session")]
+                [InlineKeyboardButton(text=tr_str(lang, "wa_relink_btn"), callback_data="wa_reset_session")]
             ]
         )
         await message.answer(
-            f"✅ **WhatsApp is connected and ready!**\n"
-            f"📌 Target Group: `{grp}`",
+            tr_str(lang, "wa_ready", grp=grp),
             reply_markup=kb,
             parse_mode="Markdown",
         )
@@ -926,12 +1041,12 @@ async def cmd_whatsapp_qr(message: Message):
     _WA_QR_WAITERS.add(message.chat.id)
     qr_str = st.get("qr")
     if not qr_str:
-        wait_msg = await message.answer("⏳ Generating WhatsApp QR code, please wait 3 seconds...")
+        wait_msg = await message.answer(tr_str(lang, "wa_gen_qr"))
         for _ in range(8):
             await asyncio.sleep(1.2)
             st = await asyncio.to_thread(get_wa_bridge_status)
             if st.get("connected"):
-                await wait_msg.edit_text("✅ **WhatsApp is already connected!**", parse_mode="Markdown")
+                await wait_msg.edit_text(tr_str(lang, "wa_ready", grp="PIVOK"), parse_mode="Markdown")
                 return
             if st.get("qr"):
                 qr_str = st["qr"]
@@ -943,23 +1058,18 @@ async def cmd_whatsapp_qr(message: Message):
 
     if not qr_str:
         await message.answer(
-            "⏳ WhatsApp bridge is still starting up. Please tap **📱 WhatsApp QR** again in 5 seconds.",
+            tr_str(lang, "wa_starting"),
             parse_mode="Markdown",
         )
         return
 
     png_bytes = await asyncio.to_thread(make_qr_png_bytes, qr_str)
     kb = InlineKeyboardMarkup(
-        inline_keyboard=[[InlineKeyboardButton(text="🔄 Refresh QR Code", callback_data="wa_refresh_qr")]]
+        inline_keyboard=[[InlineKeyboardButton(text=tr_str(lang, "wa_refresh_qr_btn"), callback_data="wa_refresh_qr")]]
     )
     await message.answer_photo(
         photo=BufferedInputFile(png_bytes, filename="whatsapp_qr.png"),
-        caption=(
-            "📱 **Connect WhatsApp for Automatic Group Posting**\n\n"
-            "1. Open **WhatsApp** on your phone\n"
-            "2. Go to **Settings → Linked Devices → Link a Device**\n"
-            "3. Scan this QR code (you only need to do this once!)"
-        ),
+        caption=tr_str(lang, "wa_qr_caption"),
         reply_markup=kb,
         parse_mode="Markdown",
     )
@@ -967,31 +1077,32 @@ async def cmd_whatsapp_qr(message: Message):
 
 @dp.callback_query(F.data.in_({"wa_refresh_qr", "wa_reset_session"}))
 async def cb_wa_manage(callback: CallbackQuery):
+    lang = get_lang(callback.from_user.id, callback.from_user.language_code)
     if callback.data == "wa_reset_session":
         await asyncio.to_thread(lambda: requests.post(f"{WA_BRIDGE_URL}/reset-session", timeout=6))
-        await callback.answer("Resetting WhatsApp session...")
+        await callback.answer("🔄")
         await asyncio.sleep(2.5)
     else:
-        await callback.answer("Refreshing QR...")
+        await callback.answer("🔄")
     _WA_QR_WAITERS.add(callback.message.chat.id)
     st = await asyncio.to_thread(get_wa_bridge_status)
     if st.get("connected"):
-        await callback.message.answer("✅ **WhatsApp is connected!**", parse_mode="Markdown")
+        await callback.message.answer(tr_str(lang, "wa_ready", grp="PIVOK"), parse_mode="Markdown")
         return
     qr_str = st.get("qr")
     if qr_str:
         png_bytes = await asyncio.to_thread(make_qr_png_bytes, qr_str)
         kb = InlineKeyboardMarkup(
-            inline_keyboard=[[InlineKeyboardButton(text="🔄 Refresh QR Code", callback_data="wa_refresh_qr")]]
+            inline_keyboard=[[InlineKeyboardButton(text=tr_str(lang, "wa_refresh_qr_btn"), callback_data="wa_refresh_qr")]]
         )
         await callback.message.answer_photo(
             photo=BufferedInputFile(png_bytes, filename="whatsapp_qr.png"),
-            caption="📱 Scan this fresh QR code in **WhatsApp → Linked Devices**:",
+            caption=tr_str(lang, "wa_qr_caption"),
             reply_markup=kb,
             parse_mode="Markdown",
         )
     else:
-        await callback.message.answer("⏳ Generating new QR code... Tap **📱 WhatsApp QR** in a few seconds.")
+        await callback.message.answer(tr_str(lang, "wa_starting"), parse_mode="Markdown")
 
 
 @dp.message(Command("channels"))
@@ -1020,17 +1131,20 @@ async def cmd_language(message: Message):
     )
 
 
-@dp.callback_query(F.data.in_({"setlang_en", "setlang_ru", "setlang_tr"}))
+@dp.callback_query(F.data.in_({"setlang_ru", "setlang_tr", "setlang_ar", "setlang_en"}))
 async def cb_set_language(callback: CallbackQuery, state: FSMContext):
     if callback.data.endswith("_tr"):
         new_lang = "tr"
         toast = "🇹🇷 Türkçe"
-    elif callback.data.endswith("_ru"):
-        new_lang = "ru"
-        toast = "🇷🇺 Русский"
-    else:
+    elif callback.data.endswith("_ar"):
+        new_lang = "ar"
+        toast = "🇸🇦 العربية"
+    elif callback.data.endswith("_en"):
         new_lang = "en"
         toast = "🇬🇧 English"
+    else:
+        new_lang = "ru"
+        toast = "🇷🇺 Русский"
     set_lang(callback.from_user.id, new_lang)
     await callback.answer(toast)
     try:
@@ -1549,15 +1663,15 @@ async def cb_publish_collages(callback: CallbackQuery):
         await callback.answer("⚠️ Already published to both TG Channel & WhatsApp!", show_alert=True)
         return
 
-    await callback.answer("🚀 Publishing collages...")
-    status_msg = await callback.message.answer("⏳ Publishing collages, please wait...")
+    await callback.answer("🚀")
+    status_msg = await callback.message.answer(tr_str(lang, "pub_wait"))
 
     results_lines = []
     async with _PUB_LOCK:
         # 1. Publish to Telegram Channel (@pivoklaleli)
         if do_tg:
             if rec.get("tg"):
-                results_lines.append(f"✈️ Telegram ({PIVOK_TG_CHANNEL}): Already sent earlier")
+                results_lines.append(tr_str(lang, "pub_tg_ok", ch=PIVOK_TG_CHANNEL))
             else:
                 try:
                     tg_cap = _build_tg_collage_caption(code, sizes, price)
@@ -1578,33 +1692,26 @@ async def cb_publish_collages(callback: CallbackQuery):
                         await bot.send_media_group(chat_id=PIVOK_TG_CHANNEL, media=media)
                     rec["tg"] = True
                     persist_store()
-                    results_lines.append(f"✅ Telegram Channel ({PIVOK_TG_CHANNEL}): Published!")
+                    results_lines.append(tr_str(lang, "pub_tg_ok", ch=PIVOK_TG_CHANNEL))
                 except Exception as e:
-                    results_lines.append(
-                        f"❌ Telegram ({PIVOK_TG_CHANNEL}): Failed — make sure this bot is an Administrator of {PIVOK_TG_CHANNEL} ({e})"
-                    )
+                    results_lines.append(tr_str(lang, "pub_tg_err", ch=PIVOK_TG_CHANNEL, e=str(e)))
 
         # 2. Publish to WhatsApp Group via Baileys Bridge
         if do_wa:
             if rec.get("wa"):
-                results_lines.append("💬 WhatsApp Group: Already sent earlier")
+                results_lines.append(tr_str(lang, "pub_wa_ok"))
             else:
                 wa_st = await asyncio.to_thread(get_wa_bridge_status)
                 if not wa_st.get("connected"):
                     _WA_QR_WAITERS.add(chat_id)
-                    results_lines.append(
-                        "⚠️ WhatsApp Group: Not connected yet — scan the QR code below, then tap 💬 Send to WhatsApp!"
-                    )
+                    results_lines.append(tr_str(lang, "pub_wa_not_linked"))
                     qr_str = wa_st.get("qr")
                     if qr_str:
                         png_bytes = await asyncio.to_thread(make_qr_png_bytes, qr_str)
                         await bot.send_photo(
                             chat_id=chat_id,
                             photo=BufferedInputFile(png_bytes, filename="whatsapp_qr.png"),
-                            caption=(
-                                "📱 **Scan this QR code in WhatsApp → Linked Devices** to enable automatic WhatsApp Group publishing!\n"
-                                "Once connected, tap **💬 Send to WhatsApp** on the collage preview."
-                            ),
+                            caption=tr_str(lang, "wa_qr_caption"),
                             parse_mode="Markdown",
                         )
                 else:
@@ -1629,11 +1736,11 @@ async def cb_publish_collages(callback: CallbackQuery):
                         if resp.status_code == 200 and rj.get("success"):
                             rec["wa"] = True
                             persist_store()
-                            results_lines.append("✅ WhatsApp Group: Published!")
+                            results_lines.append(tr_str(lang, "pub_wa_ok"))
                         else:
-                            results_lines.append(f"❌ WhatsApp Group: {rj.get('error', resp.text)}")
+                            results_lines.append(f"❌ WhatsApp: {rj.get('error', resp.text)}")
                     except Exception as e:
-                        results_lines.append(f"❌ WhatsApp Group error: {e}")
+                        results_lines.append(f"❌ WhatsApp: {e}")
 
     try:
         await status_msg.edit_text("\n".join(results_lines))
@@ -1790,9 +1897,9 @@ async def health():
     return {
         "status": "ok",
         "service": "PIVOK Cloud Studio 24/7",
-        "version": "v4.0-tg-wa-autopublish",
-        "languages": ["en", "ru", "tr"],
-        "default_language": "en",
+        "version": "v4.1-ru-tr-ar",
+        "languages": ["ru", "tr", "ar"],
+        "default_language": "ru",
         "whatsapp_connected": bool(wa_st.get("connected")),
         "webhook_mode": PUBLIC_BASE_URL.startswith("https://"),
     }
@@ -1813,11 +1920,10 @@ async def internal_wa_event(request: Request):
         _WA_QR_WAITERS.clear()
         for cid in waiters:
             try:
+                w_lang = get_lang(cid)
                 await bot.send_message(
                     cid,
-                    f"✅ **WhatsApp connected successfully!**\n"
-                    f"📌 Group: `{grp}`\n"
-                    f"☁️ Your WhatsApp session has been saved permanently in the cloud.",
+                    tr_str(w_lang, "wa_connected_push", grp=grp),
                     parse_mode="Markdown",
                 )
             except Exception:
