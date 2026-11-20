@@ -12,18 +12,24 @@ import json
 import logging
 import os
 import shutil
+import subprocess
+import threading
 import time
 import urllib.parse
+import zipfile
 from contextlib import asynccontextmanager
 from typing import Dict, Optional
 
 import cv2
 import numpy as np
+import qrcode
+import requests
 from aiogram import BaseMiddleware, Bot, Dispatcher, F
 from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import (
+    BufferedInputFile,
     CallbackQuery,
     FSInputFile,
     InlineKeyboardButton,
@@ -67,6 +73,13 @@ WEBHOOK_SECRET = hashlib.sha256((BOT_TOKEN + ":pivok_wh").encode()).hexdigest()[
 INCOMING_DIR = collage_engine.WORK_DIR
 OUTPUT_DIR = collage_engine.SAVE_DIR
 STATE_FILE = os.path.join(collage_engine.WORK_ROOT, "cloud_state.json")
+WA_AUTH_DIR = os.path.join(collage_engine.WORK_ROOT, "wa_auth_baileys")
+
+PIVOK_TG_CHANNEL = os.environ.get("PIVOK_CHANNEL", "@pivoklaleli").strip()
+WA_BRIDGE_PORT = int(os.environ.get("WA_BRIDGE_PORT", "3006"))
+WA_BRIDGE_URL = f"http://127.0.0.1:{WA_BRIDGE_PORT}"
+HF_TOKEN = os.environ.get("HF_TOKEN", "").strip()
+HF_WA_REPO = os.environ.get("HF_WA_REPO", "is015566/pivok-wa-state").strip()
 
 SIZE_LIST = [
     "36-42",
@@ -84,6 +97,10 @@ SIZE_LIST = [
 PHOTO_BUFFER: Dict[int, dict] = {}
 _SEEN_UPDATES = collections.deque(maxlen=300)
 _GEN_LOCK = asyncio.Lock()
+_PUB_LOCK = asyncio.Lock()
+_WA_QR_WAITERS: set[int] = set()
+_WA_BACKUP_TIMER: Optional[threading.Timer] = None
+_WA_PROC: Optional[subprocess.Popen] = None
 
 # ==========================================
 # PIVOK CHANNEL LINKS CONFIGURATION
@@ -146,6 +163,7 @@ PIVOK_CHANNEL_LINKS = [
 STRINGS = {
     "en": {
         "btn_create": "🖼 Create Collage",
+        "btn_wa_qr": "📱 WhatsApp QR",
         "btn_channels": "📢 Channels",
         "btn_lang": "🌐 Language",
         "btn_cancel": "❌ Cancel",
@@ -158,6 +176,9 @@ STRINGS = {
         "btn_edit_code": "✏️ Edit Code",
         "btn_edit_size": "✏️ Edit Sizes",
         "btn_edit_price": "✏️ Edit Price",
+        "btn_pub_both": "🚀 Send to TG Channel & WhatsApp",
+        "btn_pub_tg": "✈️ Send to TG Channel",
+        "btn_pub_wa": "💬 Send to WhatsApp",
         "btn_dl_files": "📥 Download Original Files",
         "btn_refresh": "🔄 Refresh Preview",
         "btn_add_color": "🎨 Add Color Photos",
@@ -218,6 +239,7 @@ STRINGS = {
     },
     "ru": {
         "btn_create": "🖼 Создать коллаж",
+        "btn_wa_qr": "📱 WhatsApp QR",
         "btn_channels": "📢 Каналы",
         "btn_lang": "🇹🇷 Türkçe / Язык",
         "btn_cancel": "❌ Отмена",
@@ -230,6 +252,9 @@ STRINGS = {
         "btn_edit_code": "✏️ Изменить Код",
         "btn_edit_size": "✏️ Изменить Размеры",
         "btn_edit_price": "✏️ Изменить Цену",
+        "btn_pub_both": "🚀 Отправить в TG и WhatsApp",
+        "btn_pub_tg": "✈️ Отправить в TG канал",
+        "btn_pub_wa": "💬 Отправить в WhatsApp",
         "btn_dl_files": "📥 Скачать файлами (без сжатия)",
         "btn_refresh": "🔄 Обновить превью",
         "btn_add_color": "🎨 Добавить фото цвета",
@@ -290,6 +315,7 @@ STRINGS = {
     },
     "tr": {
         "btn_create": "🖼 Kolaj Oluştur",
+        "btn_wa_qr": "📱 WhatsApp QR",
         "btn_channels": "📢 Kanallar",
         "btn_lang": "🇷🇺 Русский / Dil",
         "btn_cancel": "❌ İptal",
@@ -302,6 +328,9 @@ STRINGS = {
         "btn_edit_code": "✏️ Kodu Değiştir",
         "btn_edit_size": "✏️ Bedeni Değiştir",
         "btn_edit_price": "✏️ Fiyatı Değiştir",
+        "btn_pub_both": "🚀 TG Kanalı ve WhatsApp'a Gönder",
+        "btn_pub_tg": "✈️ TG Kanalına Gönder",
+        "btn_pub_wa": "💬 WhatsApp'a Gönder",
         "btn_dl_files": "📥 Dosya Olarak İndir (Orijinal)",
         "btn_refresh": "🔄 Önizlemeyi Yenile",
         "btn_add_color": "🎨 Yeni Renk (Fotoğraf) Ekle",
@@ -363,6 +392,7 @@ STRINGS = {
 }
 
 CREATE_TEXTS = {STRINGS["en"]["btn_create"], STRINGS["ru"]["btn_create"], STRINGS["tr"]["btn_create"]}
+WA_QR_BTN_TEXTS = {STRINGS["en"]["btn_wa_qr"], STRINGS["ru"]["btn_wa_qr"], STRINGS["tr"]["btn_wa_qr"]}
 CHANNELS_BTN_TEXTS = {STRINGS["en"]["btn_channels"], STRINGS["ru"]["btn_channels"], STRINGS["tr"]["btn_channels"]}
 LANG_BTN_TEXTS = {STRINGS["en"]["btn_lang"], STRINGS["ru"]["btn_lang"], STRINGS["tr"]["btn_lang"]}
 CANCEL_TEXTS = {
@@ -449,6 +479,7 @@ pending_dispatches: Dict[str, str] = _STORE.get("pending_dispatches", {})
 media_msgs_store: Dict[str, list[int]] = _STORE.get("media_msgs", {})
 user_langs: Dict[str, str] = _STORE.get("user_langs_v3", {})
 saved_channel_links: Dict[str, str] = _STORE.get("channel_links", {})
+published_records: Dict[str, dict] = _STORE.get("published_records", {})
 
 
 def persist_store():
@@ -457,7 +488,128 @@ def persist_store():
     _STORE["media_msgs"] = media_msgs_store
     _STORE["user_langs_v3"] = user_langs
     _STORE["channel_links"] = saved_channel_links
+    _STORE["published_records"] = published_records
     _save_state_store(_STORE)
+
+
+def restore_wa_session_from_hf():
+    if not HF_TOKEN or not HF_WA_REPO:
+        return
+    creds_p = os.path.join(WA_AUTH_DIR, "creds.json")
+    if os.path.exists(creds_p):
+        return
+    try:
+        from huggingface_hub import hf_hub_download
+
+        os.makedirs(WA_AUTH_DIR, exist_ok=True)
+        zip_path = hf_hub_download(
+            repo_id=HF_WA_REPO,
+            filename="wa_auth.zip",
+            repo_type="dataset",
+            token=HF_TOKEN,
+        )
+        with zipfile.ZipFile(zip_path, "r") as zf:
+            zf.extractall(WA_AUTH_DIR)
+        logger.info("✅ Restored WhatsApp session from private HF dataset")
+    except Exception as e:
+        logger.info(f"[WA Session] No cloud backup restored yet: {e}")
+
+
+def _backup_wa_session_sync():
+    if not HF_TOKEN or not HF_WA_REPO:
+        return
+    creds_p = os.path.join(WA_AUTH_DIR, "creds.json")
+    if not os.path.exists(creds_p):
+        return
+    try:
+        from huggingface_hub import HfApi
+
+        buf = io.BytesIO()
+        with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
+            for fname in os.listdir(WA_AUTH_DIR):
+                fpath = os.path.join(WA_AUTH_DIR, fname)
+                if os.path.isfile(fpath):
+                    zf.write(fpath, arcname=fname)
+        buf.seek(0)
+        api = HfApi(token=HF_TOKEN)
+        api.create_repo(repo_id=HF_WA_REPO, repo_type="dataset", private=True, exist_ok=True)
+        api.upload_file(
+            path_or_fileobj=buf,
+            path_in_repo="wa_auth.zip",
+            repo_id=HF_WA_REPO,
+            repo_type="dataset",
+            commit_message="Sync WhatsApp session",
+        )
+        logger.info("☁️ Backed up WhatsApp session to private HF dataset")
+    except Exception as e:
+        logger.warning(f"[WA Session] Cloud backup warning: {e}")
+
+
+def schedule_wa_session_backup():
+    global _WA_BACKUP_TIMER
+    if not HF_TOKEN:
+        return
+    if _WA_BACKUP_TIMER is not None:
+        _WA_BACKUP_TIMER.cancel()
+    _WA_BACKUP_TIMER = threading.Timer(5.0, _backup_wa_session_sync)
+    _WA_BACKUP_TIMER.daemon = True
+    _WA_BACKUP_TIMER.start()
+
+
+def find_node_binary() -> Optional[str]:
+    local_node = os.path.join(BASE_DIR, ".node_runtime", "bin", "node")
+    if os.path.exists(local_node):
+        return local_node
+    return shutil.which("node")
+
+
+def start_wa_bridge_daemon():
+    node_bin = find_node_binary()
+    script_path = os.path.join(BASE_DIR, "wa_bridge", "server.js")
+    if not node_bin or not os.path.exists(script_path):
+        logger.warning(f"[WA Bridge] Node or script missing (node={node_bin})")
+        return
+
+    def _runner():
+        global _WA_PROC
+        restore_wa_session_from_hf()
+        env = os.environ.copy()
+        env["WA_BRIDGE_PORT"] = str(WA_BRIDGE_PORT)
+        env["WA_AUTH_DIR"] = WA_AUTH_DIR
+        env["PORT"] = os.environ.get("PORT", "7860")
+        while True:
+            try:
+                _WA_PROC = subprocess.Popen(
+                    [node_bin, "--max-old-space-size=96", script_path],
+                    cwd=os.path.join(BASE_DIR, "wa_bridge"),
+                    env=env,
+                )
+                _WA_PROC.wait()
+            except Exception as e:
+                logger.error(f"[WA Bridge] Process error: {e}")
+            time.sleep(3)
+
+    threading.Thread(target=_runner, daemon=True).start()
+
+
+def make_qr_png_bytes(qr_data: str) -> bytes:
+    qr = qrcode.QRCode(version=None, box_size=9, border=3)
+    qr.add_data(qr_data)
+    qr.make(fit=True)
+    img = qr.make_image(fill_color="black", back_color="white").convert("RGB")
+    buf = io.BytesIO()
+    img.save(buf, format="PNG")
+    return buf.getvalue()
+
+
+def get_wa_bridge_status() -> dict:
+    try:
+        r = requests.get(f"{WA_BRIDGE_URL}/status", timeout=4)
+        if r.status_code == 200:
+            return r.json()
+    except Exception:
+        pass
+    return {"connected": False, "qr": None, "group_jid": None}
 
 
 def get_channel_link_url(item: dict) -> str:
@@ -527,7 +679,9 @@ def build_keyboard(items, columns=2):
 
 
 def main_menu_kb(lang: str):
-    return build_keyboard([tr_str(lang, "btn_create"), tr_str(lang, "btn_channels")], 2)
+    return build_keyboard(
+        [tr_str(lang, "btn_create"), tr_str(lang, "btn_wa_qr"), tr_str(lang, "btn_channels")], 2
+    )
 
 
 def lang_inline_kb() -> InlineKeyboardMarkup:
@@ -676,7 +830,11 @@ def build_preview_keyboard(
 
     crop_rows = [crop_buttons[i : i + 3] for i in range(0, len(crop_buttons), 3)]
     layout = [
-        [InlineKeyboardButton(text=tr_str(lang, "btn_dl_files"), callback_data=f"files_{short_id}")],
+        [InlineKeyboardButton(text=tr_str(lang, "btn_pub_both"), callback_data=f"pub_all_{short_id}")],
+        [
+            InlineKeyboardButton(text=tr_str(lang, "btn_pub_tg"), callback_data=f"pub_tg_{short_id}"),
+            InlineKeyboardButton(text=tr_str(lang, "btn_pub_wa"), callback_data=f"pub_wa_{short_id}"),
+        ],
     ]
     layout.extend(crop_rows)
     layout.extend(
@@ -744,6 +902,96 @@ async def cmd_start(message: Message, state: FSMContext):
         reply_markup=main_menu_kb(lang),
         parse_mode="Markdown",
     )
+
+
+@dp.message(Command("whatsapp", "wa", "qr"))
+@dp.message(F.text.in_(WA_QR_BTN_TEXTS))
+async def cmd_whatsapp_qr(message: Message):
+    st = await asyncio.to_thread(get_wa_bridge_status)
+    if st.get("connected"):
+        grp = st.get("group_subject") or st.get("group_jid") or "Auto-detected on send"
+        kb = InlineKeyboardMarkup(
+            inline_keyboard=[
+                [InlineKeyboardButton(text="🔄 Relink / Reset WhatsApp", callback_data="wa_reset_session")]
+            ]
+        )
+        await message.answer(
+            f"✅ **WhatsApp is connected and ready!**\n"
+            f"📌 Target Group: `{grp}`",
+            reply_markup=kb,
+            parse_mode="Markdown",
+        )
+        return
+
+    _WA_QR_WAITERS.add(message.chat.id)
+    qr_str = st.get("qr")
+    if not qr_str:
+        wait_msg = await message.answer("⏳ Generating WhatsApp QR code, please wait 3 seconds...")
+        for _ in range(8):
+            await asyncio.sleep(1.2)
+            st = await asyncio.to_thread(get_wa_bridge_status)
+            if st.get("connected"):
+                await wait_msg.edit_text("✅ **WhatsApp is already connected!**", parse_mode="Markdown")
+                return
+            if st.get("qr"):
+                qr_str = st["qr"]
+                break
+        try:
+            await wait_msg.delete()
+        except Exception:
+            pass
+
+    if not qr_str:
+        await message.answer(
+            "⏳ WhatsApp bridge is still starting up. Please tap **📱 WhatsApp QR** again in 5 seconds.",
+            parse_mode="Markdown",
+        )
+        return
+
+    png_bytes = await asyncio.to_thread(make_qr_png_bytes, qr_str)
+    kb = InlineKeyboardMarkup(
+        inline_keyboard=[[InlineKeyboardButton(text="🔄 Refresh QR Code", callback_data="wa_refresh_qr")]]
+    )
+    await message.answer_photo(
+        photo=BufferedInputFile(png_bytes, filename="whatsapp_qr.png"),
+        caption=(
+            "📱 **Connect WhatsApp for Automatic Group Posting**\n\n"
+            "1. Open **WhatsApp** on your phone\n"
+            "2. Go to **Settings → Linked Devices → Link a Device**\n"
+            "3. Scan this QR code (you only need to do this once!)"
+        ),
+        reply_markup=kb,
+        parse_mode="Markdown",
+    )
+
+
+@dp.callback_query(F.data.in_({"wa_refresh_qr", "wa_reset_session"}))
+async def cb_wa_manage(callback: CallbackQuery):
+    if callback.data == "wa_reset_session":
+        await asyncio.to_thread(lambda: requests.post(f"{WA_BRIDGE_URL}/reset-session", timeout=6))
+        await callback.answer("Resetting WhatsApp session...")
+        await asyncio.sleep(2.5)
+    else:
+        await callback.answer("Refreshing QR...")
+    _WA_QR_WAITERS.add(callback.message.chat.id)
+    st = await asyncio.to_thread(get_wa_bridge_status)
+    if st.get("connected"):
+        await callback.message.answer("✅ **WhatsApp is connected!**", parse_mode="Markdown")
+        return
+    qr_str = st.get("qr")
+    if qr_str:
+        png_bytes = await asyncio.to_thread(make_qr_png_bytes, qr_str)
+        kb = InlineKeyboardMarkup(
+            inline_keyboard=[[InlineKeyboardButton(text="🔄 Refresh QR Code", callback_data="wa_refresh_qr")]]
+        )
+        await callback.message.answer_photo(
+            photo=BufferedInputFile(png_bytes, filename="whatsapp_qr.png"),
+            caption="📱 Scan this fresh QR code in **WhatsApp → Linked Devices**:",
+            reply_markup=kb,
+            parse_mode="Markdown",
+        )
+    else:
+        await callback.message.answer("⏳ Generating new QR code... Tap **📱 WhatsApp QR** in a few seconds.")
 
 
 @dp.message(Command("channels"))
@@ -968,24 +1216,16 @@ async def handle_all_photos_loaded(message: Message, state: FSMContext):
         await message.answer(tr_str(lang, "need_2_photos"))
         return
 
-    await state.update_data(is_single=is_single)
-    if is_single or len(photo_ids) == 2:
-        await state.update_data(grouping_mode="sequential" if is_single else "smart")
-        await state.set_state(CollageForm.code)
-        await message.answer(
-            tr_str(lang, "ask_code"),
-            reply_markup=build_keyboard([tr_str(lang, "btn_cancel")], 1),
-            parse_mode="Markdown",
-        )
-    else:
-        await state.set_state(CollageForm.grouping_mode)
-        await message.answer(
-            tr_str(lang, "ask_grouping", n=len(photo_ids)),
-            reply_markup=build_keyboard(
-                [tr_str(lang, "btn_group_smart"), tr_str(lang, "btn_group_seq"), tr_str(lang, "btn_cancel")], 2
-            ),
-            parse_mode="Markdown",
-        )
+    await state.update_data(
+        is_single=is_single,
+        grouping_mode="sequential" if is_single else "smart",
+    )
+    await state.set_state(CollageForm.code)
+    await message.answer(
+        tr_str(lang, "ask_code"),
+        reply_markup=build_keyboard([tr_str(lang, "btn_cancel")], 1),
+        parse_mode="Markdown",
+    )
 
 
 @dp.message(CollageForm.grouping_mode)
@@ -1231,6 +1471,176 @@ async def handle_edit_field(message: Message, state: FSMContext):
     await show_summary(message, state, lang)
 
 
+def _build_tg_collage_caption(code: str, sizes: str, price: str) -> str:
+    wa_url = get_channel_link_url(PIVOK_CHANNEL_LINKS[1]) or "https://chat.whatsapp.com/Ddh7BKb1atCAhRzogy9l9Y"
+    ig_url = get_channel_link_url(PIVOK_CHANNEL_LINKS[2]) or "https://www.instagram.com/pivok_fashion?cnvx=MWRzeWJkaGs1MGpsaQ=="
+    sale_url = get_channel_link_url(PIVOK_CHANNEL_LINKS[4]) or "https://t.me/pivoksale"
+    vid_url = get_channel_link_url(PIVOK_CHANNEL_LINKS[5]) or "https://t.me/pivokvideo"
+    return (
+        f"🌸 <b>PÎVOK</b>\n"
+        f"🆕 <b>NEW MODEL</b>\n"
+        f"🔖 <b>CODE:</b> <code>{code}</code>\n"
+        f"📏 <b>SIZES:</b> {sizes}\n"
+        f"💰 <b>PRICE:</b> {price}$\n"
+        f"➖➖➖➖➖➖➖➖\n"
+        f"🛍 <b>Order & Catalog:</b>\n"
+        f"<a href='{wa_url}'>🟢 WhatsApp</a> | "
+        f"<a href='{ig_url}'>📸 Instagram</a> | "
+        f"<a href='{vid_url}'>📹 Video</a> | "
+        f"<a href='{sale_url}'>🔥 Sale</a>"
+    )
+
+
+def _build_wa_collage_caption(code: str, sizes: str, price: str) -> str:
+    ig_url = "https://www.instagram.com/pivok_fashion"
+    tg_url = "https://t.me/pivoklaleli"
+    return (
+        f"🌸 *PÎVOK* — *NEW MODEL*\n"
+        f"🔖 *CODE:* {code}\n"
+        f"📏 *SIZES:* {sizes}\n"
+        f"💰 *PRICE:* {price}$\n"
+        f"✈️ Telegram: {tg_url}\n"
+        f"📸 Instagram: {ig_url}"
+    )
+
+
+@dp.callback_query(F.data.startswith(("pub_all_", "pub_tg_", "pub_wa_")))
+async def cb_publish_collages(callback: CallbackQuery):
+    if not bot:
+        return
+    if _PUB_LOCK.locked():
+        await callback.answer("⏳ Sending in progress, please wait...", show_alert=False)
+        return
+
+    parts = callback.data.split("_", 2)
+    mode = parts[1]  # 'all' | 'tg' | 'wa'
+    short_id = parts[2]
+    chat_id = callback.message.chat.id
+    lang = get_lang(callback.from_user.id, callback.from_user.language_code)
+
+    folder_path = pending_dispatches.get(short_id)
+    if not folder_path or not os.path.exists(folder_path):
+        await callback.answer(tr_str(lang, "folder_missing"), show_alert=True)
+        return
+
+    photos = sorted(
+        os.path.join(folder_path, f)
+        for f in os.listdir(folder_path)
+        if f.lower().endswith((".jpg", ".jpeg", ".png"))
+    )
+    if not photos:
+        await callback.answer(tr_str(lang, "gen_empty"), show_alert=True)
+        return
+
+    folder_name = os.path.basename(folder_path)
+    _, _, code, sizes, price = collage_engine.parse_folder_metadata(folder_name)
+    rec = published_records.setdefault(short_id, {"tg": False, "wa": False})
+
+    do_tg = mode in ("all", "tg")
+    do_wa = mode in ("all", "wa")
+
+    if do_tg and not do_wa and rec.get("tg"):
+        await callback.answer("⚠️ Already sent to Telegram Channel!", show_alert=True)
+        return
+    if do_wa and not do_tg and rec.get("wa"):
+        await callback.answer("⚠️ Already sent to WhatsApp Group!", show_alert=True)
+        return
+    if do_tg and do_wa and rec.get("tg") and rec.get("wa"):
+        await callback.answer("⚠️ Already published to both TG Channel & WhatsApp!", show_alert=True)
+        return
+
+    await callback.answer("🚀 Publishing collages...")
+    status_msg = await callback.message.answer("⏳ Publishing collages, please wait...")
+
+    results_lines = []
+    async with _PUB_LOCK:
+        # 1. Publish to Telegram Channel (@pivoklaleli)
+        if do_tg:
+            if rec.get("tg"):
+                results_lines.append(f"✈️ Telegram ({PIVOK_TG_CHANNEL}): Already sent earlier")
+            else:
+                try:
+                    tg_cap = _build_tg_collage_caption(code, sizes, price)
+                    for c_start in range(0, len(photos), 10):
+                        chunk = photos[c_start : c_start + 10]
+                        media = []
+                        for idx_p, p_path in enumerate(chunk):
+                            if c_start == 0 and idx_p == 0:
+                                media.append(
+                                    InputMediaPhoto(
+                                        media=FSInputFile(p_path),
+                                        caption=tg_cap,
+                                        parse_mode="HTML",
+                                    )
+                                )
+                            else:
+                                media.append(InputMediaPhoto(media=FSInputFile(p_path)))
+                        await bot.send_media_group(chat_id=PIVOK_TG_CHANNEL, media=media)
+                    rec["tg"] = True
+                    persist_store()
+                    results_lines.append(f"✅ Telegram Channel ({PIVOK_TG_CHANNEL}): Published!")
+                except Exception as e:
+                    results_lines.append(
+                        f"❌ Telegram ({PIVOK_TG_CHANNEL}): Failed — make sure this bot is an Administrator of {PIVOK_TG_CHANNEL} ({e})"
+                    )
+
+        # 2. Publish to WhatsApp Group via Baileys Bridge
+        if do_wa:
+            if rec.get("wa"):
+                results_lines.append("💬 WhatsApp Group: Already sent earlier")
+            else:
+                wa_st = await asyncio.to_thread(get_wa_bridge_status)
+                if not wa_st.get("connected"):
+                    _WA_QR_WAITERS.add(chat_id)
+                    results_lines.append(
+                        "⚠️ WhatsApp Group: Not connected yet — scan the QR code below, then tap 💬 Send to WhatsApp!"
+                    )
+                    qr_str = wa_st.get("qr")
+                    if qr_str:
+                        png_bytes = await asyncio.to_thread(make_qr_png_bytes, qr_str)
+                        await bot.send_photo(
+                            chat_id=chat_id,
+                            photo=BufferedInputFile(png_bytes, filename="whatsapp_qr.png"),
+                            caption=(
+                                "📱 **Scan this QR code in WhatsApp → Linked Devices** to enable automatic WhatsApp Group publishing!\n"
+                                "Once connected, tap **💬 Send to WhatsApp** on the collage preview."
+                            ),
+                            parse_mode="Markdown",
+                        )
+                else:
+                    try:
+                        wa_cap = _build_wa_collage_caption(code, sizes, price)
+                        target_grp = os.environ.get("WHATSAPP_GROUP_ID", "").strip() or wa_st.get("group_jid") or ""
+
+                        def _post_wa_batch():
+                            return requests.post(
+                                f"{WA_BRIDGE_URL}/send-batch",
+                                json={
+                                    "target": target_grp,
+                                    "files": photos,
+                                    "caption": wa_cap,
+                                    "append_dash": True,
+                                },
+                                timeout=120,
+                            )
+
+                        resp = await asyncio.to_thread(_post_wa_batch)
+                        rj = resp.json()
+                        if resp.status_code == 200 and rj.get("success"):
+                            rec["wa"] = True
+                            persist_store()
+                            results_lines.append("✅ WhatsApp Group: Published!")
+                        else:
+                            results_lines.append(f"❌ WhatsApp Group: {rj.get('error', resp.text)}")
+                    except Exception as e:
+                        results_lines.append(f"❌ WhatsApp Group error: {e}")
+
+    try:
+        await status_msg.edit_text("\n".join(results_lines))
+    except Exception:
+        await bot.send_message(chat_id, "\n".join(results_lines))
+
+
 @dp.callback_query(F.data.startswith("files_"))
 async def cb_send_uncompressed_files(callback: CallbackQuery):
     lang = get_lang(callback.from_user.id, callback.from_user.language_code)
@@ -1330,12 +1740,22 @@ _polling_task = None
 @asynccontextmanager
 async def lifespan(app_inst: FastAPI):
     global _polling_task
-    await asyncio.to_thread(yolo_local.preload_models)
+    # Fast-boot: preload YOLO & start WhatsApp bridge in background so port binds immediately
+    asyncio.get_running_loop().run_in_executor(None, yolo_local.preload_models)
+    start_wa_bridge_daemon()
     if bot:
         if PUBLIC_BASE_URL.startswith("https://"):
             wh_url = f"{PUBLIC_BASE_URL}/telegram/webhook"
-            await bot.set_webhook(wh_url, secret_token=WEBHOOK_SECRET, drop_pending_updates=False)
-            logger.info(f"✅ Telegram Webhook registered at {wh_url}")
+            try:
+                info = await bot.get_webhook_info()
+                if info.url != wh_url:
+                    await bot.set_webhook(wh_url, secret_token=WEBHOOK_SECRET, drop_pending_updates=False)
+                    logger.info(f"✅ Telegram Webhook registered at {wh_url}")
+                else:
+                    logger.info(f"⚡ Telegram Webhook already active at {wh_url}")
+            except Exception as e:
+                logger.warning(f"Webhook setup check warning: {e}")
+                await bot.set_webhook(wh_url, secret_token=WEBHOOK_SECRET, drop_pending_updates=False)
         else:
             await bot.delete_webhook(drop_pending_updates=False)
             _polling_task = asyncio.create_task(dp.start_polling(bot))
@@ -1343,6 +1763,11 @@ async def lifespan(app_inst: FastAPI):
     yield
     if _polling_task:
         _polling_task.cancel()
+    if _WA_PROC and _WA_PROC.poll() is None:
+        try:
+            _WA_PROC.terminate()
+        except Exception:
+            pass
     if bot:
         await bot.session.close()
 
@@ -1361,14 +1786,43 @@ app.mount("/webapp", StaticFiles(directory=os.path.join(BASE_DIR, "webapp")), na
 @app.get("/")
 @app.get("/health")
 async def health():
+    wa_st = await asyncio.to_thread(get_wa_bridge_status)
     return {
         "status": "ok",
         "service": "PIVOK Cloud Studio 24/7",
-        "version": "v3.4-button-icons",
+        "version": "v4.0-tg-wa-autopublish",
         "languages": ["en", "ru", "tr"],
         "default_language": "en",
+        "whatsapp_connected": bool(wa_st.get("connected")),
         "webhook_mode": PUBLIC_BASE_URL.startswith("https://"),
     }
+
+
+@app.post("/internal/wa_event")
+async def internal_wa_event(request: Request):
+    client_host = request.client.host if request.client else ""
+    if client_host not in ("127.0.0.1", "::1", "localhost"):
+        raise HTTPException(status_code=403, detail="Localhost only")
+    payload = await request.json()
+    ev = payload.get("event")
+    if ev in ("creds_updated", "connected"):
+        schedule_wa_session_backup()
+    if ev == "connected" and bot and _WA_QR_WAITERS:
+        grp = payload.get("group_subject") or payload.get("group_jid") or "PIVOK Group"
+        waiters = list(_WA_QR_WAITERS)
+        _WA_QR_WAITERS.clear()
+        for cid in waiters:
+            try:
+                await bot.send_message(
+                    cid,
+                    f"✅ **WhatsApp connected successfully!**\n"
+                    f"📌 Group: `{grp}`\n"
+                    f"☁️ Your WhatsApp session has been saved permanently in the cloud.",
+                    parse_mode="Markdown",
+                )
+            except Exception:
+                pass
+    return {"ok": True}
 
 
 @app.post("/telegram/webhook")

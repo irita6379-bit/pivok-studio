@@ -3,3 +3,6 @@ __pycache__/
 .env
 deploy_to_hf.py
 work_data/
+.node_runtime/
+wa_bridge/node_modules/
+wa_bridge/package-lock.json

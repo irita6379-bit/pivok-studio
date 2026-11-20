@@ -1,0 +1,11 @@
+{
+  "name": "pivok-wa-bridge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "dependencies": {
+    "@whiskeysockets/baileys": "^7.0.0-rc14",
+    "express": "^5.2.1",
+    "pino": "^9.0.0"
+  }
+}
