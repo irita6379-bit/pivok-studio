@@ -392,6 +392,19 @@ def draw_pivok_bottom_bar(draw: ImageDraw.ImageDraw, config: dict, code: str, si
             draw.text((cx_s, y_line2), f"{size_label} {s2}", font=f_dual, fill=gold_rgb, anchor="mm")
         return
 
+    has_price = bool(price and str(price).strip() and str(price).strip() != "-")
+    has_size = bool(sizes and str(sizes).strip() and str(sizes).strip() != "-")
+
+    if not has_price and not has_size:
+        # Elegant centered CODE layout when price and sizes are not required
+        cx_mid = canvas_size[0] // 2
+        f_mid_label = get_cached_font(font_path, label_size + 4, weight)
+        cur_code_size = value_size + 8
+        f_code_val = get_cached_font(font_path, cur_code_size, weight)
+        draw.text((cx_mid, y_line1), "CODE:", font=f_mid_label, fill=gold_rgb, anchor="mm")
+        draw.text((cx_mid, y_line2), str(code).upper(), font=f_code_val, fill=gold_rgb, anchor="mm")
+        return
+
     f_label = get_cached_font(font_path, label_size, weight)
     max_col_w = (box_c[2] - box_c[0]) - 16
 
@@ -403,7 +416,7 @@ def draw_pivok_bottom_bar(draw: ImageDraw.ImageDraw, config: dict, code: str, si
 
     cur_size_sz = value_size
     f_size_val = get_cached_font(font_path, cur_size_sz, weight)
-    while cur_size_sz > 30 and f_size_val.getlength(sizes) > max_col_w:
+    while cur_size_sz > 30 and f_size_val.getlength(str(sizes)) > max_col_w:
         cur_size_sz -= 3
         f_size_val = get_cached_font(font_path, cur_size_sz, weight)
 
@@ -411,10 +424,11 @@ def draw_pivok_bottom_bar(draw: ImageDraw.ImageDraw, config: dict, code: str, si
 
     draw.text((cx_c, y_line1), "CODE:", font=f_label, fill=gold_rgb, anchor="mm")
     draw.text((cx_c, y_line2), str(code).upper(), font=f_code_val, fill=gold_rgb, anchor="mm")
-    if price:
+    if has_price:
         draw.text((cx_p, y_center), _format_price_str(price), font=f_price, fill=gold_rgb, anchor="mm")
-    draw.text((cx_s, y_line1), size_label, font=f_label, fill=gold_rgb, anchor="mm")
-    draw.text((cx_s, y_line2), str(sizes), font=f_size_val, fill=gold_rgb, anchor="mm")
+    if has_size:
+        draw.text((cx_s, y_line1), size_label, font=f_label, fill=gold_rgb, anchor="mm")
+        draw.text((cx_s, y_line2), str(sizes), font=f_size_val, fill=gold_rgb, anchor="mm")
 
 
 def parse_folder_metadata(item_name: str):

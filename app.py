@@ -183,6 +183,9 @@ STRINGS = {
         "btn_refresh": "🔄 Refresh Preview",
         "btn_add_color": "🎨 Add Color Photos",
         "btn_delete": "🗑 Delete",
+        "btn_add_video": "🎬 Add Video",
+        "btn_add_video_menu": "🎬 Add Video",
+        "btn_video_recent": "🏷️ For model {code}",
         "welcome": "🌸 **PÎVOK Studio (24/7)**\nChoose an action from the menu below:",
         "channels_title": "📢 **PÎVOK Official Channels & Links:**",
         "channels_empty": "ℹ️ Channel links have not been configured yet.",
@@ -197,12 +200,18 @@ STRINGS = {
         ),
         "only_images": "⚠️ Please send image files only.",
         "photos_buffered": "📥 Photos received: **{n}**\nUpload more or press a button below:",
+        "photos_buffered_ask_code": "📸 **{n} photos** uploaded.\n\n🔖 Enter **Model Code** (e.g. `0-4062`):",
         "no_photos_yet": "⚠️ You have not uploaded any photos yet!",
         "need_2_photos": "⚠️ Double collage requires at least 2 photos.",
         "processing_extra": "⏳ Processing additional photos...",
         "ask_grouping": "📸 **{n} photos** uploaded. How should pairs be grouped?",
-        "ask_code": "🔖 Enter **Model Code** (e.g. `O-21476`):",
+        "ask_code": "🔖 Enter **Model Code** (e.g. `0-4062`):",
         "err_code": "⚠️ Please enter a valid model code:",
+        "ask_video_prompt": "🎬 **PÎVOK — Video Upload**\n🏷️ Model: `{code}`\n\nPlease send the video file directly here ⬇️",
+        "ask_video_code": "🎬 **PÎVOK — Video Upload**\n\nEnter **Model Code** (e.g. `0-4062`) or send video with code in caption:",
+        "video_uploading": "⏳ Uploading and publishing video for model **{code}**...",
+        "video_done": "✅ **Video published successfully!**\n🏷️ Model: `{code}`\n✈️ Telegram: {tg}\n💬 WhatsApp: {wa}",
+        "video_invalid": "⚠️ Please send a video file (MP4, MOV, etc.) or tap Cancel.",
         "ask_size": "📏 Select or type **Sizes** (e.g. `38-44`):",
         "err_size": "⚠️ Please specify the size range:",
         "ask_price": "💰 Enter **Price in $** (e.g. `79`):",
@@ -223,7 +232,7 @@ STRINGS = {
         "prog_render": "🎨 Assembling PÎVOK collages (4×3)...",
         "preview_ready": (
             "✨ **PÎVOK — Collages Ready ({n})**\n"
-            "🔖 Code: `{code}` | 💰 Price: `{price}$` | 📏 Sizes: `{sizes}`\n\n"
+            "🏷️ Code: `{code}`\n\n"
             "Adjust framing via 🛠 if needed, or choose an action:"
         ),
         "next_model_hint": "Done! To create collages for the next model, tap the button below:",
@@ -276,6 +285,9 @@ STRINGS = {
         "btn_refresh": "🔄 Обновить превью",
         "btn_add_color": "🎨 Добавить фото цвета",
         "btn_delete": "🗑 Удалить",
+        "btn_add_video": "🎬 Догрузить видео",
+        "btn_add_video_menu": "🎬 Догрузить видео",
+        "btn_video_recent": "🏷️ Для модели {code}",
         "welcome": "🌸 **PÎVOK Cloud Studio (24/7)**\nВыберите действие в меню ниже:",
         "cancelled": "❌ Действие отменено.",
         "lang_prompt": "🌐 **Выберите язык интерфейса / Lütfen dil seçin:**",
@@ -288,12 +300,18 @@ STRINGS = {
         ),
         "only_images": "⚠️ Пожалуйста, отправляйте только изображения.",
         "photos_buffered": "📥 Принято фотографий: **{n} шт.**\nДогрузите ещё или нажмите кнопку ниже:",
+        "photos_buffered_ask_code": "📸 Загружено **{n} фото**.\n\n🔖 Введите **Код модели** (например: `0-4062`):",
         "no_photos_yet": "⚠️ Вы ещё не загрузили ни одной фотографии!",
         "need_2_photos": "⚠️ Для двойного коллажа нужно минимум 2 фотографии.",
         "processing_extra": "⏳ Обрабатываю новые фото...",
         "ask_grouping": "📸 Загружено **{n} фото**. Как сгруппировать пары?",
-        "ask_code": "🔖 Введите **Код модели** (например: `O-21476`):",
+        "ask_code": "🔖 Введите **Код модели** (например: `0-4062`):",
         "err_code": "⚠️ Введите корректный код модели:",
+        "ask_video_prompt": "🎬 **PÎVOK — Догрузка видео**\n🏷️ Модель: `{code}`\n\nПожалуйста, отправьте видео-файл прямо сюда ⬇️",
+        "ask_video_code": "🎬 **PÎVOK — Догрузка видео**\n\nВведите **Код модели** (например: `0-4062`) или отправьте видео с кодом в подписи:",
+        "video_uploading": "⏳ Догружаю и отправляю видео для модели **{code}**...",
+        "video_done": "✅ **Видео успешно опубликовано!**\n🏷️ Модель: `{code}`\n✈️ Telegram: {tg}\n💬 WhatsApp: {wa}",
+        "video_invalid": "⚠️ Пожалуйста, отправьте именно видео-файл (MP4, MOV и др.) или нажмите «Отмена».",
         "ask_size": "📏 Выберите или напишите **Размеры** (например: `38-44`):",
         "err_size": "⚠️ Укажите размерный ряд:",
         "ask_price": "💰 Введите **Цену в $** (например: `79`):",
@@ -314,7 +332,7 @@ STRINGS = {
         "prog_render": "🎨 Сборка коллажей PÎVOK (4×3)...",
         "preview_ready": (
             "✨ **PÎVOK — Коллажи готовы ({n} шт.)**\n"
-            "🔖 Код: `{code}` | 💰 Цена: `{price}$` | 📏 Размеры: `{sizes}`\n\n"
+            "🏷️ Код: `{code}`\n\n"
             "При необходимости поправьте кроп через 🛠 или выберите действие:"
         ),
         "next_model_hint": "Готово! Чтобы собрать следующую модель, нажмите кнопку ниже:",
@@ -369,6 +387,9 @@ STRINGS = {
         "btn_refresh": "🔄 Önizlemeyi Yenile",
         "btn_add_color": "🎨 Yeni Renk (Fotoğraf) Ekle",
         "btn_delete": "🗑 Sil",
+        "btn_add_video": "🎬 Video Yükle",
+        "btn_add_video_menu": "🎬 Video Yükle",
+        "btn_video_recent": "🏷️ Model {code} için",
         "welcome": "🌸 **PÎVOK Cloud Studio (7/24)**\nLütfen aşağıdaki menüden işlem seçin:",
         "cancelled": "❌ İşlem iptal edildi.",
         "lang_prompt": "🌐 **Lütfen dil seçin / Выберите язык интерфейса:**",
@@ -381,12 +402,18 @@ STRINGS = {
         ),
         "only_images": "⚠️ Lütfen yalnızca görsel / fotoğraf gönderin.",
         "photos_buffered": "📥 Alınan fotoğraf: **{n} adet**\nDaha fazla yükleyin veya aşağıdaki butona basın:",
+        "photos_buffered_ask_code": "📸 **{n} fotoğraf** yüklendi.\n\n🔖 **Model Kodunu** girin (örnek: `0-4062`):",
         "no_photos_yet": "⚠️ Henüz hiç fotoğraf yüklemediniz!",
         "need_2_photos": "⚠️ İkili kolaj için en az 2 fotoğraf gereklidir.",
         "processing_extra": "⏳ Yeni fotoğraflar işleniyor...",
         "ask_grouping": "📸 **{n} fotoğraf** yüklendi. Eşleştirme nasıl yapılsın?",
-        "ask_code": "🔖 **Model Kodunu** girin (örnek: `O-21476`):",
+        "ask_code": "🔖 **Model Kodunu** girin (örnek: `0-4062`):",
         "err_code": "⚠️ Lütfen geçerli bir model kodu girin:",
+        "ask_video_prompt": "🎬 **PÎVOK — Video Yükleme**\n🏷️ Model: `{code}`\n\nLütfen video dosyasını doğrudan buraya gönderin ⬇️",
+        "ask_video_code": "🎬 **PÎVOK — Video Yükleme**\n\n**Model Kodunu** girin (örnek: `0-4062`) veya videoyu açıklamasında kodla gönderin:",
+        "video_uploading": "⏳ Model **{code}** için video yükleniyor ve yayınlanıyor...",
+        "video_done": "✅ **Video başarıyla yayınlandı!**\n🏷️ Model: `{code}`\n✈️ Telegram: {tg}\n💬 WhatsApp: {wa}",
+        "video_invalid": "⚠️ Lütfen bir video dosyası gönderin (MP4, MOV vb.) veya İptal'e basın.",
         "ask_size": "📏 **Beden aralığını** seçin veya yazın (örnek: `38-44`):",
         "err_size": "⚠️ Lütfen beden aralığını belirtin:",
         "ask_price": "💰 **Fiyatı ($)** girin (örnek: `79`):",
@@ -407,7 +434,7 @@ STRINGS = {
         "prog_render": "🎨 PÎVOK kolajları (4×3) birleştiriliyor...",
         "preview_ready": (
             "✨ **PÎVOK — Kolajlar hazır ({n} adet)**\n"
-            "🔖 Kod: `{code}` | 💰 Fiyat: `{price}$` | 📏 Beden: `{sizes}`\n\n"
+            "🏷️ Kod: `{code}`\n\n"
             "Gerekirse 🛠 ile kadrajı düzenleyin veya işlem seçin:"
         ),
         "next_model_hint": "Tamamlandı! Yeni bir model hazırlamak için aşağıdaki butona basın:",
@@ -462,6 +489,9 @@ STRINGS = {
         "btn_refresh": "🔄 تحديث المعاينة",
         "btn_add_color": "🎨 إضافة صور لون جديد",
         "btn_delete": "🗑 حذف",
+        "btn_add_video": "🎬 تحميل فيديو",
+        "btn_add_video_menu": "🎬 تحميل فيديو",
+        "btn_video_recent": "🏷️ للموديل {code}",
         "welcome": "🌸 **استوديو PÎVOK السحابي (24/7)**\nاختر إجراءً من القائمة أدناه:",
         "cancelled": "❌ تم إلغاء العملية.",
         "lang_prompt": "🌐 **اختر اللغة / Выберите язык / Dil seçin:**",
@@ -474,12 +504,18 @@ STRINGS = {
         ),
         "only_images": "⚠️ يرجى إرسال الصور فقط.",
         "photos_buffered": "📥 الصور المستلمة: **{n}**\nأرسل المزيد أو اضغط على الزر أدناه:",
+        "photos_buffered_ask_code": "📸 تم استلام **{n} صور**\n\n🔖 أدخل **كود الموديل** (مثال: `0-4062`):",
         "no_photos_yet": "⚠️ لم تقم برفع أي صور بعد!",
         "need_2_photos": "⚠️ الكولاج المزدوج يتطلب صورتين على الأقل.",
         "processing_extra": "⏳ جاري معالجة الصور الإضافية...",
         "ask_grouping": "📸 تم رفع **{n} صور**. كيف تريد تجميع الأزواج؟",
-        "ask_code": "🔖 أدخل **كود الموديل** (مثال: `O-21476`):",
+        "ask_code": "🔖 أدخل **كود الموديل** (مثال: `0-4062`):",
         "err_code": "⚠️ يرجى إدخال كود موديل صحيح:",
+        "ask_video_prompt": "🎬 **PÎVOK — تحميل فيديو**\n🏷️ الموديل: `{code}`\n\nيرجى إرسال ملف الفيديو هنا مباشرة ⬇️",
+        "ask_video_code": "🎬 **PÎVOK — تحميل فيديو**\n\nأدخل **كود الموديل** (مثال: `0-4062`) أو أرسل فيديو مع الكود في الوصف:",
+        "video_uploading": "⏳ جاري رفع ونشر الفيديو للموديل **{code}**...",
+        "video_done": "✅ **تم نشر الفيديو بنجاح!**\n🏷️ الموديل: `{code}`\n✈️ تيليجرام: {tg}\n💬 واتساب: {wa}",
+        "video_invalid": "⚠️ يرجى إرسال ملف فيديو (MP4, MOV إلخ) أو الضغط على إلغاء.",
         "ask_size": "📏 اختر أو اكتب **المقاسات** (مثال: `38-44`):",
         "err_size": "⚠️ يرجى تحديد المقاسات:",
         "ask_price": "💰 أدخل **السعر بالدولار ($)** (مثال: `79`):",
@@ -500,7 +536,7 @@ STRINGS = {
         "prog_render": "🎨 جاري تجميع كولاج PÎVOK (4×3)...",
         "preview_ready": (
             "✨ **PÎVOK — الكولاج جاهز ({n})**\n"
-            "🔖 الكود: `{code}` | 💰 السعر: `{price}$` | 📏 المقاسات: `{sizes}`\n\n"
+            "🏷️ الكود: `{code}`\n\n"
             "يمكنك تعديل القص عبر 🛠 عند الحاجة أو اختيار إجراء:"
         ),
         "next_model_hint": "تم! لإنشاء كولاج للموديل التالي، اضغط على الزر أدناه:",
@@ -537,12 +573,16 @@ STRINGS = {
 
 ALL_LANGS = ("ru", "tr", "ar", "en")
 CREATE_TEXTS = {STRINGS[lg]["btn_create"] for lg in ALL_LANGS}
+ADD_VIDEO_TEXTS = (
+    {STRINGS[lg]["btn_add_video_menu"] for lg in ALL_LANGS}
+    | {"🎬 Догрузить видео", "🎬 Add Video", "🎬 Video Yükle", "🎬 تحميل فيديو", "догрузить видео", "видео", "video", "/video"}
+)
 WA_QR_BTN_TEXTS = {STRINGS[lg]["btn_wa_qr"] for lg in ALL_LANGS}
 CHANNELS_BTN_TEXTS = {STRINGS[lg]["btn_channels"] for lg in ALL_LANGS}
 LANG_BTN_TEXTS = {STRINGS[lg]["btn_lang"] for lg in ALL_LANGS} | {"🇹🇷 Türkçe / Язык", "🇷🇺 Русский / Dil"}
 CANCEL_TEXTS = (
     {STRINGS[lg]["btn_cancel"] for lg in ALL_LANGS}
-    | {"Cancel", "cancel", "Отмена", "İptal", "iptal", "إلغاء", "/cancel", "/stop"}
+    | {"Cancel", "cancel", "Отмена", "отмена", "❌ Отмена", "İptal", "iptal", "إلغاء", "/cancel", "/stop"}
 )
 DONE_PHOTO_TEXTS = (
     {STRINGS[lg]["btn_all_loaded"] for lg in ALL_LANGS}
@@ -587,6 +627,7 @@ media_msgs_store: Dict[str, list[int]] = _STORE.get("media_msgs", {})
 user_langs: Dict[str, str] = _STORE.get("user_langs_v4", {})
 saved_channel_links: Dict[str, str] = _STORE.get("channel_links", {})
 published_records: Dict[str, dict] = _STORE.get("published_records", {})
+_RECENT_CODES: Dict[str, str] = _STORE.get("recent_codes", {})
 
 
 def persist_store():
@@ -596,6 +637,7 @@ def persist_store():
     _STORE["user_langs_v4"] = user_langs
     _STORE["channel_links"] = saved_channel_links
     _STORE["published_records"] = published_records
+    _STORE["recent_codes"] = _RECENT_CODES
     _save_state_store(_STORE)
 
 
@@ -790,6 +832,7 @@ def main_menu_kb(lang: str):
     return build_keyboard(
         [
             tr_str(lang, "btn_create"),
+            tr_str(lang, "btn_add_video_menu"),
             tr_str(lang, "btn_wa_qr"),
             tr_str(lang, "btn_channels"),
             tr_str(lang, "btn_lang"),
@@ -920,6 +963,11 @@ class CollageForm(StatesGroup):
     edit_field = State()
 
 
+class VideoUploadForm(StatesGroup):
+    waiting_for_code = State()
+    waiting_for_video = State()
+
+
 bot = Bot(token=BOT_TOKEN) if BOT_TOKEN else None
 dp = Dispatcher()
 dp.message.outer_middleware(SecurityMiddleware())
@@ -951,6 +999,7 @@ def build_preview_keyboard(
             InlineKeyboardButton(text=tr_str(lang, "btn_pub_tg"), callback_data=f"pub_tg_{short_id}"),
             InlineKeyboardButton(text=tr_str(lang, "btn_pub_wa"), callback_data=f"pub_wa_{short_id}"),
         ],
+        [InlineKeyboardButton(text=tr_str(lang, "btn_add_video"), callback_data=f"addvid_{short_id}")],
     ]
     layout.extend(crop_rows)
     layout.extend(
@@ -1192,6 +1241,210 @@ async def cmd_create_collage(message: Message, state: FSMContext):
     )
 
 
+def extract_code_from_text(text: str) -> Optional[str]:
+    if not text:
+        return None
+    raw = text.strip()
+    m = re.search(r"(?:CODE|KOD|КОД)\s*[-:]?\s*([A-Za-z0-9_-]+)", raw, flags=re.IGNORECASE)
+    if m:
+        return m.group(1).upper()
+    first_line = raw.splitlines()[0].strip()
+    first_line = re.sub(r"[\U00010000-\U0010ffff]|[\uD800-\uDBFF][\uDC00-\uDFFF]", " ", first_line)
+    tokens = [t for t in re.split(r"[\s,;|]+", first_line) if t]
+    for t in tokens:
+        if re.match(r"^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$", t) and (any(c.isdigit() for c in t) or len(t) >= 4):
+            if t.endswith("$") or t.startswith("$"):
+                continue
+            if re.match(r"^\d{2}-\d{2}$", t) and int(t.split("-")[0]) >= 34:
+                continue
+            return t.upper()
+    return None
+
+
+async def _publish_video_file(
+    bot_inst: Bot,
+    chat_id: int,
+    video_path: str,
+    code: str,
+    lang: str = "ru",
+) -> dict:
+    tg_caption = _build_tg_collage_caption(code)
+    wa_caption = _build_wa_collage_caption(code, "", "")
+
+    # 1. Telegram
+    tg_sent = []
+    target_channels = []
+    vid_ch = os.environ.get("LINK_VIDEO_CHANNEL", "@pivokvideo").strip()
+    if vid_ch:
+        if "t.me/" in vid_ch:
+            vid_ch = "@" + vid_ch.split("t.me/")[-1].strip("/")
+        target_channels.append(vid_ch)
+    main_ch = os.environ.get("TELEGRAM_CHANNEL", "@pivoklaleli").strip()
+    if main_ch and main_ch not in target_channels:
+        target_channels.append(main_ch)
+
+    for ch in target_channels:
+        try:
+            await bot_inst.send_video(
+                chat_id=ch,
+                video=FSInputFile(video_path),
+                caption=tg_caption,
+                parse_mode="HTML",
+            )
+            tg_sent.append(ch)
+        except Exception as e:
+            logger.warning(f"Failed sending video to {ch}: {e}")
+
+    # 2. WhatsApp
+    wa_ok = False
+    wa_err = ""
+    try:
+        wa_st = await asyncio.to_thread(get_wa_bridge_status)
+        if wa_st.get("connected"):
+            target_grp = os.environ.get("WHATSAPP_GROUP_ID", "").strip() or wa_st.get("group_jid") or ""
+
+            def _post_wa_vid():
+                return requests.post(
+                    f"{WA_BRIDGE_URL}/send-video",
+                    json={
+                        "target": target_grp,
+                        "file_path": video_path,
+                        "caption": wa_caption,
+                    },
+                    timeout=120,
+                )
+
+            resp = await asyncio.to_thread(_post_wa_vid)
+            if resp.status_code == 200 and resp.json().get("success"):
+                wa_ok = True
+            else:
+                wa_err = resp.json().get("error", resp.text)
+        else:
+            wa_err = tr_str(lang, "pub_wa_not_linked")
+    except Exception as e:
+        wa_err = str(e)
+
+    return {
+        "tg_sent": tg_sent,
+        "wa_ok": wa_ok,
+        "wa_err": wa_err,
+    }
+
+
+async def _execute_collage_creation(
+    chat_id: int,
+    photo_ids: list[str],
+    code: str,
+    sizes: str = "",
+    price: str = "",
+    is_single: bool = False,
+    grouping_mode: str = "smart",
+    lang: str = "ru",
+):
+    safe_code = code.replace("|", "~").replace("_", "-").replace("/", "-")
+    safe_size = sizes.replace("|", "~").replace("_", "-") if sizes else "-"
+    safe_price = price.replace("|", "~").replace("_", "-") if price else "-"
+    cat_tag = "ОДИНАРНЫЙ" if is_single else "ПЛАТЬЕ"
+    folder_name = f"PIVOK_{cat_tag}_{safe_code}_{safe_size}_{safe_price}_{int(time.time())}"
+    inc_folder = os.path.join(INCOMING_DIR, folder_name)
+
+    prune_old_work_folders(keep_latest=8)
+    os.makedirs(inc_folder, exist_ok=True)
+
+    prog_msg = await bot.send_message(
+        chat_id,
+        tr_str(lang, "generating", n=len(photo_ids)),
+        reply_markup=ReplyKeyboardRemove(),
+    )
+
+    try:
+        async with _GEN_LOCK:
+            analyzed = []
+            tot = len(photo_ids)
+            last_edit_t = time.time()
+
+            for idx, fid in enumerate(photo_ids, 1):
+                tmp_p = os.path.join(inc_folder, f"__raw_{idx:03d}.tmpjpg")
+                item = await download_and_analyze_photo(fid, tmp_p, bot)
+                analyzed.append(item)
+
+                now_t = time.time()
+                if now_t - last_edit_t >= 2.0 or idx == tot:
+                    last_edit_t = now_t
+                    try:
+                        await prog_msg.edit_text(
+                            tr_str(lang, "prog_step", cur=idx, tot=tot),
+                            parse_mode="Markdown",
+                        )
+                    except Exception:
+                        pass
+                await asyncio.sleep(0.04)
+
+            _RECENT_CODES[str(chat_id)] = code.upper()
+            persist_store()
+
+            pose_cache = {}
+            if is_single or tot == 1:
+                for idx, it in enumerate(analyzed, 1):
+                    final_name = f"{idx:02d}_COLOR-{idx}.jpg"
+                    os.replace(it["temp_path"], os.path.join(inc_folder, final_name))
+                    pose_cache[final_name] = it["pose"]
+            else:
+                if grouping_mode == "smart":
+                    pairs, labels = await asyncio.to_thread(color_clustering.cluster_analyzed_items, analyzed)
+                else:
+                    pairs = [analyzed[i : i + 2] for i in range(0, len(analyzed), 2)]
+                    labels = [f"COLOR{p_idx + 1}" for p_idx in range(len(pairs))]
+
+                for p_idx, pair in enumerate(pairs):
+                    if len(pair) < 2:
+                        for leftover in pair:
+                            try:
+                                os.remove(leftover["temp_path"])
+                            except Exception:
+                                pass
+                        continue
+                    lbl = labels[p_idx] if p_idx < len(labels) else f"COLOR{p_idx + 1}"
+                    prefix = f"{p_idx + 1:02d}_{lbl}"
+                    for k, it in enumerate(pair, 1):
+                        final_name = f"{prefix}-{k}.jpg"
+                        os.replace(it["temp_path"], os.path.join(inc_folder, final_name))
+                        pose_cache[final_name] = it["pose"]
+
+            with open(os.path.join(inc_folder, "pose_cache.json"), "w", encoding="utf-8") as pf:
+                json.dump(pose_cache, pf)
+
+            del analyzed
+            gc.collect()
+
+            try:
+                await prog_msg.edit_text(tr_str(lang, "prog_render"))
+            except Exception:
+                pass
+
+            await asyncio.to_thread(collage_engine.generate_folder_collages, folder_name, inc_folder)
+            gc.collect()
+
+        try:
+            await prog_msg.delete()
+        except Exception:
+            pass
+
+        await send_collage_preview(chat_id, folder_name, lang=lang)
+        await bot.send_message(
+            chat_id,
+            tr_str(lang, "next_model_hint"),
+            reply_markup=main_menu_kb(lang),
+        )
+    except Exception as e:
+        logger.exception("Error generating collages")
+        await bot.send_message(
+            chat_id,
+            tr_str(lang, "err_gen", e=str(e)),
+            reply_markup=main_menu_kb(lang),
+        )
+
+
 @dp.message(StateFilter(None, CollageForm.photo), F.photo | F.document)
 async def handle_incoming_photo(message: Message, state: FSMContext):
     lang = get_lang(message.from_user.id, message.from_user.language_code)
@@ -1208,9 +1461,15 @@ async def handle_incoming_photo(message: Message, state: FSMContext):
 
     chat_id = message.chat.id
     if chat_id not in PHOTO_BUFFER:
-        PHOTO_BUFFER[chat_id] = {"ids": [], "task": None, "lang": lang}
+        PHOTO_BUFFER[chat_id] = {"ids": [], "task": None, "lang": lang, "detected_code": None}
     PHOTO_BUFFER[chat_id]["ids"].append(file_id)
     PHOTO_BUFFER[chat_id]["lang"] = lang
+
+    # Auto-detect code from caption if provided with photos (super fast!)
+    if message.caption:
+        cand_code = extract_code_from_text(message.caption)
+        if cand_code:
+            PHOTO_BUFFER[chat_id]["detected_code"] = cand_code
 
     if PHOTO_BUFFER[chat_id]["task"]:
         PHOTO_BUFFER[chat_id]["task"].cancel()
@@ -1228,22 +1487,47 @@ async def _flush_photo_buffer(chat_id: int, state: FSMContext):
         return
 
     lang = buf.get("lang") or get_lang(chat_id)
+    detected_code = buf.get("detected_code")
     data = await state.get_data()
     photo_ids = data.get("photo_ids", [])
     photo_ids.extend(buf["ids"])
     await state.update_data(photo_ids=photo_ids)
 
-    kb = (
-        build_keyboard([tr_str(lang, "btn_all_loaded"), tr_str(lang, "btn_cancel")], 1)
-        if data.get("is_add_color")
-        else build_keyboard(
-            [tr_str(lang, "btn_pair_2"), tr_str(lang, "btn_single_1"), tr_str(lang, "btn_cancel")], 2
+    # If this was extra photos for adding a color:
+    if data.get("is_add_color") and data.get("target_folder"):
+        kb = build_keyboard([tr_str(lang, "btn_all_loaded"), tr_str(lang, "btn_cancel")], 1)
+        await bot.send_message(
+            chat_id,
+            tr_str(lang, "photos_buffered", n=len(photo_ids)),
+            reply_markup=kb,
+            parse_mode="Markdown",
         )
-    )
+        return
+
+    # FAST-PATH 1: If user sent photos WITH a caption containing the code, generate immediately!
+    if detected_code:
+        await state.clear()
+        is_single = len(photo_ids) == 1
+        await _execute_collage_creation(
+            chat_id=chat_id,
+            photo_ids=photo_ids,
+            code=detected_code,
+            sizes="",
+            price="",
+            is_single=is_single,
+            grouping_mode="smart",
+            lang=lang,
+        )
+        return
+
+    # FAST-PATH 2: Ask ONLY for Code (no size/price/confirmation questions!)
+    is_single = len(photo_ids) == 1
+    await state.set_state(CollageForm.code)
+    await state.update_data(is_single=is_single, grouping_mode="smart")
     await bot.send_message(
         chat_id,
-        tr_str(lang, "photos_buffered", n=len(photo_ids)),
-        reply_markup=kb,
+        tr_str(lang, "photos_buffered_ask_code", n=len(photo_ids)),
+        reply_markup=build_keyboard([tr_str(lang, "btn_cancel")], 1),
         parse_mode="Markdown",
     )
 
@@ -1327,10 +1611,6 @@ async def handle_all_photos_loaded(message: Message, state: FSMContext):
         return
 
     is_single = message.text in SINGLE_MODE_TEXTS
-    if not is_single and len(photo_ids) < 2:
-        await message.answer(tr_str(lang, "need_2_photos"))
-        return
-
     await state.update_data(
         is_single=is_single,
         grouping_mode="sequential" if is_single else "smart",
@@ -1343,250 +1623,277 @@ async def handle_all_photos_loaded(message: Message, state: FSMContext):
     )
 
 
-@dp.message(CollageForm.grouping_mode)
-async def handle_grouping_mode(message: Message, state: FSMContext):
-    lang = get_lang(message.from_user.id, message.from_user.language_code)
-    is_smart = (message.text in SMART_GROUP_TEXTS) or ("Умная" in (message.text or "")) or ("Akıllı" in (message.text or ""))
-    await state.update_data(grouping_mode="smart" if is_smart else "sequential")
-    await state.set_state(CollageForm.code)
-    await message.answer(
-        tr_str(lang, "ask_code"),
-        reply_markup=build_keyboard([tr_str(lang, "btn_cancel")], 1),
-        parse_mode="Markdown",
-    )
-
-
 @dp.message(CollageForm.code)
 async def handle_code(message: Message, state: FSMContext):
     lang = get_lang(message.from_user.id, message.from_user.language_code)
-    code_val = (message.text or "").strip().upper()
+    txt = (message.text or "").strip()
+    if txt in CANCEL_TEXTS:
+        PHOTO_BUFFER.pop(message.chat.id, None)
+        await state.clear()
+        await message.answer(tr_str(lang, "cancelled"), reply_markup=main_menu_kb(lang))
+        return
+
+    code_val = extract_code_from_text(txt) or txt.upper()
     if not code_val:
         await message.answer(tr_str(lang, "err_code"))
         return
-    await state.update_data(code=code_val)
-    await state.set_state(CollageForm.size)
-    await message.answer(
-        tr_str(lang, "ask_size"),
-        reply_markup=build_keyboard(SIZE_LIST + [tr_str(lang, "btn_cancel")], 3),
+
+    data = await state.get_data()
+    photo_ids = data.get("photo_ids", [])
+    is_single = data.get("is_single", False)
+    grouping_mode = data.get("grouping_mode", "smart")
+    await state.clear()
+
+    if not photo_ids:
+        await message.answer(tr_str(lang, "no_photos_yet"), reply_markup=main_menu_kb(lang))
+        return
+
+    # Immediately execute creation (skips sizes, price, and confirm screens!)
+    await _execute_collage_creation(
+        chat_id=message.chat.id,
+        photo_ids=photo_ids,
+        code=code_val,
+        sizes="",
+        price="",
+        is_single=is_single,
+        grouping_mode=grouping_mode,
+        lang=lang,
+    )
+
+
+# -------------------------------------------------------------
+# VIDEO UPLOAD HANDLERS ("окошко для отправки видео как в микс")
+# -------------------------------------------------------------
+
+@dp.callback_query(F.data.startswith("addvid_"))
+async def cb_add_video_prompt(callback: CallbackQuery, state: FSMContext):
+    lang = get_lang(callback.from_user.id, callback.from_user.language_code)
+    short_id = callback.data.split("_", 1)[1]
+    folder_path = pending_dispatches.get(short_id) or ""
+    folder_name = os.path.basename(folder_path) if folder_path else ""
+    code = "PIVOK"
+    if folder_name:
+        _, _, code, _, _ = collage_engine.parse_folder_metadata(folder_name)
+    elif short_id in published_records:
+        code = published_records[short_id].get("code", "PIVOK")
+
+    await state.set_state(VideoUploadForm.waiting_for_video)
+    await state.update_data(vid_code=code, short_id=short_id)
+    await callback.answer()
+
+    cancel_kb = build_keyboard([tr_str(lang, "btn_cancel")], 1)
+    await bot.send_message(
+        callback.message.chat.id,
+        tr_str(lang, "ask_video_prompt", code=code),
+        reply_markup=cancel_kb,
         parse_mode="Markdown",
     )
 
 
-@dp.message(CollageForm.size)
-async def handle_size(message: Message, state: FSMContext):
+@dp.message(F.text.in_(ADD_VIDEO_TEXTS))
+async def cmd_add_video(message: Message, state: FSMContext):
     lang = get_lang(message.from_user.id, message.from_user.language_code)
-    size_val = (message.text or "").strip()
-    if not size_val:
-        await message.answer(tr_str(lang, "err_size"))
-        return
-    await state.update_data(size=size_val)
-    await state.set_state(CollageForm.price)
+    recent = _RECENT_CODES.get(str(message.chat.id)) or _RECENT_CODES.get(message.chat.id)
+
+    await state.set_state(VideoUploadForm.waiting_for_code)
+    buttons = []
+    if recent:
+        buttons.append(tr_str(lang, "btn_video_recent", code=recent))
+    buttons.append(tr_str(lang, "btn_cancel"))
+
     await message.answer(
-        tr_str(lang, "ask_price"),
+        tr_str(lang, "ask_video_code"),
+        reply_markup=build_keyboard(buttons, 1),
+        parse_mode="Markdown",
+    )
+
+
+@dp.message(VideoUploadForm.waiting_for_code)
+async def handle_video_code_input(message: Message, state: FSMContext):
+    lang = get_lang(message.from_user.id, message.from_user.language_code)
+    txt = (message.text or "").strip()
+    if txt in CANCEL_TEXTS:
+        await state.clear()
+        await message.answer(tr_str(lang, "cancelled"), reply_markup=main_menu_kb(lang))
+        return
+
+    recent = _RECENT_CODES.get(str(message.chat.id)) or _RECENT_CODES.get(message.chat.id)
+    if recent and recent in txt:
+        code = recent
+    else:
+        code = extract_code_from_text(txt) or txt.upper()
+
+    if not code:
+        await message.answer(tr_str(lang, "err_code"))
+        return
+
+    _RECENT_CODES[str(message.chat.id)] = code
+    persist_store()
+    await state.set_state(VideoUploadForm.waiting_for_video)
+    await state.update_data(vid_code=code)
+    await message.answer(
+        tr_str(lang, "ask_video_prompt", code=code),
         reply_markup=build_keyboard([tr_str(lang, "btn_cancel")], 1),
         parse_mode="Markdown",
     )
 
 
-async def show_summary(message: Message, state: FSMContext, lang: str):
-    data = await state.get_data()
-    photo_cnt = len(data.get("photo_ids", []))
-    is_single = data.get("is_single", False)
-    est_collages = photo_cnt if is_single else photo_cnt // 2
-    await state.set_state(CollageForm.confirm)
-    await message.answer(
-        tr_str(
-            lang,
-            "summary",
-            code=data.get("code"),
-            price=data.get("price"),
-            size=data.get("size"),
-            cnt=photo_cnt,
-            est=est_collages,
-        ),
-        reply_markup=build_keyboard(
-            [
-                tr_str(lang, "btn_confirm_go"),
-                tr_str(lang, "btn_edit_code"),
-                tr_str(lang, "btn_edit_size"),
-                tr_str(lang, "btn_edit_price"),
-                tr_str(lang, "btn_cancel"),
-            ],
-            2,
-        ),
-        parse_mode="Markdown",
-    )
-
-
-@dp.message(CollageForm.price)
-async def handle_price(message: Message, state: FSMContext):
-    lang = get_lang(message.from_user.id, message.from_user.language_code)
-    price_val = (message.text or "").strip().replace("$", "").strip()
-    if not price_val:
-        await message.answer(tr_str(lang, "err_price"))
-        return
-    await state.update_data(price=price_val)
-    await show_summary(message, state, lang)
-
-
-@dp.message(CollageForm.confirm)
-async def handle_confirm(message: Message, state: FSMContext):
-    lang = get_lang(message.from_user.id, message.from_user.language_code)
-    txt = (message.text or "").strip()
-    if txt in EDIT_CODE_TEXTS:
-        await state.update_data(editing="code")
-        await state.set_state(CollageForm.edit_field)
-        await message.answer(
-            tr_str(lang, "ask_edit_code"),
-            reply_markup=build_keyboard([tr_str(lang, "btn_cancel")], 1),
-            parse_mode="Markdown",
-        )
-        return
-    if txt in EDIT_SIZE_TEXTS:
-        await state.update_data(editing="size")
-        await state.set_state(CollageForm.edit_field)
-        await message.answer(
-            tr_str(lang, "ask_edit_size"),
-            reply_markup=build_keyboard(SIZE_LIST + [tr_str(lang, "btn_cancel")], 3),
-            parse_mode="Markdown",
-        )
-        return
-    if txt in EDIT_PRICE_TEXTS:
-        await state.update_data(editing="price")
-        await state.set_state(CollageForm.edit_field)
-        await message.answer(
-            tr_str(lang, "ask_edit_price"),
-            reply_markup=build_keyboard([tr_str(lang, "btn_cancel")], 1),
-            parse_mode="Markdown",
-        )
-        return
-    if txt not in CONFIRM_GO_TEXTS:
-        await message.answer(tr_str(lang, "choose_below"))
-        return
-
-    data = await state.get_data()
+@dp.message(VideoUploadForm.waiting_for_video, F.text.in_(CANCEL_TEXTS))
+async def cancel_video_upload(message: Message, state: FSMContext):
     await state.clear()
+    lang = get_lang(message.from_user.id, message.from_user.language_code)
+    await message.answer(tr_str(lang, "cancelled"), reply_markup=main_menu_kb(lang))
 
-    chat_id = message.chat.id
-    photo_ids = data.get("photo_ids", [])
-    is_single = data.get("is_single", False)
-    grouping_mode = data.get("grouping_mode", "smart")
 
-    safe_code = data["code"].replace("|", "~").replace("_", "-").replace("/", "-")
-    safe_size = data["size"].replace("|", "~").replace("_", "-")
-    safe_price = data["price"].replace("|", "~").replace("_", "-")
-    cat_tag = "ОДИНАРНЫЙ" if is_single else "ПЛАТЬЕ"
-    folder_name = f"PIVOK_{cat_tag}_{safe_code}_{safe_size}_{safe_price}_{int(time.time())}"
-    inc_folder = os.path.join(INCOMING_DIR, folder_name)
+@dp.message(VideoUploadForm.waiting_for_video, F.video | F.document)
+async def handle_incoming_video(message: Message, state: FSMContext):
+    lang = get_lang(message.from_user.id, message.from_user.language_code)
+    data = await state.get_data()
+    code = data.get("vid_code") or _RECENT_CODES.get(str(message.chat.id)) or _RECENT_CODES.get(message.chat.id) or "PIVOK"
 
-    prune_old_work_folders(keep_latest=8)
-    os.makedirs(inc_folder, exist_ok=True)
+    media_obj = None
+    if message.video:
+        media_obj = message.video
+    elif message.document:
+        mime = (message.document.mime_type or "").lower()
+        fname = (message.document.file_name or "").lower()
+        if mime.startswith("video/") or fname.endswith((".mp4", ".mov", ".m4v", ".avi", ".mkv")):
+            media_obj = message.document
 
-    prog_msg = await message.answer(
-        tr_str(lang, "generating", n=len(photo_ids)),
-        reply_markup=ReplyKeyboardRemove(),
-    )
+    if not media_obj:
+        await message.answer(tr_str(lang, "video_invalid"))
+        return
+
+    await state.clear()
+    status_msg = await message.answer(tr_str(lang, "video_uploading", code=code), parse_mode="Markdown")
+
+    vid_dir = os.path.join(TEMP_DIR, "videos")
+    os.makedirs(vid_dir, exist_ok=True)
+    temp_vid_path = os.path.join(vid_dir, f"vid_{message.message_id}_{int(time.time())}.mp4")
 
     try:
-        async with _GEN_LOCK:
-            analyzed = []
-            tot = len(photo_ids)
-            last_edit_t = time.time()
+        await bot.download(media_obj, destination=temp_vid_path)
+        res = await _publish_video_file(bot, message.chat.id, temp_vid_path, code=code, lang=lang)
 
-            for idx, fid in enumerate(photo_ids, 1):
-                tmp_p = os.path.join(inc_folder, f"__raw_{idx:03d}.tmpjpg")
-                item = await download_and_analyze_photo(fid, tmp_p, bot)
-                analyzed.append(item)
+        tg_res_str = ", ".join(res["tg_sent"]) if res["tg_sent"] else "⚠️ Ошибка отправки"
+        wa_res_str = "✅ Опубликовано в группе PÎVOK FASHION" if res["wa_ok"] else f"⚠️ {res['wa_err']}"
 
-                now_t = time.time()
-                if now_t - last_edit_t >= 2.0 or idx == tot:
-                    last_edit_t = now_t
-                    try:
-                        await prog_msg.edit_text(
-                            tr_str(lang, "prog_step", cur=idx, tot=tot),
-                            parse_mode="Markdown",
-                        )
-                    except Exception:
-                        pass
-                await asyncio.sleep(0.04)
-
-            pose_cache = {}
-            if is_single:
-                for idx, it in enumerate(analyzed, 1):
-                    final_name = f"{idx:02d}_COLOR-{idx}.jpg"
-                    os.replace(it["temp_path"], os.path.join(inc_folder, final_name))
-                    pose_cache[final_name] = it["pose"]
-            else:
-                if grouping_mode == "smart":
-                    pairs, labels = await asyncio.to_thread(color_clustering.cluster_analyzed_items, analyzed)
-                else:
-                    pairs = [analyzed[i : i + 2] for i in range(0, len(analyzed), 2)]
-                    labels = [f"COLOR{idx + 1}" for idx in range(len(pairs))]
-
-                for p_idx, pair in enumerate(pairs):
-                    if len(pair) < 2:
-                        for leftover in pair:
-                            try:
-                                os.remove(leftover["temp_path"])
-                            except Exception:
-                                pass
-                        continue
-                    lbl = labels[p_idx] if p_idx < len(labels) else f"COLOR{p_idx + 1}"
-                    prefix = f"{p_idx + 1:02d}_{lbl}"
-                    for k, it in enumerate(pair, 1):
-                        final_name = f"{prefix}-{k}.jpg"
-                        os.replace(it["temp_path"], os.path.join(inc_folder, final_name))
-                        pose_cache[final_name] = it["pose"]
-
-            with open(os.path.join(inc_folder, "pose_cache.json"), "w", encoding="utf-8") as pf:
-                json.dump(pose_cache, pf)
-
-            del analyzed
-            gc.collect()
-
-            try:
-                await prog_msg.edit_text(tr_str(lang, "prog_render"))
-            except Exception:
-                pass
-
-            await asyncio.to_thread(collage_engine.generate_folder_collages, folder_name, inc_folder)
-            gc.collect()
-
+        report_text = tr_str(
+            lang,
+            "video_done",
+            code=code,
+            tg=tg_res_str,
+            wa=wa_res_str,
+        )
         try:
-            await prog_msg.delete()
+            await status_msg.edit_text(report_text, parse_mode="Markdown")
+        except Exception:
+            await message.answer(report_text, parse_mode="Markdown")
+    except Exception as e:
+        logger.exception("Error processing video upload")
+        await message.answer(f"❌ Ошибка при отправке видео: {e}")
+    finally:
+        try:
+            if os.path.exists(temp_vid_path):
+                os.remove(temp_vid_path)
         except Exception:
             pass
-        await send_collage_preview(chat_id, folder_name, lang=lang)
-        await bot.send_message(
-            chat_id,
-            tr_str(lang, "next_model_hint"),
-            reply_markup=main_menu_kb(lang),
+
+    await bot.send_message(
+        message.chat.id,
+        tr_str(lang, "choose_below"),
+        reply_markup=main_menu_kb(lang),
+    )
+
+
+@dp.message(F.video | F.document)
+async def handle_direct_video(message: Message, state: FSMContext):
+    media_obj = None
+    if message.video:
+        media_obj = message.video
+    elif message.document:
+        mime = (message.document.mime_type or "").lower()
+        fname = (message.document.file_name or "").lower()
+        if mime.startswith("video/") or fname.endswith((".mp4", ".mov", ".m4v", ".avi", ".mkv")):
+            media_obj = message.document
+
+    if not media_obj:
+        return
+
+    lang = get_lang(message.from_user.id, message.from_user.language_code)
+    code = extract_code_from_text(message.caption or "") or _RECENT_CODES.get(str(message.chat.id)) or _RECENT_CODES.get(message.chat.id)
+    if not code:
+        await state.set_state(VideoUploadForm.waiting_for_code)
+        await state.update_data(pending_video_file_id=media_obj.file_id)
+        await message.answer(
+            tr_str(lang, "ask_video_code"),
+            reply_markup=build_keyboard([tr_str(lang, "btn_cancel")], 1),
+            parse_mode="Markdown",
         )
+        return
+
+    status_msg = await message.answer(tr_str(lang, "video_uploading", code=code), parse_mode="Markdown")
+    vid_dir = os.path.join(TEMP_DIR, "videos")
+    os.makedirs(vid_dir, exist_ok=True)
+    temp_vid_path = os.path.join(vid_dir, f"vid_{message.message_id}_{int(time.time())}.mp4")
+
+    try:
+        await bot.download(media_obj, destination=temp_vid_path)
+        res = await _publish_video_file(bot, message.chat.id, temp_vid_path, code=code, lang=lang)
+
+        tg_res_str = ", ".join(res["tg_sent"]) if res["tg_sent"] else "⚠️ Ошибка отправки"
+        wa_res_str = "✅ Опубликовано в группе PÎVOK FASHION" if res["wa_ok"] else f"⚠️ {res['wa_err']}"
+
+        report_text = tr_str(
+            lang,
+            "video_done",
+            code=code,
+            tg=tg_res_str,
+            wa=wa_res_str,
+        )
+        try:
+            await status_msg.edit_text(report_text, parse_mode="Markdown")
+        except Exception:
+            await message.answer(report_text, parse_mode="Markdown")
     except Exception as e:
-        logger.exception("Error generating collages")
-        await bot.send_message(
-            chat_id,
-            tr_str(lang, "err_gen", e=str(e)),
-            reply_markup=main_menu_kb(lang),
-        )
+        logger.exception("Error processing direct video upload")
+        await message.answer(f"❌ Ошибка при отправке видео: {e}")
+    finally:
+        try:
+            if os.path.exists(temp_vid_path):
+                os.remove(temp_vid_path)
+        except Exception:
+            pass
+
+    await bot.send_message(
+        message.chat.id,
+        tr_str(lang, "choose_below"),
+        reply_markup=main_menu_kb(lang),
+    )
 
 
 @dp.message(CollageForm.edit_field)
 async def handle_edit_field(message: Message, state: FSMContext):
     lang = get_lang(message.from_user.id, message.from_user.language_code)
     data = await state.get_data()
-    field = data.get("editing")
     val = (message.text or "").strip()
-    if field == "code":
-        await state.update_data(code=val.upper())
-    elif field == "size":
-        await state.update_data(size=val)
-    elif field == "price":
-        await state.update_data(price=val.replace("$", "").strip())
-    await show_summary(message, state, lang)
+    photo_ids = data.get("photo_ids", [])
+    code = data.get("code") or "PIVOK"
+    if val:
+        code = val.upper()
+    await state.clear()
+    if photo_ids:
+        await _execute_collage_creation(
+            chat_id=message.chat.id,
+            photo_ids=photo_ids,
+            code=code,
+            lang=lang,
+        )
+    else:
+        await message.answer(tr_str(lang, "cancelled"), reply_markup=main_menu_kb(lang))
 
 
-def _build_tg_collage_caption(code: str, sizes: str, price: str) -> str:
+def _build_tg_collage_caption(code: str, sizes: str = "", price: str = "") -> str:
     wa_url = get_channel_link_url(PIVOK_CHANNEL_LINKS[1]) or "https://chat.whatsapp.com/Ddh7BKb1atCAhRzogy9l9Y"
     ig_url = get_channel_link_url(PIVOK_CHANNEL_LINKS[2]) or "https://www.instagram.com/pivok_fashion?cnvx=MWRzeWJkaGs1MGpsaQ=="
     sale_url = get_channel_link_url(PIVOK_CHANNEL_LINKS[4]) or "https://t.me/pivoksale"
@@ -1604,7 +1911,7 @@ def _build_tg_collage_caption(code: str, sizes: str, price: str) -> str:
     )
 
 
-def _build_wa_collage_caption(code: str, sizes: str, price: str) -> str:
+def _build_wa_collage_caption(code: str, sizes: str = "", price: str = "") -> str:
     ig_url = "https://www.instagram.com/pivok_fashion"
     tg_url = "https://t.me/pivoklaleli"
     return (
@@ -1646,6 +1953,9 @@ async def cb_publish_collages(callback: CallbackQuery):
     folder_name = os.path.basename(folder_path)
     _, _, code, sizes, price = collage_engine.parse_folder_metadata(folder_name)
     rec = published_records.setdefault(short_id, {"tg": False, "wa": False})
+    rec["code"] = code
+    _RECENT_CODES[str(chat_id)] = code
+    persist_store()
 
     do_tg = mode in ("all", "tg")
     do_wa = mode in ("all", "wa")
@@ -1739,10 +2049,15 @@ async def cb_publish_collages(callback: CallbackQuery):
                     except Exception as e:
                         results_lines.append(f"❌ WhatsApp: {e}")
 
+    post_pub_kb = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [InlineKeyboardButton(text=tr_str(lang, "btn_add_video"), callback_data=f"addvid_{short_id}")]
+        ]
+    )
     try:
-        await status_msg.edit_text("\n".join(results_lines))
+        await status_msg.edit_text("\n".join(results_lines), reply_markup=post_pub_kb)
     except Exception:
-        await bot.send_message(chat_id, "\n".join(results_lines))
+        await bot.send_message(chat_id, "\n".join(results_lines), reply_markup=post_pub_kb)
 
 
 @dp.callback_query(F.data.startswith("files_"))
@@ -1894,7 +2209,7 @@ async def health():
     return {
         "status": "ok",
         "service": "PIVOK Cloud Studio 24/7",
-        "version": "v4.4-clean-utf8-wa",
+        "version": "v4.5-fast-flow-video",
         "languages": ["ru", "tr", "ar"],
         "default_language": "ru",
         "whatsapp_connected": bool(wa_st.get("connected")),

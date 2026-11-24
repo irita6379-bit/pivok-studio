@@ -302,6 +302,49 @@ app.post('/send-batch', async (req, res) => {
     }
 });
 
+app.post('/send-video', async (req, res) => {
+    try {
+        const { target, file_path, caption } = req.body;
+        if (!file_path || !fs.existsSync(file_path)) {
+            return res.status(400).json({ success: false, error: 'Video file not found on disk' });
+        }
+
+        const activeSock = await waitForSocket(20000);
+        let chatId = (target || '').trim();
+        if (!chatId) {
+            chatId = await resolveTargetGroupJid(activeSock);
+        }
+        if (!chatId) {
+            return res.status(400).json({
+                success: false,
+                error: 'Could not find the PIVOK WhatsApp group on this WhatsApp account.'
+            });
+        }
+        if (!chatId.includes('@')) {
+            chatId = `${chatId}@s.whatsapp.net`;
+        }
+
+        const buffer = fs.readFileSync(file_path);
+        await enqueueSend(async () => {
+            const s = await waitForSocket(25000);
+            await withTimeout(
+                s.sendMessage(chatId, {
+                    video: buffer,
+                    caption: caption || '',
+                    mimetype: 'video/mp4'
+                }),
+                90000,
+                'sendVideo'
+            );
+        });
+
+        res.json({ success: true, target: chatId });
+    } catch (e) {
+        console.error('[WA] send-video error:', e.message);
+        res.status(500).json({ success: false, error: e.message });
+    }
+});
+
 app.listen(WA_PORT, '127.0.0.1', async () => {
     console.log(`[WA Bridge] Listening on 127.0.0.1:${WA_PORT}`);
     try {
