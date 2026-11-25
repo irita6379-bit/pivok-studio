@@ -232,7 +232,7 @@ STRINGS = {
         "prog_render": "🎨 Assembling PÎVOK collages (4×3)...",
         "preview_ready": (
             "✨ **PÎVOK — Collages Ready ({n})**\n"
-            "🏷️ Code: `{code}`\n\n"
+            "🏷️ Code: `{code}` | 💰 Price: `{price}$` | 📏 Sizes: `{sizes}`\n\n"
             "Adjust framing via 🛠 if needed, or choose an action:"
         ),
         "next_model_hint": "Done! To create collages for the next model, tap the button below:",
@@ -332,7 +332,7 @@ STRINGS = {
         "prog_render": "🎨 Сборка коллажей PÎVOK (4×3)...",
         "preview_ready": (
             "✨ **PÎVOK — Коллажи готовы ({n} шт.)**\n"
-            "🏷️ Код: `{code}`\n\n"
+            "🏷️ Код: `{code}` | 💰 Цена: `{price}$` | 📏 Размеры: `{sizes}`\n\n"
             "При необходимости поправьте кроп через 🛠 или выберите действие:"
         ),
         "next_model_hint": "Готово! Чтобы собрать следующую модель, нажмите кнопку ниже:",
@@ -434,7 +434,7 @@ STRINGS = {
         "prog_render": "🎨 PÎVOK kolajları (4×3) birleştiriliyor...",
         "preview_ready": (
             "✨ **PÎVOK — Kolajlar hazır ({n} adet)**\n"
-            "🏷️ Kod: `{code}`\n\n"
+            "🏷️ Kod: `{code}` | 💰 Fiyat: `{price}$` | 📏 Bedenler: `{sizes}`\n\n"
             "Gerekirse 🛠 ile kadrajı düzenleyin veya işlem seçin:"
         ),
         "next_model_hint": "Tamamlandı! Yeni bir model hazırlamak için aşağıdaki butona basın:",
@@ -536,7 +536,7 @@ STRINGS = {
         "prog_render": "🎨 جاري تجميع كولاج PÎVOK (4×3)...",
         "preview_ready": (
             "✨ **PÎVOK — الكولاج جاهز ({n})**\n"
-            "🏷️ الكود: `{code}`\n\n"
+            "🏷️ الكود: `{code}` | 💰 السعر: `{price}$` | 📏 المقاسات: `{sizes}`\n\n"
             "يمكنك تعديل القص عبر 🛠 عند الحاجة أو اختيار إجراء:"
         ),
         "next_model_hint": "تم! لإنشاء كولاج للموديل التالي، اضغط على الزر أدناه:",
@@ -1504,23 +1504,25 @@ async def _flush_photo_buffer(chat_id: int, state: FSMContext):
         )
         return
 
-    # FAST-PATH 1: If user sent photos WITH a caption containing the code, generate immediately!
+    # FAST-PATH 1: If user sent photos WITH a caption containing the code, proceed to ask sizes:
     if detected_code:
-        await state.clear()
         is_single = len(photo_ids) == 1
-        await _execute_collage_creation(
-            chat_id=chat_id,
+        await state.set_state(CollageForm.size)
+        await state.update_data(
             photo_ids=photo_ids,
             code=detected_code,
-            sizes="",
-            price="",
             is_single=is_single,
             grouping_mode="smart",
-            lang=lang,
+        )
+        await bot.send_message(
+            chat_id,
+            f"🏷️ `{detected_code}`\n\n" + tr_str(lang, "ask_size"),
+            reply_markup=build_keyboard(SIZE_LIST + [tr_str(lang, "btn_cancel")], 3),
+            parse_mode="Markdown",
         )
         return
 
-    # FAST-PATH 2: Ask ONLY for Code (no size/price/confirmation questions!)
+    # FAST-PATH 2: Ask for Code (then size and price in fast sequence, no confirmation screen)
     is_single = len(photo_ids) == 1
     await state.set_state(CollageForm.code)
     await state.update_data(is_single=is_single, grouping_mode="smart")
@@ -1638,8 +1640,57 @@ async def handle_code(message: Message, state: FSMContext):
         await message.answer(tr_str(lang, "err_code"))
         return
 
+    await state.update_data(code=code_val)
+    await state.set_state(CollageForm.size)
+    await message.answer(
+        tr_str(lang, "ask_size"),
+        reply_markup=build_keyboard(SIZE_LIST + [tr_str(lang, "btn_cancel")], 3),
+        parse_mode="Markdown",
+    )
+
+
+@dp.message(CollageForm.size)
+async def handle_size(message: Message, state: FSMContext):
+    lang = get_lang(message.from_user.id, message.from_user.language_code)
+    txt = (message.text or "").strip()
+    if txt in CANCEL_TEXTS:
+        PHOTO_BUFFER.pop(message.chat.id, None)
+        await state.clear()
+        await message.answer(tr_str(lang, "cancelled"), reply_markup=main_menu_kb(lang))
+        return
+
+    if not txt:
+        await message.answer(tr_str(lang, "err_size"))
+        return
+
+    await state.update_data(size=txt)
+    await state.set_state(CollageForm.price)
+    await message.answer(
+        tr_str(lang, "ask_price"),
+        reply_markup=build_keyboard([tr_str(lang, "btn_cancel")], 1),
+        parse_mode="Markdown",
+    )
+
+
+@dp.message(CollageForm.price)
+async def handle_price(message: Message, state: FSMContext):
+    lang = get_lang(message.from_user.id, message.from_user.language_code)
+    txt = (message.text or "").strip()
+    if txt in CANCEL_TEXTS:
+        PHOTO_BUFFER.pop(message.chat.id, None)
+        await state.clear()
+        await message.answer(tr_str(lang, "cancelled"), reply_markup=main_menu_kb(lang))
+        return
+
+    price_val = txt.replace("$", "").strip()
+    if not price_val:
+        await message.answer(tr_str(lang, "err_price"))
+        return
+
     data = await state.get_data()
     photo_ids = data.get("photo_ids", [])
+    code = data.get("code") or "PIVOK"
+    size = data.get("size") or ""
     is_single = data.get("is_single", False)
     grouping_mode = data.get("grouping_mode", "smart")
     await state.clear()
@@ -1648,13 +1699,13 @@ async def handle_code(message: Message, state: FSMContext):
         await message.answer(tr_str(lang, "no_photos_yet"), reply_markup=main_menu_kb(lang))
         return
 
-    # Immediately execute creation (skips sizes, price, and confirm screens!)
+    # Fast creation with code, size and price (no redundant confirmation screen!)
     await _execute_collage_creation(
         chat_id=message.chat.id,
         photo_ids=photo_ids,
-        code=code_val,
-        sizes="",
-        price="",
+        code=code,
+        sizes=size,
+        price=price_val,
         is_single=is_single,
         grouping_mode=grouping_mode,
         lang=lang,
@@ -1898,28 +1949,43 @@ def _build_tg_collage_caption(code: str, sizes: str = "", price: str = "") -> st
     ig_url = get_channel_link_url(PIVOK_CHANNEL_LINKS[2]) or "https://www.instagram.com/pivok_fashion?cnvx=MWRzeWJkaGs1MGpsaQ=="
     sale_url = get_channel_link_url(PIVOK_CHANNEL_LINKS[4]) or "https://t.me/pivoksale"
     vid_url = get_channel_link_url(PIVOK_CHANNEL_LINKS[5]) or "https://t.me/pivokvideo"
-    return (
-        f"🌸 <b>PÎVOK</b>\n"
-        f"🆕 <b>NEW MODEL</b>\n"
-        f"🔖 <b>CODE:</b> <code>{code}</code>\n"
-        f"➖➖➖➖➖➖➖➖\n"
-        f"🛍 <b>Order & Catalog:</b>\n"
+
+    lines = [
+        f"🌸 <b>PÎVOK</b>",
+        f"🆕 <b>NEW MODEL</b>",
+        f"🔖 <b>CODE:</b> <code>{code}</code>",
+    ]
+    if sizes and sizes.strip() and sizes.strip() != "-":
+        lines.append(f"📏 <b>SIZES:</b> {sizes}")
+    if price and price.strip() and price.strip() != "-":
+        lines.append(f"💰 <b>PRICE:</b> {price}$")
+    lines.extend([
+        f"➖➖➖➖➖➖➖➖",
+        f"🛍 <b>Order & Catalog:</b>",
         f"<a href='{wa_url}'>🟢 WhatsApp</a> | "
         f"<a href='{ig_url}'>📸 Instagram</a> | "
         f"<a href='{vid_url}'>📹 Video</a> | "
-        f"<a href='{sale_url}'>🔥 Sale</a>"
-    )
+        f"<a href='{sale_url}'>🔥 Sale</a>",
+    ])
+    return "\n".join(lines)
 
 
 def _build_wa_collage_caption(code: str, sizes: str = "", price: str = "") -> str:
     ig_url = "https://www.instagram.com/pivok_fashion"
     tg_url = "https://t.me/pivoklaleli"
-    return (
-        f"🌸 *PÎVOK* — *NEW MODEL*\n"
-        f"🔖 *CODE:* {code}\n"
-        f"✈️ Telegram: {tg_url}\n"
-        f"📸 Instagram: {ig_url}"
-    )
+    lines = [
+        f"🌸 *PÎVOK* — *NEW MODEL*",
+        f"🔖 *CODE:* {code}",
+    ]
+    if sizes and sizes.strip() and sizes.strip() != "-":
+        lines.append(f"📏 *SIZES:* {sizes}")
+    if price and price.strip() and price.strip() != "-":
+        lines.append(f"💰 *PRICE:* {price}$")
+    lines.extend([
+        f"✈️ Telegram: {tg_url}",
+        f"📸 Instagram: {ig_url}",
+    ])
+    return "\n".join(lines)
 
 
 @dp.callback_query(F.data.startswith(("pub_all_", "pub_tg_", "pub_wa_")))
@@ -2209,7 +2275,7 @@ async def health():
     return {
         "status": "ok",
         "service": "PIVOK Cloud Studio 24/7",
-        "version": "v4.5-fast-flow-video",
+        "version": "v4.6-sizes-prices-restored",
         "languages": ["ru", "tr", "ar"],
         "default_language": "ru",
         "whatsapp_connected": bool(wa_st.get("connected")),
