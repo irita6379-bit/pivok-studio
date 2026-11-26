@@ -59,6 +59,22 @@ load_dotenv(os.path.join(BASE_DIR, ".env"))
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 logger = logging.getLogger("pivok-cloud")
 
+_LOG_RECORDS = collections.deque(maxlen=250)
+
+
+class InMemoryLogHandler(logging.Handler):
+    def emit(self, record):
+        try:
+            msg = self.format(record)
+            _LOG_RECORDS.append(msg)
+        except Exception:
+            pass
+
+
+_in_mem_handler = InMemoryLogHandler()
+_in_mem_handler.setFormatter(logging.Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s"))
+logging.getLogger().addHandler(_in_mem_handler)
+
 BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
 SECRET_PASSWORD = os.environ.get("BOT_SECRET_PASSWORD", "pivok").strip()
 SPACE_HOST = os.environ.get("SPACE_HOST", "").strip()
@@ -1619,11 +1635,12 @@ async def handle_code(message: Message, state: FSMContext):
 
     await state.update_data(code=code_val)
     await state.set_state(CollageForm.size)
-    await message.answer(
-        tr_str(lang, "ask_size"),
-        reply_markup=build_keyboard(SIZE_LIST + [tr_str(lang, "btn_cancel")], 3),
-        parse_mode="Markdown",
-    )
+    size_prompt = tr_str(lang, "ask_size")
+    size_kb = build_keyboard(SIZE_LIST + [tr_str(lang, "btn_cancel")], 3)
+    try:
+        await message.answer(size_prompt, reply_markup=size_kb, parse_mode="Markdown")
+    except Exception:
+        await message.answer(size_prompt, reply_markup=size_kb)
 
 
 @dp.message(CollageForm.size)
@@ -1642,11 +1659,12 @@ async def handle_size(message: Message, state: FSMContext):
 
     await state.update_data(size=txt)
     await state.set_state(CollageForm.price)
-    await message.answer(
-        tr_str(lang, "ask_price"),
-        reply_markup=build_keyboard([tr_str(lang, "btn_cancel")], 1),
-        parse_mode="Markdown",
-    )
+    price_prompt = tr_str(lang, "ask_price")
+    price_kb = build_keyboard([tr_str(lang, "btn_cancel")], 1)
+    try:
+        await message.answer(price_prompt, reply_markup=price_kb, parse_mode="Markdown")
+    except Exception:
+        await message.answer(price_prompt, reply_markup=price_kb)
 
 
 @dp.message(CollageForm.price)
@@ -2252,7 +2270,7 @@ async def health():
     return {
         "status": "ok",
         "service": "PIVOK Cloud Studio 24/7",
-        "version": "v4.7-open-access",
+        "version": "v4.8-reliable-flow",
         "languages": ["ru", "tr", "ar"],
         "default_language": "ru",
         "whatsapp_connected": bool(wa_st.get("connected")),
@@ -2322,6 +2340,7 @@ async def telegram_webhook(request: Request):
         return {"ok": False}
     sec = request.headers.get("X-Telegram-Bot-Api-Secret-Token", "")
     if sec != WEBHOOK_SECRET:
+        logger.warning(f"Webhook rejected: secret mismatch '{sec}' vs '{WEBHOOK_SECRET}'")
         raise HTTPException(status_code=403, detail="Invalid secret token")
     payload = await request.json()
     upd_id = payload.get("update_id")
@@ -2330,8 +2349,18 @@ async def telegram_webhook(request: Request):
             return {"ok": True}
         _SEEN_UPDATES.append(upd_id)
     update = Update.model_validate(payload, context={"bot": bot})
-    asyncio.create_task(dp.feed_update(bot, update))
+    try:
+        await dp.feed_update(bot, update)
+    except Exception as e:
+        logger.exception(f"Exception handling update {upd_id}: {e}")
     return {"ok": True}
+
+
+@app.get("/debug_logs")
+async def get_debug_logs(key: str = ""):
+    if key != SECRET_PASSWORD:
+        raise HTTPException(status_code=403, detail="Forbidden")
+    return {"logs": list(_LOG_RECORDS)}
 
 
 @app.get("/api/editor/{folder_name}")
