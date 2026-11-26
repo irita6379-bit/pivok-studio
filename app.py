@@ -11,6 +11,7 @@ import io
 import json
 import logging
 import os
+import re
 import shutil
 import subprocess
 import threading
@@ -2270,7 +2271,7 @@ async def health():
     return {
         "status": "ok",
         "service": "PIVOK Cloud Studio 24/7",
-        "version": "v4.8-reliable-flow",
+        "version": "v4.9-fix-re-import",
         "languages": ["ru", "tr", "ar"],
         "default_language": "ru",
         "whatsapp_connected": bool(wa_st.get("connected")),
