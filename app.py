@@ -1394,11 +1394,8 @@ async def _execute_collage_creation(
                     os.replace(it["temp_path"], os.path.join(inc_folder, final_name))
                     pose_cache[final_name] = it["pose"]
             else:
-                if grouping_mode == "smart":
-                    pairs, labels = await asyncio.to_thread(color_clustering.cluster_analyzed_items, analyzed)
-                else:
-                    pairs = [analyzed[i : i + 2] for i in range(0, len(analyzed), 2)]
-                    labels = [f"COLOR{p_idx + 1}" for p_idx in range(len(pairs))]
+                pairs = [analyzed[i : i + 2] for i in range(0, len(analyzed), 2)]
+                labels = [f"COLOR{p_idx + 1}" for p_idx in range(len(pairs))]
 
                 for p_idx, pair in enumerate(pairs):
                     if len(pair) < 2:
@@ -1449,6 +1446,14 @@ async def _execute_collage_creation(
         )
 
 
+def _extract_sorted_ids(buf: dict) -> list[str]:
+    items = buf.get("items", [])
+    if items:
+        items.sort(key=lambda x: x[0])
+        return [x[1] for x in items]
+    return buf.get("ids", [])
+
+
 @dp.message(StateFilter(None, CollageForm.photo), F.photo | F.document)
 async def handle_incoming_photo(message: Message, state: FSMContext):
     lang = get_lang(message.from_user.id, message.from_user.language_code)
@@ -1465,7 +1470,8 @@ async def handle_incoming_photo(message: Message, state: FSMContext):
 
     chat_id = message.chat.id
     if chat_id not in PHOTO_BUFFER:
-        PHOTO_BUFFER[chat_id] = {"ids": [], "task": None, "lang": lang, "detected_code": None}
+        PHOTO_BUFFER[chat_id] = {"items": [], "ids": [], "task": None, "lang": lang, "detected_code": None}
+    PHOTO_BUFFER[chat_id]["items"].append((message.message_id, file_id))
     PHOTO_BUFFER[chat_id]["ids"].append(file_id)
     PHOTO_BUFFER[chat_id]["lang"] = lang
 
@@ -1494,7 +1500,7 @@ async def _flush_photo_buffer(chat_id: int, state: FSMContext):
     detected_code = buf.get("detected_code")
     data = await state.get_data()
     photo_ids = data.get("photo_ids", [])
-    photo_ids.extend(buf["ids"])
+    photo_ids.extend(_extract_sorted_ids(buf))
     await state.update_data(photo_ids=photo_ids)
 
     # If this was extra photos for adding a color:
@@ -1548,7 +1554,7 @@ async def handle_all_photos_loaded(message: Message, state: FSMContext):
             buf["task"].cancel()
         data = await state.get_data()
         p_ids = data.get("photo_ids", [])
-        p_ids.extend(buf.get("ids", []))
+        p_ids.extend(_extract_sorted_ids(buf))
         await state.update_data(photo_ids=p_ids)
 
     data = await state.get_data()
@@ -1584,7 +1590,7 @@ async def handle_all_photos_loaded(message: Message, state: FSMContext):
                 await asyncio.sleep(0.04)
 
             if len(analyzed) >= 2:
-                pairs, labels = await asyncio.to_thread(color_clustering.cluster_analyzed_items, analyzed)
+                pairs = [analyzed[i : i + 2] for i in range(0, len(analyzed), 2)]
                 for p_idx, pair in enumerate(pairs):
                     if len(pair) < 2:
                         for leftover in pair:
@@ -1593,8 +1599,7 @@ async def handle_all_photos_loaded(message: Message, state: FSMContext):
                             except Exception:
                                 pass
                         continue
-                    lbl = labels[p_idx] if p_idx < len(labels) else "COLOR"
-                    prefix = f"{next_idx + p_idx:02d}_{lbl}"
+                    prefix = f"{next_idx + p_idx:02d}_COLOR{next_idx + p_idx}"
                     for k, it in enumerate(pair, 1):
                         final_name = f"{prefix}-{k}.jpg"
                         final_path = os.path.join(inc_folder, final_name)
@@ -2283,7 +2288,7 @@ async def health():
     return {
         "status": "ok",
         "service": "PIVOK Cloud Studio 24/7",
-        "version": "v5.0-memory-optimized",
+        "version": "v5.1-strict-sequential-pairs",
         "languages": ["ru", "tr", "ar"],
         "default_language": "ru",
         "whatsapp_connected": bool(wa_st.get("connected")),
