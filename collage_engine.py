@@ -1,4 +1,5 @@
 import copy
+import ctypes
 import functools
 import gc
 import json
@@ -6,6 +7,13 @@ import os
 import tempfile
 import threading
 from typing import Optional
+
+def trim_memory():
+    gc.collect()
+    try:
+        ctypes.CDLL("libc.so.6").malloc_trim(0)
+    except Exception:
+        pass
 
 import cv2
 import numpy as np
@@ -604,9 +612,10 @@ def _render_one_collage(
         save_path = os.path.join(out_folder_path, f"{color_name}_{counter}.jpg")
     used_names.add(save_path)
 
-    canvas.save(save_path, "JPEG", quality=89)
+    canvas.save(save_path, "JPEG", quality=88, optimize=True)
     del canvas
-    gc.collect()
+    del draw
+    trim_memory()
 
 
 def generate_folder_collages(folder_name: str, folder_path: str) -> tuple[int, list[str]]:
@@ -684,5 +693,8 @@ def generate_folder_collages(folder_name: str, folder_path: str) -> tuple[int, l
             used_names,
         )
         count += 1
+
+    del top_rgb, bot_rgb
+    trim_memory()
 
     return count, [folder_name]

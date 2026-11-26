@@ -5,6 +5,7 @@ PÎVOK Studio — 24/7 Cloud App (Render Free-Tier Optimized: <150MB RAM, 1-Thre
 import asyncio
 import base64
 import collections
+import ctypes
 import gc
 import hashlib
 import io
@@ -20,6 +21,13 @@ import urllib.parse
 import zipfile
 from contextlib import asynccontextmanager
 from typing import Dict, Optional
+
+def trim_memory():
+    gc.collect()
+    try:
+        ctypes.CDLL("libc.so.6").malloc_trim(0)
+    except Exception:
+        pass
 
 import cv2
 import numpy as np
@@ -747,7 +755,7 @@ def start_wa_bridge_daemon():
         while True:
             try:
                 _WA_PROC = subprocess.Popen(
-                    [node_bin, "--max-old-space-size=96", script_path],
+                    [node_bin, "--max-old-space-size=64", script_path],
                     cwd=os.path.join(BASE_DIR, "wa_bridge"),
                     env=env,
                 )
@@ -801,7 +809,7 @@ def build_channel_links_kb() -> Optional[InlineKeyboardMarkup]:
     return InlineKeyboardMarkup(inline_keyboard=rows)
 
 
-def prune_old_work_folders(keep_latest: int = 8):
+def prune_old_work_folders(keep_latest: int = 3):
     for base_d in (INCOMING_DIR, OUTPUT_DIR):
         try:
             if not os.path.isdir(base_d):
@@ -872,14 +880,14 @@ def lang_inline_kb() -> InlineKeyboardMarkup:
 
 def _save_and_analyze_one_sync(raw_bytes: bytes, dest_path: str) -> dict:
     """
-    Saves photo to disk (capping max dimension to 1920px so memory stays tiny),
+    Saves photo to disk (capping max dimension to 1440px so memory stays tiny),
     runs YOLOv8-pose ONCE, and extracts both full-body score & dominant LAB color.
     """
     with Image.open(io.BytesIO(raw_bytes)) as im:
         im_rgb = ImageOps.exif_transpose(im).convert("RGB")
-        if max(im_rgb.width, im_rgb.height) > 1920:
-            im_rgb.thumbnail((1920, 1920), Image.Resampling.BILINEAR)
-        im_rgb.save(dest_path, "JPEG", quality=90)
+        if max(im_rgb.width, im_rgb.height) > 1440:
+            im_rgb.thumbnail((1440, 1440), Image.Resampling.BILINEAR)
+        im_rgb.save(dest_path, "JPEG", quality=88, optimize=True)
 
         max_dim = 640
         if max(im_rgb.width, im_rgb.height) > max_dim:
@@ -891,6 +899,7 @@ def _save_and_analyze_one_sync(raw_bytes: bytes, dest_path: str) -> dict:
         else:
             small_rgb = im_rgb.copy()
 
+    del im_rgb
     small_bgr = np.array(small_rgb)[:, :, ::-1]
     del small_rgb
     sh, sw = small_bgr.shape[:2]
@@ -910,7 +919,7 @@ def _save_and_analyze_one_sync(raw_bytes: bytes, dest_path: str) -> dict:
 
     lab = color_clustering.extract_dominant_lab_from_pose(small_bgr, pose_data)
     del small_bgr
-    gc.collect()
+    trim_memory()
 
     return {
         "temp_path": dest_path,
@@ -930,6 +939,7 @@ async def download_and_analyze_photo(f_id: str, dest_path: str, bot_inst: Bot) -
             del downloaded
             res = await asyncio.to_thread(_save_and_analyze_one_sync, raw_bytes, dest_path)
             del raw_bytes
+            trim_memory()
             return res
         except Exception as e:
             logger.error(f"Error downloading/analyzing {f_id} (attempt {attempt + 1}): {e}")
@@ -1342,7 +1352,7 @@ async def _execute_collage_creation(
     folder_name = f"PIVOK_{cat_tag}_{safe_code}_{safe_size}_{safe_price}_{int(time.time())}"
     inc_folder = os.path.join(INCOMING_DIR, folder_name)
 
-    prune_old_work_folders(keep_latest=8)
+    prune_old_work_folders(keep_latest=3)
     os.makedirs(inc_folder, exist_ok=True)
 
     prog_msg = await bot.send_message(
@@ -1409,7 +1419,7 @@ async def _execute_collage_creation(
                 json.dump(pose_cache, pf)
 
             del analyzed
-            gc.collect()
+            trim_memory()
 
             try:
                 await prog_msg.edit_text(tr_str(lang, "prog_render"))
@@ -1417,7 +1427,7 @@ async def _execute_collage_creation(
                 pass
 
             await asyncio.to_thread(collage_engine.generate_folder_collages, folder_name, inc_folder)
-            gc.collect()
+            trim_memory()
 
         try:
             await prog_msg.delete()
@@ -1597,6 +1607,8 @@ async def handle_all_photos_loaded(message: Message, state: FSMContext):
                 out_folder = os.path.join(OUTPUT_DIR, folder_name)
                 os.makedirs(out_folder, exist_ok=True)
                 shutil.move(analyzed[0]["temp_path"], os.path.join(out_folder, f"{next_idx:02d}_EXTRA.jpg"))
+            del analyzed
+            trim_memory()
 
         await state.clear()
         try:
@@ -2271,7 +2283,7 @@ async def health():
     return {
         "status": "ok",
         "service": "PIVOK Cloud Studio 24/7",
-        "version": "v4.9-fix-re-import",
+        "version": "v5.0-memory-optimized",
         "languages": ["ru", "tr", "ar"],
         "default_language": "ru",
         "whatsapp_connected": bool(wa_st.get("connected")),
