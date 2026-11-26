@@ -925,31 +925,8 @@ class SecurityMiddleware(BaseMiddleware):
         user = getattr(event, "from_user", None)
         user_id = user.id if user else None
         if user_id and user_id not in ALLOWED_USERS:
-            if hasattr(event, "text") and event.text:
-                entered = event.text.strip().lower()
-                allowed_pw = {SECRET_PASSWORD.lower()}
-                if SECRET_PASSWORD.lower() == "pivok":
-                    allowed_pw.add("пивок")
-                if entered in allowed_pw:
-                    ALLOWED_USERS.append(user_id)
-                    lang = get_lang(user_id, getattr(user, "language_code", None))
-                    set_lang(user_id, lang)
-                    await event.answer(
-                        "✅ **Доступ открыт! / Erişim açıldı! / تم فتح الوصول!**\n\n" + tr_str(lang, "welcome"),
-                        reply_markup=main_menu_kb(lang),
-                        parse_mode="Markdown",
-                    )
-                    return
-                await event.answer(
-                    "🔒 Бот PÎVOK защищён. Введите пароль:\n"
-                    "🔒 PÎVOK botu korumalıdır. Lütfen şifreyi girin:\n"
-                    "🔒 البوت محمي. يرجى إدخال كلمة المرور:"
-                )
-                return
-            if hasattr(event, "data") and event.data:
-                await event.answer("🔒 Введите пароль / Şifreyi girin / أدخل كلمة المرور", show_alert=True)
-                return
-            return
+            ALLOWED_USERS.append(user_id)
+            persist_store()
         return await handler(event, data)
 
 
@@ -2275,7 +2252,7 @@ async def health():
     return {
         "status": "ok",
         "service": "PIVOK Cloud Studio 24/7",
-        "version": "v4.6-sizes-prices-restored",
+        "version": "v4.7-open-access",
         "languages": ["ru", "tr", "ar"],
         "default_language": "ru",
         "whatsapp_connected": bool(wa_st.get("connected")),
