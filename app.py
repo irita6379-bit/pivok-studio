@@ -318,10 +318,7 @@ STRINGS = {
         "lang_prompt": "🌐 **Выберите язык интерфейса / Lütfen dil seçin:**",
         "lang_switched": "🇷🇺 Язык переключён на **Русский**!",
         "send_photos_prompt": (
-            "📸 **Отправьте все фотографии одной модели** (альбомом или файлами).\n\n"
-            "Когда загрузите все фото, выберите внизу:\n"
-            "• **✅ Двойной коллаж (по 2 фото)** — формат PÎVOK 4×3\n"
-            "• **✅ Одинарный коллаж (по 1 фото)**"
+            "📸 **Отправьте все фотографии одной модели** (альбомом или файлами)."
         ),
         "only_images": "⚠️ Пожалуйста, отправляйте только изображения.",
         "photos_buffered": "📥 Принято фотографий: **{n} шт.**\nДогрузите ещё или нажмите кнопку ниже:",
@@ -420,10 +417,7 @@ STRINGS = {
         "lang_prompt": "🌐 **Lütfen dil seçin / Выберите язык интерфейса:**",
         "lang_switched": "🇹🇷 Dil **Türkçe** olarak değiştirildi!",
         "send_photos_prompt": (
-            "📸 **Bir modele ait tüm fotoğrafları gönderin** (albüm veya dosya olarak).\n\n"
-            "Tüm fotoğraflar yüklendiğinde aşağıdan seçin:\n"
-            "• **✅ İkili Kolaj (2 Fotoğraf)** — PÎVOK 4×3 formatı\n"
-            "• **✅ Tekli Kolaj (1 Fotoğraf)**"
+            "📸 **Bir modele ait tüm fotoğrafları gönderin** (albüm veya dosya olarak)."
         ),
         "only_images": "⚠️ Lütfen yalnızca görsel / fotoğraf gönderin.",
         "photos_buffered": "📥 Alınan fotoğraf: **{n} adet**\nDaha fazla yükleyin veya aşağıdaki butona basın:",
@@ -522,10 +516,7 @@ STRINGS = {
         "lang_prompt": "🌐 **اختر اللغة / Выберите язык / Dil seçin:**",
         "lang_switched": "🇸🇦 تم تغيير اللغة إلى **العربية**!",
         "send_photos_prompt": (
-            "📸 **أرسل جميع صور الموديل الواحد** (كألبوم أو ملفات).\n\n"
-            "عند الانتهاء من رفع الصور، اختر من الأسفل:\n"
-            "• **✅ كولاج مزدوج (صورتان)** — مقاس PÎVOK 4×3\n"
-            "• **✅ كولاج مفرد (صورة واحدة)**"
+            "📸 **أرسل جميع صور الموديل الواحد** (كألبوم أو ملفات)."
         ),
         "only_images": "⚠️ يرجى إرسال الصور فقط.",
         "photos_buffered": "📥 الصور المستلمة: **{n}**\nأرسل المزيد أو اضغط على الزر أدناه:",
@@ -1238,9 +1229,7 @@ async def cmd_create_collage(message: Message, state: FSMContext):
     lang = get_lang(message.from_user.id, message.from_user.language_code)
     await message.answer(
         tr_str(lang, "send_photos_prompt"),
-        reply_markup=build_keyboard(
-            [tr_str(lang, "btn_pair_2"), tr_str(lang, "btn_single_1"), tr_str(lang, "btn_cancel")], 2
-        ),
+        reply_markup=build_keyboard([tr_str(lang, "btn_cancel")], 1),
         parse_mode="Markdown",
     )
 
@@ -1516,13 +1505,12 @@ async def _flush_photo_buffer(chat_id: int, state: FSMContext):
 
     # FAST-PATH 1: If user sent photos WITH a caption containing the code, proceed to ask sizes:
     if detected_code:
-        is_single = len(photo_ids) == 1
         await state.set_state(CollageForm.size)
         await state.update_data(
             photo_ids=photo_ids,
             code=detected_code,
-            is_single=is_single,
-            grouping_mode="smart",
+            is_single=False,
+            grouping_mode="sequential",
         )
         await bot.send_message(
             chat_id,
@@ -1533,9 +1521,8 @@ async def _flush_photo_buffer(chat_id: int, state: FSMContext):
         return
 
     # FAST-PATH 2: Ask for Code (then size and price in fast sequence, no confirmation screen)
-    is_single = len(photo_ids) == 1
     await state.set_state(CollageForm.code)
-    await state.update_data(is_single=is_single, grouping_mode="smart")
+    await state.update_data(is_single=False, grouping_mode="sequential")
     await bot.send_message(
         chat_id,
         tr_str(lang, "photos_buffered_ask_code", n=len(photo_ids)),
@@ -1623,10 +1610,9 @@ async def handle_all_photos_loaded(message: Message, state: FSMContext):
         await send_collage_preview(chat_id, folder_name, lang=lang)
         return
 
-    is_single = message.text in SINGLE_MODE_TEXTS
     await state.update_data(
-        is_single=is_single,
-        grouping_mode="sequential" if is_single else "smart",
+        is_single=False,
+        grouping_mode="sequential",
     )
     await state.set_state(CollageForm.code)
     await message.answer(
@@ -2288,7 +2274,7 @@ async def health():
     return {
         "status": "ok",
         "service": "PIVOK Cloud Studio 24/7",
-        "version": "v5.1-strict-sequential-pairs",
+        "version": "v5.2-pure-double-collage",
         "languages": ["ru", "tr", "ar"],
         "default_language": "ru",
         "whatsapp_connected": bool(wa_st.get("connected")),
